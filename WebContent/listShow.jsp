@@ -65,7 +65,6 @@ function submit_listSecond_show(){
     		<c:if test="${wk004List== null || fn:length(wk004List) == 0}">
     			<c:set var="disp004Size" value="1" />
     		</c:if>
-    		
     		<%-- 最初のレコードは、すべて<TR>を表示する。（wk001Bean和wk004List最初のレコード。） --%>
     		  <tr>
 			    <td rowspan="${disp004Size}"><input type="checkbox" id="del" name="del" value="${wk001Bean.mainId}"></td>
