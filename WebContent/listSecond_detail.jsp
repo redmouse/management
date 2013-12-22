@@ -19,9 +19,28 @@ function submit_update() {
 	document.getElementById("form1").submit();
 }
 
-function new_data(){
+function new_data006(){
 	var data=$('<table border="1"> <tr><td><input type="checkbox" name="del"></td><td><input type="text" name="receptionDay" value="${wk006Bean.receptionDay}"></td><td><input type="text" name="quantity" value="${wk006Bean.quantity}"></td><td><input type="text" name="occupation" value="${wk006Bean.occupation}"></td><td><input type="text" name="workLocation" value="${wk006Bean.workLocation}"></td><td><input type="text" name="period" value="${wk006Bean.period}"></td><td><input type="text" name="wage" value="${wk006Bean.wage}"></td><td><input type="text" name="conditions" value="${wk006Bean.conditions}"></td><td><input type="text" name="place" value="${wk006Bean.place}"></td><td><textarea name="recruitmentFrom"><c:out value="${wk006Bean.recruitmentFrom}"/></textarea></td><td><textarea name="recruitmentOwn"><c:out value="${wk006Bean.recruitmentOwn}" /></textarea></td><td><input type="text" name="mainId" value="${wk006Bean.mainId}"></td></tr></table>');
-		$('#dataAdd').before(data);
+		$('#data006PageAdd').before(data);
+}
+function delete_data006(){
+	var checkboxList = document.getElementsByName("del");
+	for(var i=0; i<checkboxList.length; i++){
+		if(checkboxList[i].checked){
+			checkboxList[i].checked = false;
+			document.getElementsByName("receptionDay")[i].value = '';
+			document.getElementsByName("quantity")[i].value = '';
+			document.getElementsByName("occupation")[i].value = '';
+			document.getElementsByName("workLocation")[i].value = '';
+			document.getElementsByName("period")[i].value = '';
+			document.getElementsByName("wage")[i].value = '';
+			document.getElementsByName("conditions")[i].value = '';
+			document.getElementsByName("place")[i].value = '';
+			document.getElementsByName("recruitmentFrom")[i].value = '';
+			document.getElementsByName("recruitmentOwn")[i].value = '';
+			document.getElementsByName("mainId")[i].value = '';
+		}
+	}
 }
 </script>
 <body>
@@ -85,7 +104,8 @@ function new_data(){
 				</c:otherwise>
 			</c:choose>
 	</table>
-	<input type="button" value="追加" id="dataAdd" onclick="new_data();">
+	<input type="button" value="追加" id="data006PageAdd" onclick="new_data006();">
+	<input type="button" value="削除" id="data006PageDel" onclick="delete_data006();">
 		<p>
 			<c:choose>
 				<c:when test="${disp002Bean.wk005Bean.tradeId> 0}">
