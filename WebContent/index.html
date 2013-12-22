@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>求職管理システム</title>
+</head>
+<script type="text/javascript">
+function check_items(){
+	var id = document.getElementById("loginId").value;
+	var pd = document.getElementById("loginPd").value;
+	if(id=="" || pd == ""){
+		alert("IDまたパスワードを入力してください!");
+		return;
+	}
+	document.getElementById("form1").submit();
+}
+</script>
+<body>
+<h2>求職管理システム</h2>
+<form action="Login" id="form1" method="Post">
+ID:<input type="text" id="loginId" name="loginId" value="11">
+パスワード: <input type="password" id="loginPd" name="loginPd" value="11"><br />
+
+<input type="button" onclick="check_items();" value="login">
+</form>
+
+
+</body>
+</html>
