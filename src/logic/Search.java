@@ -104,7 +104,7 @@ public class Search extends HttpServlet {
 			Iterator itr = wk001List.iterator();
 			while (itr.hasNext()) {
 				Wk001Bean wk001Bean2 = (Wk001Bean)itr.next();
-				wk001Bean2.setDispMainId(util.convertDispMainId(wk001Bean2.getMainId()));
+				wk001Bean2.setDispMainId(util.convertDispId(wk001Bean2.getMainId()));
 				wk001Bean2.setDispPlace(util.convertDispPlace(wk001Bean2.getPlace()));
 				
 				List<Wk004Bean> wk004List = wk004Dao.SelectByMainId(wk001Bean2.getMainId());

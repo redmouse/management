@@ -18,9 +18,17 @@ function submit_update() {
 	}
 	document.getElementById("form1").submit();
 }
-
+function popup_window(thisTextArea) {
+	document.getElementById("fatherText").value = thisTextArea.value;
+	var returnValue= window.showModalDialog("pop.jsp",window,"dialogHeight=600px;dialogWidth=700px;dialogLeft=0px;dialogTop=0px;center=yes;resizable=no;status=no;scroll=yes;help=no;");
+	if (returnValue != null )
+   {
+		thisTextArea.value = returnValue;
+   }
+	return false;
+}
 function new_data006(){
-	var data=$('<table border="1"> <tr><td><input type="checkbox" name="del"></td><td><input type="text" name="receptionDay" value="${wk006Bean.receptionDay}"></td><td><input type="text" name="quantity" value="${wk006Bean.quantity}"></td><td><input type="text" name="occupation" value="${wk006Bean.occupation}"></td><td><input type="text" name="workLocation" value="${wk006Bean.workLocation}"></td><td><input type="text" name="period" value="${wk006Bean.period}"></td><td><input type="text" name="wage" value="${wk006Bean.wage}"></td><td><input type="text" name="conditions" value="${wk006Bean.conditions}"></td><td><input type="text" name="place" value="${wk006Bean.place}"></td><td><textarea name="recruitmentFrom"><c:out value="${wk006Bean.recruitmentFrom}"/></textarea></td><td><textarea name="recruitmentOwn"><c:out value="${wk006Bean.recruitmentOwn}" /></textarea></td><td><input type="text" name="mainId" value="${wk006Bean.mainId}"></td></tr></table>');
+	var data=$('<table border="1"> <tr><td><input type="checkbox" name="del"></td><td><input type="text" name="receptionDay" value="${wk006Bean.receptionDay}"></td><td><input type="text" name="quantity" value="${wk006Bean.quantity}"></td><td><input type="text" name="occupation" value="${wk006Bean.occupation}"></td><td><input type="text" name="workLocation" value="${wk006Bean.workLocation}"></td><td><input type="text" name="period" value="${wk006Bean.period}"></td><td><input type="text" name="wage" value="${wk006Bean.wage}"></td><td><input type="text" name="conditions" value="${wk006Bean.conditions}"></td><td><input type="text" name="place" value="${wk006Bean.place}"></td><td><textarea name="recruitmentFrom" onclick="popup_window(this)"><c:out value="${wk006Bean.recruitmentFrom}"/></textarea></td><td><textarea name="recruitmentOwn" onclick="popup_window(this)"><c:out value="${wk006Bean.recruitmentOwn}" /></textarea></td><td><input type="text" name="secondMainId" value="${wk006Bean.mainId}"></td></tr></table>');
 		$('#data006PageAdd').before(data);
 }
 function delete_data006(){
@@ -38,23 +46,26 @@ function delete_data006(){
 			document.getElementsByName("place")[i].value = '';
 			document.getElementsByName("recruitmentFrom")[i].value = '';
 			document.getElementsByName("recruitmentOwn")[i].value = '';
-			document.getElementsByName("mainId")[i].value = '';
+			document.getElementsByName("secondMainId")[i].value = '';
 		}
 	}
 }
 </script>
 <body>
 	<form name="form1" id="form1" method="post" action="ListSecondAdd">
+		<input type="hidden" id="tradeId" name="tradeId" value="${disp002Bean.wk005Bean.tradeId}"> 
+		<!-- こちらのshowTextは、pop windowのため -->
+		<input type="hidden" id="fatherText" name="fatherText" value="">
 		<h2>求人管理簿</h2>
-		<p>求人事業所：<input type="text" name="forBusiness" value="${Disp002Bean.wk005Bean.forBusiness}"></p>
-		<p>所在地：<input type="text" name="address" value="${Disp002Bean.wk005Bean.address}"></p>
-		<p>代表者氏名：<input type="text" name="representative" value="${Disp002Bean.wk005Bean.representative}"></p>
-		<p>連絡担当者：<input type="text" name="charger" value="${Disp002Bean.wk005Bean.charger}"></p>
-		<p>備考：<textarea name="remarks"><c:out value="${Disp002Bean.wk005Bean.remarks}" /></textarea></p>
+		<p>求人事業所：<input type="text" name="forBusiness" value="${disp002Bean.wk005Bean.forBusiness}"></p>
+		<p>所在地：<input type="text" name="address" value="${disp002Bean.wk005Bean.address}"></p>
+		<p>代表者氏名：<input type="text" name="representative" value="${disp002Bean.wk005Bean.representative}"></p>
+		<p>連絡担当者：<input type="text" name="charger" value="${disp002Bean.wk005Bean.charger}"></p>
+		<p>備考：<textarea name="remarks"><c:out value="${disp002Bean.wk005Bean.remarks}" /></textarea></p>
 		<hr>
 	<table border="1">
 		<tr>
-      		<th>選択</th>
+      		<th>削除</th>
       		<th>受付年月日</th>
       		<th>求人数</th>
       		<th>職種</th>
@@ -81,7 +92,7 @@ function delete_data006(){
       					<td><input type="text" name="place" id="place" value=""></td>
       					<td><textarea name="recruitmentFrom" id="recruitmentFrom"><c:out value=""/></textarea></td>
       					<td><textarea name="recruitmentOwn" id="recruitmentOwn"><c:out value="" /></textarea></td>
-      					<td><input type="text" name="mainId" id="mainId" value=""></td>
+      					<td><input type="text" name="secondMainId" id="secondMainId" value=""></td>
     				</tr>		
 				</c:when> 
 				<c:otherwise>
@@ -96,9 +107,9 @@ function delete_data006(){
       						<td><input type="text" name="wage" id="wage" value="${wk006Bean.wage}"></td>
       						<td><input type="text" name="conditions" id="conditions" value="${wk006Bean.conditions}"></td>
       						<td><input type="text" name="place" id="place" value="${wk006Bean.place}"></td>
-      						<td><textarea name="recruitmentFrom" id="recruitmentFrom"><c:out value="${wk006Bean.recruitmentFrom}"/></textarea></td>
-      						<td><textarea name="recruitmentOwn" id="recruitmentOwn"><c:out value="${wk006Bean.recruitmentOwn}" /></textarea></td>
-      						<td><input type="text" name="mainId" id="mainId" value="${wk006Bean.mainId}"></td>
+      						<td><textarea name="recruitmentFrom" id="recruitmentFrom" onclick="popup_window(this)"><c:out value="${wk006Bean.recruitmentFrom}"/></textarea></td>
+      						<td><textarea name="recruitmentOwn" id="recruitmentOwn" onclick="popup_window(this)"><c:out value="${wk006Bean.recruitmentOwn}" /></textarea></td>
+      						<td><input type="text" name="secondMainId" id="secondMainId" value="${wk006Bean.secondMainId}"></td>
       					</tr>
 					</c:forEach> 
 				</c:otherwise>

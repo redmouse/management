@@ -63,7 +63,7 @@ public class Wk005Dao extends MysqlDao {
 				+ " address = ?, "
 				+ " representative = ?, "
 				+ " charger = ?, "
-				+ " remarks = ?, "
+				+ " remarks = ? "
 				+ " where tradeId=? ";
 		PreparedStatement statement = getConnection().prepareStatement(sql);
 		int pos = 1;

@@ -10,7 +10,7 @@ public class DetailBean {
 	private List<Wk003Bean> wk003List;
 	private List<Wk004Bean> wk004List;
 	private List<String> fileNameList;
-	String optType;  // add, modify
+	String optType;  // add, modify。　ファイルアップロードのため、新規の時、mainId先作成だから、mainIdで新規、編集の判定をしないように。
 	
 	public DetailBean(){
 		wk001Bean = new Wk001Bean();

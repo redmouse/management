@@ -10,15 +10,50 @@
 <title>求人管理簿リスト一覧画面</title>
 </head>
 <script type="text/javascript">
+function submit_for_work(mainId){
+	document.getElementById("mainId").value = mainId;
+	document.getElementById("form1").action = "ListPreModify";
+	document.getElementById("form1").submit();
+} 
 function submit_listSecond_add(){
 	document.getElementById("form1").action = "ListSecondPreAdd";
 	document.getElementById("form1").submit();
 } 
+function submit_listSecond_edit(){
+	// check: at least one radio button must be selected
+	if(!check_radio_selected()){
+		alert('求人事業所を選択してください！');
+		return;
+	}
+	
+	document.getElementById("form1").action = "ListSecondPreModify";
+	document.getElementById("form1").submit();
+} 
+function check_radio_selected() {
+	var v = document.getElementsByName('radioForBusiness');
+	for ( var i = 0; i < v.length; i++) {
+		if (v.item(i).checked) {
+			return true;
+		}
+	}
+	return false;
+}
+function popup_window(showText) {
+	document.getElementById("fatherText").value = showText;
+	window.showModalDialog("pop.jsp",window,"dialogHeight=600px;dialogWidth=700px;dialogLeft=0px;dialogTop=0px;center=yes;resizable=no;status=no;scroll=yes;help=no;");
+	return false;
+}
 
 </script>
 <body>
 <h2>求人管理簿</h2>
 <form id="form1" name="form1" method="post" action="">
+	<!-- こちらのmaindIdは、求職管理簿へLinkのため -->
+	<input type="hidden" id="mainId" name="mainId" value="">
+	<!-- こちらのshowTextは、pop windowのため -->
+	<input type="hidden" id="fatherText" name="fatherText" value="">
+	<!-- pop windowで、displayなら、textareaが変更できないように -->
+	<input type="hidden" id="optionView" name="optionView" value="display">
   	<table border="1">
     	<tr>
       		<th>選択</th>
@@ -47,20 +82,36 @@ function submit_listSecond_add(){
     		
     		<%-- 最初のレコードは、すべて<TR>を表示する。（wk005Bean和wk006List最初のレコード。） --%>
     		  <tr>
-			    <td rowspan="${disp006Size}"><input type="checkbox" id="" name="" value=""></td>
+			    <td rowspan="${disp006Size}"><input type="radio" id="radioForBusiness" name="radioForBusiness" value="${wk005Bean.tradeId}"></td>
 			   <%--  <td rowspan="${disp006Size}"><c:out value="${wk005Bean.tradeId}" /></td> --%>
 			    <td rowspan="${disp006Size}"><c:out value="${wk005Bean.forBusiness}" /></td>
-			    <td><fmt:formatDate value="${wk006List[0].receptionDay}" pattern="yyyy/MM/dd" /></td>
-			    <td><c:out value="${wk006List[0].quantity}" /></td>
-			    <td><c:out value="${wk006List[0].occupation}" /></td>
-			    <td><c:out value="${wk006List[0].workLocation}" /></td>
-			    <td><c:out value="${wk006List[0].period}" /></td>
-			    <td><c:out value="${wk006List[0].wage}" /></td>
-			    <td><c:out value="${wk006List[0].conditions}" /></td>
-			    <td><c:out value="${wk006List[0].place}" /></td>
-			    <td><c:out value="${wk006List[0].recruitmentFrom}" /></td>
-			    <td><c:out value="${wk006List[0].recruitmentOwn}" /></td>
-			    <td><c:out value="${wk006List[0].mainId}" /></td>
+			    <c:set var="wk006Bean" value="${wk006List[0]}" />
+			    <td><fmt:formatDate value="${wk006Bean.receptionDay}" pattern="yyyy/MM/dd" /></td>
+			    <td><c:out value="${wk006Bean.quantity}" /></td>
+			    <td><c:out value="${wk006Bean.occupation}" /></td>
+			    <td><c:out value="${wk006Bean.workLocation}" /></td>
+			    <td><c:out value="${wk006Bean.period}" /></td>
+			    <td><c:out value="${wk006Bean.wage}" /></td>
+			    <td><c:out value="${wk006Bean.conditions}" /></td>
+			    <td><c:out value="${wk006Bean.place}" /></td>
+			    <td>
+					<a href="#" style="text-decoration:none" onclick="popup_window('${wk006Bean.recruitmentFrom}');return false;">
+		    			<c:out value="${wk006Bean.dispRecruitmentFrom}" />
+		    	    </a>
+			    </td>
+			    <td>
+					<a href="#" style="text-decoration:none" onclick="popup_window('${wk006Bean.recruitmentOwn}');return false;">
+		    			<c:out value="${wk006Bean.dispRecruitmentOwn}" />
+		    	    </a>
+			    </td>
+			    <td>
+			        <%-- mainIdのリンク処理 --%>
+			    	<c:forEach items="${wk006Bean.dispMainIdList}" var="idPairBean">
+			    	    <a href="#" style="text-decoration:none" onclick="submit_for_work('${idPairBean.mainId}');return false;">
+			    			<c:out value="${idPairBean.dispMainId}" />
+			    	    </a>
+			    	</c:forEach>
+                </td>
 			  </tr>
     		<%-- ここでは第二のレコードが始まったwk006Listをループする --%>
     		<c:forEach items="${wk006List}" var="wk006Bean" begin= "1" end = "${disp006Size-1}">
@@ -73,9 +124,24 @@ function submit_listSecond_add(){
 			    <td><c:out value="${wk006Bean.wage}" /></td>
 			    <td><c:out value="${wk006Bean.conditions}" /></td>
 			    <td><c:out value="${wk006Bean.place}" /></td>
-			    <td><c:out value="${wk006Bean.recruitmentFrom}" /></td>
-			    <td><c:out value="${wk006Bean.recruitmentOwn}" /></td>
-			    <td><c:out value="${wk006Bean.mainId}" /></td>
+			    <td>
+					<a href="#" style="text-decoration:none" onclick="popup_window('${wk006Bean.recruitmentFrom}');return false;">
+		    			<c:out value="${wk006Bean.dispRecruitmentFrom}" />
+		    	    </a>
+			    </td>
+			    <td>
+					<a href="#" style="text-decoration:none" onclick="popup_window('${wk006Bean.recruitmentOwn}');return false;">
+		    			<c:out value="${wk006Bean.dispRecruitmentOwn}" />
+		    	    </a>
+			    </td>
+			    <td>
+			        <%-- mainIdのリンク処理 --%>
+			    	<c:forEach items="${wk006Bean.dispMainIdList}" var="idPairBean">
+			    	    <a href="#" style="text-decoration:none" onclick="submit_for_work('${idPairBean.mainId}');return false;">
+			    			<c:out value="${idPairBean.dispMainId}" />
+			    	    </a>
+			    	</c:forEach>
+                </td>
 			  </tr>
     		</c:forEach>
     	</c:forEach>
@@ -83,6 +149,7 @@ function submit_listSecond_add(){
 <a href="#" onclick="submit_listSecond_add();return false;">新規</a>
 <a href="#" onclick="submit_listSecond_edit();return false">編集</a>
 </form>
+
 
 </body>
 </html>

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.Disp002Bean;
+import beans.IdPairBean;
 import beans.Wk005Bean;
 import beans.Wk006Bean;
 import dao.Wk005Dao;
@@ -65,6 +66,16 @@ public class ListShowSecond extends HttpServlet {
 				Wk005Bean wk005Bean = (Wk005Bean)itr.next();
 				
 				List<Wk006Bean> wk006List = wk006Dao.SelectByTradeId(wk005Bean.getTradeId());
+				for (Wk006Bean wk006Bean : wk006List) {
+					// creat dispMainId list
+					wk006Bean.setDispMainIdList(util.convertUserInputMainId(wk006Bean.getSecondMainId()));
+					
+					// 求人票...
+					if(wk006Bean.getRecruitmentFrom().length()>5){
+						wk006Bean.setDispRecruitmentFrom(util.convertDispShortCut(wk006Bean.getRecruitmentFrom()));
+						wk006Bean.setDispRecruitmentOwn(util.convertDispShortCut(wk006Bean.getRecruitmentOwn()));
+					}
+				}
 				
 				Disp002Bean disp002Bean = new Disp002Bean();
 				disp002Bean.setWk005Bean(wk005Bean);

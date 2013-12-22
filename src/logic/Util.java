@@ -16,11 +16,11 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import beans.IdPairBean;
 import beans.Mst002Bean;
 import beans.Mst003Bean;
 import beans.Wk001Bean;
 import beans.Wk005Bean;
-import beans.Wk006Bean;
 
 public class Util {
 	
@@ -55,10 +55,37 @@ public class Util {
 		}
 		return new Integer(intStr).intValue();
 	}
-	public String convertDispMainId(int mainId) {
+	public List<IdPairBean> convertUserInputMainId(String userInput){
+		//删除半角逗号以外的用户可能输入的无效字符。如：空格，全角空格，全角逗号等。
+		userInput = userInput.replace(" ", "");	// 删除半角空格
+		userInput = userInput.replace("　", "");	// 删除全角空格
+		userInput = userInput.replace("、", "");	// 删除全角逗号
+		// 分割
+		String[] inputMainIdList = userInput.split(",");
+		List<IdPairBean> dispMainIdList = new ArrayList<IdPairBean>();
+		for (int i = 0; i < inputMainIdList.length; i++) {
+			String strUserInputMainId = inputMainIdList[i].trim(); // 单个的，用户输入的mainId
+			IdPairBean idPairBean = new IdPairBean();
+			int mainId = convertNullInt(strUserInputMainId);
+			idPairBean.setMainId(mainId);
+			idPairBean.setDispMainId(convertDispId(mainId));
+			dispMainIdList.add(idPairBean);
+		}
+		return dispMainIdList;
+	}
+	public String convertDispShortCut(String inputStr){
+		if(inputStr.length()>5){
+			return inputStr.substring(0,5)+"‥‥‥";
+		}
+		return inputStr;
+	}
+	public String convertDispId(int id) {
+		if(id==0){
+			return "";
+		}
 		String pattern="00000";
 		DecimalFormat df = new DecimalFormat(pattern);
-		return df.format(mainId);
+		return df.format(id);
 	}
 	public String convertBr(String intStr) {
 		if (intStr==null){

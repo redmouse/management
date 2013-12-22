@@ -72,7 +72,7 @@ public class ListSecondAdd extends HttpServlet {
 			String[] placeValues = request.getParameterValues("place");
 			String[] recruitmentFromValues = request.getParameterValues("recruitmentFrom");
 			String[] recruitmentOwnValues = request.getParameterValues("recruitmentOwn");
-			String[] mainIdValues = request.getParameterValues("mainId");
+			String[] secondMainIdValues = request.getParameterValues("secondMainId");
 			int sizeWk006 = 0;
 			if(receptionDayValues!=null){
 				sizeWk006 = receptionDayValues.length;
@@ -90,7 +90,7 @@ public class ListSecondAdd extends HttpServlet {
 				String place = placeValues[i];
 				String recruitmentFrom = recruitmentFromValues[i];
 				String recruitmentOwn = recruitmentOwnValues[i];
-				String mainId = mainIdValues[i];
+				String secondMainId = secondMainIdValues[i];
 				//　求人詳細データは空だったら、無効とみなして、wk006Beanを生成しない
 				if (receptionDay.trim().equals("")
 						&& quantity.trim().equals("")
@@ -102,7 +102,7 @@ public class ListSecondAdd extends HttpServlet {
 						&& place.trim().equals("")
 						&& recruitmentFrom.trim().equals("")
 						&& recruitmentOwn.trim().equals("")
-						&& mainId.trim().equals("")) {
+						&& secondMainId.trim().equals("")) {
 					continue;
 				}
 				// 有效データだったら、生成Bean、Listに記入する
@@ -118,11 +118,11 @@ public class ListSecondAdd extends HttpServlet {
 				wk006Bean.setPlace(place);
 				wk006Bean.setRecruitmentFrom(recruitmentFrom);
 				wk006Bean.setRecruitmentOwn(recruitmentOwn);
-				wk006Bean.setMainId(util.convertNullInt(mainId));
+				wk006Bean.setSecondMainId(secondMainId);
 				wk006List.add(wk006Bean);
 			}
 			
-			//wk004の中のmainIdの全部データ削除
+			//wk006の中のsecondMainIdの全部データ削除
 			wk006Dao.DeleteByTradeId(tradeId);
 			// 上に新たに生成した值全部insert、データベースに
 			for (Iterator iterator = wk006List.iterator(); iterator.hasNext();) {

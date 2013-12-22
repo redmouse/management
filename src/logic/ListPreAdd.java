@@ -59,7 +59,7 @@ public class ListPreAdd extends HttpServlet {
 			
 			int mainId = wk001Dao.SelectMaxMainId()+1;
 			detailBean.getWk001Bean().setMainId(mainId);
-			detailBean.getWk001Bean().setDispMainId(util.convertDispMainId(mainId));
+			detailBean.getWk001Bean().setDispMainId(util.convertDispId(mainId));
 			
 			request.setAttribute("detailBean", detailBean);
 			

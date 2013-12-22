@@ -1,6 +1,8 @@
 package beans;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Wk006Bean {
@@ -16,7 +18,17 @@ public class Wk006Bean {
 	public String place;
 	public String recruitmentFrom;
 	public String recruitmentOwn;
-	public int mainId;
+	public String secondMainId;
+	
+	public String dispRecruitmentFrom;
+	public String dispRecruitmentOwn;
+	
+	public List<IdPairBean> dispMainIdList;
+	
+	public Wk006Bean(){
+		dispMainIdList = new ArrayList<IdPairBean>();
+	}
+	
 	public int getInfoId() {
 		return infoId;
 	}
@@ -89,11 +101,35 @@ public class Wk006Bean {
 	public void setRecruitmentOwn(String recruitmentOwn) {
 		this.recruitmentOwn = recruitmentOwn;
 	}
-	public int getMainId() {
-		return mainId;
+
+	public String getSecondMainId() {
+		return secondMainId;
 	}
-	public void setMainId(int mainId) {
-		this.mainId = mainId;
+	public void setSecondMainId(String secondMainId) {
+		this.secondMainId = secondMainId;
 	}
+
+	public List<IdPairBean> getDispMainIdList() {
+		return dispMainIdList;
+	}
+
+	public void setDispMainIdList(List<IdPairBean> dispMainIdList) {
+		this.dispMainIdList = dispMainIdList;
+	}
+
+	public String getDispRecruitmentFrom() {
+		return dispRecruitmentFrom;
+	}
+	public void setDispRecruitmentFrom(String dispRecruitmentFrom) {
+		this.dispRecruitmentFrom = dispRecruitmentFrom;
+	}
+	public String getDispRecruitmentOwn() {
+		return dispRecruitmentOwn;
+	}
+	public void setDispRecruitmentOwn(String dispRecruitmentOwn) {
+		this.dispRecruitmentOwn = dispRecruitmentOwn;
+	}
+	
+	
 	
 }

@@ -57,6 +57,10 @@ public class ListPreModify extends HttpServlet {
 		Mst003Dao mst003Dao = new Mst003Dao();
 		Wk001Dao wk001Dao = new Wk001Dao();
 		Wk004Dao wk004Dao = new Wk004Dao();
+		
+		// 错误处理
+		String errMsg = "";
+
     	try{
     		int mainId = new Integer(request.getParameter("mainId")).intValue();
     		
@@ -65,9 +69,17 @@ public class ListPreModify extends HttpServlet {
     		
     		// -------- wk001 ---------
     		Wk001Bean wk001Bean = wk001Dao.Select(mainId);
-    		wk001Bean.setDispMainId(util.convertDispMainId(mainId));
+    		wk001Bean.setDispMainId(util.convertDispId(mainId));
     		detailBean.setWk001Bean(wk001Bean);
-
+    		
+    		// 如果mainId不存在。如：从求人那边链接过来。跳到出错页面。
+    		if(wk001Bean.getMainId() <= 0){ // 没找到数据，所以wk001Bean为空，mainId也应该为空。
+    			errMsg = String.format("登録番号[%s]は存在していません！", util.convertDispId(mainId));
+				request.setAttribute("errMsg", errMsg);
+				request.getRequestDispatcher("/error.jsp").forward(request,response);
+    			return;	// 跳出 try
+    		}
+    		
     		// -------- linkage ---------
     		// mst001全部
     		List<Mst001Bean> mst001List = mst001Dao.SelectAll();
@@ -109,6 +121,7 @@ public class ListPreModify extends HttpServlet {
     		wk001Dao.closeConnection();
     		wk004Dao.closeConnection();
     	}
+    	
     	request.getRequestDispatcher("/list_detail.jsp").forward(request,response);
 	
 	}

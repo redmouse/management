@@ -63,7 +63,7 @@ public class ListShow extends HttpServlet {
 			Iterator itr = wk001List.iterator();
 			while (itr.hasNext()) {
 				Wk001Bean wk001Bean = (Wk001Bean)itr.next();
-				wk001Bean.setDispMainId(util.convertDispMainId(wk001Bean.getMainId()));
+				wk001Bean.setDispMainId(util.convertDispId(wk001Bean.getMainId()));
 				wk001Bean.setDispPlace(util.convertDispPlace(wk001Bean.getPlace()));
 				
 				List<Wk004Bean> wk004List = wk004Dao.SelectByMainId(wk001Bean.getMainId());

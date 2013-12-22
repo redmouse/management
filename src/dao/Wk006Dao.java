@@ -10,7 +10,7 @@ import beans.Wk006Bean;
 public class Wk006Dao extends MysqlDao {
 	
 	String wk006Colums = " infoId,tradeId,receptionDay,quantity,occupation,workLocation, "
-			+ "period,wage,conditions,place,recruitmentFrom,recruitmentOwn,mainId ";
+			+ "period,wage,conditions,place,recruitmentFrom,recruitmentOwn,secondMainId ";
 	
 	private void setBean(Wk006Bean item, ResultSet rs) throws Exception{
 		item.setInfoId(rs.getInt("infoId"));
@@ -25,7 +25,7 @@ public class Wk006Dao extends MysqlDao {
 		item.setPlace(rs.getString("place"));
 		item.setRecruitmentFrom(rs.getString("recruitmentFrom"));
 		item.setRecruitmentOwn(rs.getString("recruitmentOwn"));
-		item.setMainId(rs.getInt("mainId"));
+		item.setSecondMainId(rs.getString("secondMainId"));
 	}
 	
 	
@@ -57,7 +57,7 @@ public class Wk006Dao extends MysqlDao {
 				+ " place = ?, "
 				+ " recruitmentFrom = ?, "
 				+ " recruitmentOwn = ?, "
-				+ " mainId = ? ";
+				+ " secondMainId = ? ";
 		PreparedStatement statement = getConnection().prepareStatement(sql);
 		int pos = 1;
 		statement.setInt(pos++, item.getTradeId());
@@ -71,7 +71,7 @@ public class Wk006Dao extends MysqlDao {
 		statement.setString(pos++, item.getPlace());
 		statement.setString(pos++, item.getRecruitmentFrom());
 		statement.setString(pos++, item.getRecruitmentOwn());
-		statement.setInt(pos++, item.getMainId());
+		statement.setString(pos++, item.getSecondMainId());
 		statement.executeUpdate();
 	}
 
