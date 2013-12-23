@@ -33,7 +33,7 @@ function level2_changed(){
 }
 </script>
 
-<body>
+<body bgcolor="gray">
 <form id="form1" name="form1" action="Search" method="post">
 	<input type="hidden" id="mainId" name="mainId" >
 	<input type="button" value="戻る" onclick="submit_list_show();">

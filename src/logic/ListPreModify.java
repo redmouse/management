@@ -58,7 +58,7 @@ public class ListPreModify extends HttpServlet {
 		Wk001Dao wk001Dao = new Wk001Dao();
 		Wk004Dao wk004Dao = new Wk004Dao();
 		
-		// 错误处理
+		// エラー処理
 		String errMsg = "";
 
     	try{
@@ -72,12 +72,12 @@ public class ListPreModify extends HttpServlet {
     		wk001Bean.setDispMainId(util.convertDispId(mainId));
     		detailBean.setWk001Bean(wk001Bean);
     		
-    		// 如果mainId不存在。如：从求人那边链接过来。跳到出错页面。
-    		if(wk001Bean.getMainId() <= 0){ // 没找到数据，所以wk001Bean为空，mainId也应该为空。
+    		// もしmainId存在しない場合。例：求人管理簿からリンクして、エラーページに飛ぶ
+    		if(wk001Bean.getMainId() <= 0){ // データはない，wk001Beanは空，mainIdも空。
     			errMsg = String.format("登録番号[%s]は存在していません！", util.convertDispId(mainId));
 				request.setAttribute("errMsg", errMsg);
 				request.getRequestDispatcher("/error.jsp").forward(request,response);
-    			return;	// 跳出 try
+    			return;	//tryからbrake
     		}
     		
     		// -------- linkage ---------

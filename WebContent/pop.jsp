@@ -10,13 +10,13 @@
 </head>
 <script type="text/javascript">
 function load_func(){
-	//父窗口(k) 
+	//親ウィンドウ(k) 
 	var k=window.dialogArguments;
     if(k==null) { 
     	return;
     } 
     
-    // 获得父页面值
+    // 親ウィンドウの値を取得
     document.getElementById("childText").value = k.document.getElementById("fatherText").value; 
 	
     var option = k.document.getElementById("optionView").value;
@@ -39,7 +39,7 @@ function update_cancel(){
 </script>
 <body onload="load_func()">
 <form>
-<textarea id="childText" name="childText" rows="30" cols="80"></textarea>
+<textarea id="childText" name="childText" rows="30" cols="80"></textarea><br>
  <input type="button" onclick="update_cancel()" value="キャンセル">
  <input type="button" onclick="update_ok()" value="登録">
 </form>

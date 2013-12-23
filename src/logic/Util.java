@@ -56,15 +56,15 @@ public class Util {
 		return new Integer(intStr).intValue();
 	}
 	public List<IdPairBean> convertUserInputMainId(String userInput){
-		//删除半角逗号以外的用户可能输入的无效字符。如：空格，全角空格，全角逗号等。
-		userInput = userInput.replace(" ", "");	// 删除半角空格
-		userInput = userInput.replace("　", "");	// 删除全角空格
-		userInput = userInput.replace("、", "");	// 删除全角逗号
+		//半角カンマ以外の符号を削除。例えば：スペース，全角スペース，全角カンマ等。
+		userInput = userInput.replace(" ", "");	// 削除半角スペース
+		userInput = userInput.replace("　", "");	// 削除全角スペース
+		userInput = userInput.replace("、", "");	// 削除全角カンマ
 		// 分割
 		String[] inputMainIdList = userInput.split(",");
 		List<IdPairBean> dispMainIdList = new ArrayList<IdPairBean>();
 		for (int i = 0; i < inputMainIdList.length; i++) {
-			String strUserInputMainId = inputMainIdList[i].trim(); // 单个的，用户输入的mainId
+			String strUserInputMainId = inputMainIdList[i].trim(); // 入力した一つのmainId
 			IdPairBean idPairBean = new IdPairBean();
 			int mainId = convertNullInt(strUserInputMainId);
 			idPairBean.setMainId(mainId);

@@ -141,7 +141,7 @@ function new_data(){
 		return '';
 	}   */
 </script>
-<body onload="setDetail();">
+<body bgcolor="gray" onload="setDetail();">
 	<form name="form1" id="form1" method="post" action="">
 		<input type="hidden" id="mainId" name="mainId" value="${detailBean.wk001Bean.mainId}"> 
 		<input type="hidden" id="del" name="del" value="${detailBean.wk001Bean.mainId}"> 
@@ -156,7 +156,7 @@ function new_data(){
 			<strong>▽ 人材情報データベース</strong>
 		</p>
 		<p>
-			登録番号<input type="text" name="dispMainId" id="dispMainId" style="background-color:grey"
+			登録番号<input type="text" name="dispMainId" id="dispMainId" style="background-color:gray"
 				value="${detailBean.wk001Bean.dispMainId}" readOnly> ※自動生成 
 			受付日時<input type="text" name="receptionDay" id="receptionDay"
 				value='<fmt:formatDate value="${detailBean.wk001Bean.receptionDay}" pattern="yyyy/MM/dd" />'>
@@ -199,18 +199,18 @@ function new_data(){
 			<input type="radio" name="place" id="place" value="2">海外
 		</p>
 		<p>
-			姓名 <input type="text" name="name" id="name" value="${detailBean.wk001Bean.name}">
+			☆氏名 <input type="text" name="name" id="name" value="${detailBean.wk001Bean.name}">
 		</p>
 		<p>
 			ふりがな<input type="text" name="hurigana" id="hurigana" value="${detailBean.wk001Bean.hurigana}">
 		</p>
 		<p>
-			年齢<input type="text" name="age" id="age" value='<c:if test="${detailBean.wk001Bean.age!=0}"><c:out value="${detailBean.wk001Bean.age}"/></c:if>'> 
-			生年月日<input type="text" name="birthDay" id="birthDay"
+			☆年齢<input type="text" name="age" id="age" value='<c:if test="${detailBean.wk001Bean.age!=0}"><c:out value="${detailBean.wk001Bean.age}"/></c:if>'> 
+			☆生年月日<input type="text" name="birthDay" id="birthDay"
 				value='<fmt:formatDate value="${detailBean.wk001Bean.birthDay}" pattern="yyyy/MM/dd" />'>
 		</p>
 		<p>
-			性別 
+			☆性別 
 			<input type="radio" name="sex" id="sex" value="1"> 男性 
 			<input type="radio" name="sex" id="sex" value="2">女性 ｜ 
 			<input type="radio" name="marriage" id="marriage" value="1">既婚 
@@ -222,7 +222,7 @@ function new_data(){
 			<input type="text" name="postcode" id="postcode" value="${detailBean.wk001Bean.postcode}">
 		</p>
 		<p>
-			自宅住所
+			☆自宅住所
 			<textarea name="address" id="address">${detailBean.wk001Bean.address}</textarea>
 		</p>
 		<p>
@@ -230,39 +230,39 @@ function new_data(){
 			<textarea name="family" id="family">${detailBean.wk001Bean.family}</textarea>
 		</p>
 		<p>
-			自宅電話
+			☆自宅電話
 			<input type="text" name="homePhone" id="homePhone" value="${detailBean.wk001Bean.homePhone}">
 		</p>
 		<p>
-			携帯電話
+			☆携帯電話
 			<input type="text" name="mobilePhone" id="mobilePhone" value="${detailBean.wk001Bean.mobilePhone}">
 		</p>
 		<p>
 			連絡方法
 			 <input type="text" name="contactMethod" id="contactMethod" value="${detailBean.wk001Bean.contactMethod}"> 
-			 Ｅメール
+			☆ Ｅメール
 			 <input type="text" name="email" id="email" value="${detailBean.wk001Bean.email}">
 		</p>
 		<p>
-			最終学歴
+			☆最終学歴
 			<input type="text" name="lastDegree" id="lastDegree" value="${detailBean.wk001Bean.lastDegree}">
 		</p>
 		<p>
-			専攻
+			☆専攻
 			<input type="text" name="specialty" id="specialty" value="${detailBean.wk001Bean.specialty}"> 
 			<input type="radio" name="department" id="department" value="1">理系
 			<input type="radio" name="department" id="department" value="2">文系
 			<input type="radio" name="department" id="department" value="3">その他・・・
 		</p>
 		<p>
-			卒業年月日
+			☆卒業年月日
 			<input type="text" name="graduationDay" id="graduationDay"
 				value='<fmt:formatDate value="${detailBean.wk001Bean.graduationDay}" pattern="yyyy/MM/dd" />'>
 			学校その他
 			<input type="text" name="schoolOther" id="schoolOther" value="${detailBean.wk001Bean.schoolOther}">
 		</p>
 		<p>
-			英語レベル<br> 
+			☆英語レベル<br> 
 			<input type="radio" name="englishLevel" id="englishLevel" value="1"> Ａ：ネイティブレベル<br> 
 			<input type="radio" name="englishLevel" id="englishLevel" value="2"> Ｂ：ビジネスレベル <br> 
 			<input type="radio" name="englishLevel" id="englishLevel" value="3"> Ｃ：挨拶程度or自信なし 

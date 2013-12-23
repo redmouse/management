@@ -55,7 +55,7 @@ public class ListSecondModify extends HttpServlet {
 		Wk006Dao wk006Dao = new Wk006Dao();
 		wk006Dao.setConnection(wk005Dao.getConnection());
 
-		// validation　確認 (FIXME: 仕様より必須チェックなど。)
+		// validation　確認 ( 仕様より必須チェックなど。)
 		// String errMsg = util.validSecondDetail(request);
 		// if (!errMsg.equals("")) {
 		// request.setAttribute("errMsg", errMsg);

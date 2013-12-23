@@ -58,7 +58,7 @@ public class ListSecondAdd extends HttpServlet {
     		util.setWk005BeanFromRequest(request, wk005Bean);
     		wk005Dao.Insert(wk005Bean);
     		
-    		// 取新生成的tradeId
+    		// 新tradeIdを取得
     		int tradeId = wk005Dao.SelectMaxTradeId();
     		
     		// 求人詳細画面からの値をwk006Listに

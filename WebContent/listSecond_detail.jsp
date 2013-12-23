@@ -51,21 +51,23 @@ function delete_data006(){
 	}
 }
 </script>
-<body>
+<body bgcolor="gray">
 	<form name="form1" id="form1" method="post" action="ListSecondAdd">
 		<input type="hidden" id="tradeId" name="tradeId" value="${disp002Bean.wk005Bean.tradeId}"> 
 		<!-- こちらのshowTextは、pop windowのため -->
 		<input type="hidden" id="fatherText" name="fatherText" value="">
+		<div align="center">
 		<h2>求人管理簿</h2>
 		<p>求人事業所：<input type="text" name="forBusiness" value="${disp002Bean.wk005Bean.forBusiness}"></p>
 		<p>所在地：<input type="text" name="address" value="${disp002Bean.wk005Bean.address}"></p>
 		<p>代表者氏名：<input type="text" name="representative" value="${disp002Bean.wk005Bean.representative}"></p>
 		<p>連絡担当者：<input type="text" name="charger" value="${disp002Bean.wk005Bean.charger}"></p>
 		<p>備考：<textarea name="remarks"><c:out value="${disp002Bean.wk005Bean.remarks}" /></textarea></p>
+		</div>
 		<hr>
 	<table border="1">
 		<tr>
-      		<th>削除</th>
+      		<th>選択</th>
       		<th>受付年月日</th>
       		<th>求人数</th>
       		<th>職種</th>
@@ -115,9 +117,10 @@ function delete_data006(){
 				</c:otherwise>
 			</c:choose>
 	</table>
+	
 	<input type="button" value="追加" id="data006PageAdd" onclick="new_data006();">
 	<input type="button" value="削除" id="data006PageDel" onclick="delete_data006();">
-		<p>
+		
 			<c:choose>
 				<c:when test="${disp002Bean.wk005Bean.tradeId> 0}">
 					<input type="button" onclick="submit_update();" value="更新">
@@ -126,7 +129,7 @@ function delete_data006(){
 					<input type="submit" name="Submit" value="登録">
 				</c:otherwise>
 			</c:choose>
-		</p>
+	
 			
 	</form>
 

@@ -35,11 +35,11 @@ function submit_listSecond_show(){
 	document.getElementById("form1").submit();
 }
 </script>
-<body>
-<h2>求職管理簿</h2>
+<body bgcolor="gray">
+<h2 align=center>求職管理簿</h2>
 <form id="form1" name="form1" method="post" action="">
 	<input type="hidden" id="mainId" name="mainId" >
-  	<table border="1">
+  	<table border="1" align=center>
     	<tr>
       		<th>選択</th>
       		<th>受付年月日</th>
@@ -94,10 +94,12 @@ function submit_listSecond_show(){
     		</c:forEach>
     	</c:forEach>
 	</table><br />
+<div align=right >
 <a href="#" onclick="submit_list_add();return false;">新規</a>
 <a href="#" onclick="submit_search();return false;">検索</a>
 <a href="#" onclick="submit_listSecond_show();return false;">求人管理簿へ</a>
 <a href="#" onclick="submit_list_delete();return false;">削除</a>
+</div>
 </form>
 
 </body>

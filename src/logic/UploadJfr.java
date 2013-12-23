@@ -94,7 +94,7 @@ public class UploadJfr extends HttpServlet {
 			// ------------ 最大アップロードファイル数は3個 -------------
 			int intMainId = new Integer(mainId).intValue();
 			if (util.getDirFileNamesByMainId(intMainId).size() >= 3) {
-				errMsg = "can not over than 3files.";
+				errMsg = "アップロードファイル数は3個まで。";
 			} else {
 				upload.setHeaderEncoding("UTF-8");
 				upload.setSizeMax(util.sizeMax * 1024 * 1024);// ファイル最大サイズ

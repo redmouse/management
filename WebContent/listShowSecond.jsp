@@ -45,8 +45,8 @@ function popup_window(showText) {
 }
 
 </script>
-<body>
-<h2>求人管理簿</h2>
+<body bgcolor="gray">
+<h2 align="center">求人管理簿</h2>
 <form id="form1" name="form1" method="post" action="">
 	<!-- こちらのmaindIdは、求職管理簿へLinkのため -->
 	<input type="hidden" id="mainId" name="mainId" value="">
@@ -54,7 +54,7 @@ function popup_window(showText) {
 	<input type="hidden" id="fatherText" name="fatherText" value="">
 	<!-- pop windowで、displayなら、textareaが変更できないように -->
 	<input type="hidden" id="optionView" name="optionView" value="display">
-  	<table border="1">
+  	<table  align="center" border="1">
     	<tr>
       		<th>選択</th>
       		<th>求人事業所</th>
@@ -146,8 +146,10 @@ function popup_window(showText) {
     		</c:forEach>
     	</c:forEach>
 	</table><br />
+<div align="right">
 <a href="#" onclick="submit_listSecond_add();return false;">新規</a>
 <a href="#" onclick="submit_listSecond_edit();return false">編集</a>
+</div>
 </form>
 
 
