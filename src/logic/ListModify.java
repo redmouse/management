@@ -79,12 +79,12 @@ public class ListModify extends HttpServlet {
 			int sizeWk004 = hopePositionValues.length;
 			List<Wk004Bean> wk004List = new ArrayList<Wk004Bean>();
 			for (int i = 0; i < sizeWk004; i++) {
-				// 面談データを一件取り出す
+				// 面談データを一件つづ取り出す
 				String hopePosition = hopePositionValues[i];
 				String forBusiness = forBusinessValues[i];
 				String introductionDay = introductionDayValues[i];
 				String interviewDay = interviewDayValues[i];
-				//面談データは空だったら、無効とみなして、wk004Beanを生成しない
+				//面談データは空だったら、無効とみなして、continueして,wk004Beanを生成しない
 				if (hopePosition.trim().equals("")
 						&& forBusiness.trim().equals("")
 						&& introductionDay.trim().equals("")
@@ -108,6 +108,7 @@ public class ListModify extends HttpServlet {
 				wk004Dao.Insert(wk004Bean);
 			}
 			wk001Dao.getConnection().commit();
+			wk004Dao.getConnection().commit();
 		} catch (Exception e) {
 			try {
 				wk001Dao.getConnection().rollback();
@@ -117,6 +118,7 @@ public class ListModify extends HttpServlet {
 			throw new ServletException(e);
 		} finally {
 			wk001Dao.closeConnection();
+			wk004Dao.closeConnection();
 		}
 		request.getRequestDispatcher("/ListShow").forward(request, response);
 	}

@@ -112,10 +112,10 @@ public class Util {
 		if(name==null|| name.equals("")){
 			return "名前を入力してください！";
 		}
-		String hurigana=request.getParameter("hurigana");
+		/*String hurigana=request.getParameter("hurigana");
 		if(hurigana==null|| hurigana.equals("")){
 			return "ふりがなを入力してください！";
-		}
+		}*/
 		int age=new Integer(request.getParameter("age")).intValue();
 		if(age<=0){
 			return "年齢を入力してください！";
