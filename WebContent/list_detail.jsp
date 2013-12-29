@@ -46,13 +46,80 @@
 </style>
 </head>
 <script type="text/javascript">
+function check_all_element() {
+	//氏名 
+	if($("#name").val().trim() == ""){
+		return "氏名を入力してください！";
+	}
+	//年齢 
+	reg=/^[1-9][0-9]$/;
+	if(!reg.test($("#age").val().trim())){
+		return "年齢[1-99]を正しく入力してください！";
+	}
+	//生年月日 
+	reg=/^\d{4}\/\d{2}\/\d{2}$/;
+	if(!reg.test($("#birthDay").val().trim())){
+		return "生年月日[yyyy/mm/dd]を正しく入力してください！";
+	}
+	//性別 
+	if($(":radio[name='sex']:checked").size()==0){
+		return "性別を選択してください！";
+	}
+	//自宅住所
+	if($("#address").val().trim() == ""){
+		return "自宅住所を入力してください！";
+	}
+	//電話: 数字{2-3桁} -{0-1桁} 数字{2-4桁} -{0-1桁} 数字{2-4桁} 
+	reg=/^\d{2,3}-{0,1}\d{2,4}-{0,1}\d{2,4}$/;
+	// 自宅電話と携帯電話両方空の場合
+	if($("#homePhone").val().trim() == "" && $("#mobilePhone").val().trim() == ""){
+		return "自宅電話又は携帯電話どちらを入力してください！";
+	}
+	if($("#homePhone").val().trim() != ""){
+		if(!reg.test($("#homePhone").val().trim())){
+			return "自宅電話を正しく入力してください！";
+		}
+	}
+	if($("#mobilePhone").val().trim() != ""){
+		if(!reg.test($("#mobilePhone").val().trim())){
+			return "携帯電話を正しく入力してください！";
+		}
+	}
+	// Ｅメール
+	reg=/^[\w.-]+@[\w.-]+$/;
+	if(!reg.test($("#email").val().trim())){
+		return "Ｅメールを正しく入力してください！";
+	}
+	//最終学歴
+	if($("#lastDegree").val().trim() == ""){
+		return "最終学歴を入力してください！";
+	}
+	//専攻
+	if($("#specialty").val().trim() == ""){
+		return "専攻を入力してください！";
+	}
+	//卒業年月日 
+	reg=/^\d{4}\/\d{2}\/\d{2}$/;
+	if(!reg.test($("#graduationDay").val().trim())){
+		return "卒業年月日[yyyy/mm/dd]を正しく入力してください！";
+	}
+	//英語レベル
+	if($(":radio[name='englishLevel']:checked").size()==0){
+		return "英語レベルを選択してください！";
+	}
+	// 正常
+	return "";
+}
+	// upload　ボタン
 	function submit_upload() {
 		document.getElementById("form_upload").submit();
 	}
+	// 戻る　ボタン
 	function submit_list_show() {
 		document.getElementById("form1").action = "ListShow";
 		document.getElementById("form1").submit();
 	}
+	// 削除　ボタン
 	function submit_list_delete(){
 		document.getElementById("form1").action = "ListDelete";
 		if(!confirm("削除してよろしいですか？")){
@@ -60,23 +127,37 @@
 		}
 		document.getElementById("form1").submit();
 	}
+	// 新規　ボタン
 	function submit_pre_add(){
 		document.getElementById("form1").action = "ListPreAdd";
 		document.getElementById("form1").submit();
 	} 
+	// 検索　ボタン
 	function submit_search(){
 		document.getElementById("form1").action = "SearchPre";
 		document.getElementById("form1").submit();
 	} 
+	// 更新　ボタン
 	function submit_update() {
 		document.getElementById("form1").action = "ListModify";
+		var errMsg = check_all_element();
+		if(errMsg != ""){
+			alert(errMsg);
+			return;
+		}
 		if (!confirm("更新してよろしいですか？")) {
 			return;
 		}
 		document.getElementById("form1").submit();
 	}
+	// 登録　ボタン
 	function submit_insert() {
 		document.getElementById("form1").action = "ListAdd";
+		var errMsg = check_all_element();
+		if(errMsg != ""){
+			alert(errMsg);
+			return;
+		}
 		if (!confirm("新規してよろしいですか？")) {
 			return;
 		}
@@ -267,10 +348,12 @@ function new_data(){
 		<p>
 			<span class="star">☆</span>自宅電話
 			<input type="text" name="homePhone" id="homePhone" value="${detailBean.wk001Bean.homePhone}">
+			(例：080-2222-3333. [-]省略可)(自宅電話と携帯電話は少なくとも一つが入力必要。)
 		</p>
 		<p>
 			<span class="star">☆</span>携帯電話
 			<input type="text" name="mobilePhone" id="mobilePhone" value="${detailBean.wk001Bean.mobilePhone}">
+			(例：080-2222-3333. [-]省略可)
 		</p>
 		<p>
 			連絡方法
