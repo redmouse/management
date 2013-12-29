@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title></title>
+<title>popup window</title>
 </head>
 <script type="text/javascript">
 function load_func(){
@@ -17,14 +17,18 @@ function load_func(){
     } 
     
     // 親ウィンドウの値を取得
-    document.getElementById("childText").value = k.document.getElementById("fatherText").value; 
+    document.getElementById("childText").value = k.document.getElementById("fatherText").value;
+    document.getElementById("label_title").innerHTML = k.document.getElementById("popTitle").value; 
 	
     var option = k.document.getElementById("optionView").value;
-    if(option == "display"){
+    if(option=="display"){
     	document.getElementById("childText").readOnly = true;
+    	document.getElementById("btn_cancel").style.display="none";
+    	document.getElementById("btn_ok").style.display="none";
     }
     else{
     	document.getElementById("childText").readOnly = false;
+    	document.getElementById("btn_close").style.display="none";
     }
 	
 	return;
@@ -33,15 +37,14 @@ function update_ok(){
 	window.returnValue = document.getElementById("childText").value;
 	window.close();
 }
-function update_cancel(){
-	window.close();
-}
 </script>
 <body onload="load_func()">
 <form>
+<label id="label_title"></label>
 <textarea id="childText" name="childText" rows="30" cols="80"></textarea><br>
- <input type="button" onclick="update_cancel()" value="キャンセル">
- <input type="button" onclick="update_ok()" value="登録">
+ <input id="btn_cancel" type="button" onclick="window.close();" value="キャンセル">
+ <input id="btn_ok" type="button" onclick="update_ok()" value="確定">
+ <input id="btn_close" type="button" onclick="window.close();" value="閉じる">
 </form>
 </body>
 </html>

@@ -38,8 +38,14 @@ function check_radio_selected() {
 	}
 	return false;
 }
-function popup_window(showText) {
+function popup_window(showText, titleFrom) {
 	document.getElementById("fatherText").value = showText;
+	if(titleFrom == "recruitmentFrom"){
+		document.getElementById("popTitle").value = "求人事業者からの求人票";
+	}
+	else if(titleFrom == "recruitmentOwn"){
+		document.getElementById("popTitle").value = "自社の求人票";
+	}
 	window.showModalDialog("pop.jsp",window,"dialogHeight=600px;dialogWidth=700px;dialogLeft=0px;dialogTop=0px;center=yes;resizable=no;status=no;scroll=yes;help=no;");
 	return false;
 }
@@ -54,6 +60,8 @@ function popup_window(showText) {
 	<input type="hidden" id="fatherText" name="fatherText" value="">
 	<!-- pop windowで、displayなら、textareaが変更できないように -->
 	<input type="hidden" id="optionView" name="optionView" value="display">
+	<!-- pop windowのタイトル-->
+	<input type="hidden" id="popTitle" name="popTitle" value="">
   	<table  align="center" border="1">
     	<tr>
       		<th>選択</th>
@@ -95,12 +103,12 @@ function popup_window(showText) {
 			    <td><c:out value="${wk006Bean.conditions}" /></td>
 			    <td><c:out value="${wk006Bean.place}" /></td>
 			    <td>
-					<a href="#" style="text-decoration:none" onclick="popup_window('${wk006Bean.recruitmentFrom}');return false;">
+					<a href="#" style="text-decoration:none" onclick="popup_window('${wk006Bean.recruitmentFrom}','recruitmentFrom');return false;">
 		    			<c:out value="${wk006Bean.dispRecruitmentFrom}" />
 		    	    </a>
 			    </td>
 			    <td>
-					<a href="#" style="text-decoration:none" onclick="popup_window('${wk006Bean.recruitmentOwn}');return false;">
+					<a href="#" style="text-decoration:none" onclick="popup_window('${wk006Bean.recruitmentOwn}','recruitmentOwn');return false;">
 		    			<c:out value="${wk006Bean.dispRecruitmentOwn}" />
 		    	    </a>
 			    </td>
