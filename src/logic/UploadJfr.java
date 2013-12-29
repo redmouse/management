@@ -3,6 +3,7 @@ package logic;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -18,6 +19,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
+import beans.Wk007Bean;
+import dao.Wk007Dao;
 
 /**
  * Servlet implementation class UploadJfr
@@ -52,7 +56,7 @@ public class UploadJfr extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Util util = new Util();
-
+		Wk007Dao wk007Dao=new Wk007Dao();
 
 		// －－－－－－－ファイル操作－－－－－－－－－－－－－－
 		DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -93,9 +97,11 @@ public class UploadJfr extends HttpServlet {
 
 			// ------------ 最大アップロードファイル数は3個 -------------
 			int intMainId = new Integer(mainId).intValue();
-			if (util.getDirFileNamesByMainId(intMainId).size() >= 3) {
+			
+			if (wk007Dao.GetValidFileCountByMainId(intMainId) >= 3) {
 				errMsg = "アップロードファイル数は3個まで。";
 			} else {
+				// ----- File upload ------
 				upload.setHeaderEncoding("UTF-8");
 				upload.setSizeMax(util.sizeMax * 1024 * 1024);// ファイル最大サイズ
 
@@ -107,12 +113,33 @@ public class UploadJfr extends HttpServlet {
 					for (FileItem file : fileList) {
 						filePath = dir + util.fileSeprator + file.getName();
 						file.write(new File(filePath));
+						// ----- DB start ------
+						// 同名ファイルがあれば、削除
+						wk007Dao.Delete(intMainId, file.getName());
+						// ファイルのデータをInsert
+						Wk007Bean wk007Bean = new Wk007Bean();
+						wk007Bean.setMainId(intMainId);
+						wk007Bean.setFileName(file.getName());
+						wk007Bean.setFilePath(filePath);
+						wk007Dao.Insert(wk007Bean);
+						wk007Dao.getConnection().commit();
+						// ----- DB end ------
 					}
 				}
+				
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
-			errMsg = "ファイルアップロード失敗しました！ご確認ください。";
+			try {
+				wk007Dao.getConnection().rollback();
+			} catch (SQLException e1) {
+				throw new ServletException(e1);
+			}
+			errMsg = "ファイルアップロード失敗しました！もう一回やり直してください。";
+			request.setAttribute("errMsg", errMsg);
+			request.getRequestDispatcher("/error.jsp").forward(request,response);
+			return;
+		} finally {
+			wk007Dao.closeConnection();
 		}
 
 //		response.setContentType("text/html"); これを追加すると、戻り値が返ってこない
