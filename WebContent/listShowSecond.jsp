@@ -52,6 +52,9 @@ function popup_window(showText, titleFrom) {
 
 </script>
 <body bgcolor="gray">
+<input type="button" value="戻る">
+<input type="button" value="求職管理簿">
+<input type="button" value="手数料管理簿">
 <h2 align="center">求人管理簿</h2>
 <form id="form1" name="form1" method="post" action="">
 	<!-- こちらのmaindIdは、求職管理簿へLinkのため -->

@@ -54,7 +54,7 @@ function check_all_element() {
 	//年齢 
 	reg=/^[1-9][0-9]$/;
 	if(!reg.test($("#age").val().trim())){
-		return "年齢[1-99]を正しく入力してください！";
+		return "年齢を正しく入力してください！";
 	}
 	//生年月日 
 	reg=/^\d{4}\/\d{2}\/\d{2}$/;
@@ -86,10 +86,10 @@ function check_all_element() {
 		}
 	}
 	// Ｅメール
-	reg=/^[\w.-]+@[\w.-]+$/;
+	/* reg=/^[\w.-]+@[\w.-]+$/;
 	if(!reg.test($("#email").val().trim())){
 		return "Ｅメールを正しく入力してください！";
-	}
+	} */
 	//最終学歴
 	if($("#lastDegree").val().trim() == ""){
 		return "最終学歴を入力してください！";
@@ -257,7 +257,7 @@ function new_data(){
 		return '';
 	}   */
 </script>
-<body bgcolor="gray" onload="setDetail();">
+<body onload="setDetail();">
 	<form name="form1" id="form1" method="post" action="">
 		<input type="hidden" id="mainId" name="mainId" value="${detailBean.wk001Bean.mainId}"> 
 		<input type="hidden" id="del" name="del" value="${detailBean.wk001Bean.mainId}"> 
@@ -348,17 +348,16 @@ function new_data(){
 		<p>
 			<span class="star">☆</span>自宅電話
 			<input type="text" name="homePhone" id="homePhone" value="${detailBean.wk001Bean.homePhone}">
-			(例：080-2222-3333. [-]省略可)(自宅電話と携帯電話は少なくとも一つが入力必要。)
+			<!-- (例：***-****-****) -->
 		</p>
 		<p>
 			<span class="star">☆</span>携帯電話
 			<input type="text" name="mobilePhone" id="mobilePhone" value="${detailBean.wk001Bean.mobilePhone}">
-			(例：080-2222-3333. [-]省略可)
 		</p>
 		<p>
 			連絡方法
 			 <input type="text" name="contactMethod" id="contactMethod" value="${detailBean.wk001Bean.contactMethod}"> 
-			<span class="star">☆</span> Ｅメール
+			 Ｅメール
 			 <input type="text" name="email" id="email" value="${detailBean.wk001Bean.email}">
 		</p>
 		<p>

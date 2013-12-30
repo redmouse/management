@@ -45,7 +45,7 @@ public class Login extends HttpServlet {
     		
     	}
     	
-    	request.getRequestDispatcher("/ListShow").forward(request,response);
+    	request.getRequestDispatcher("/select.jsp").forward(request,response);
 	}
 
 }

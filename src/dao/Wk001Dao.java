@@ -63,7 +63,7 @@ public class Wk001Dao extends MysqlDao {
 	
 	public List<Wk001Bean> SelectAll() throws Exception {
 		List<Wk001Bean> returnList = new ArrayList<Wk001Bean>();
-		String sql = " SELECT " + wk001Colums + " FROM wk001 ORDER BY mainId desc";
+		String sql = " SELECT " + wk001Colums + " FROM wk001 ORDER BY receptionDay desc";
 		PreparedStatement statement = getConnection().prepareStatement(sql);
 		ResultSet rs = statement.executeQuery();
 

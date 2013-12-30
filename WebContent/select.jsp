@@ -16,11 +16,25 @@
 }
 </style>
 </head>
+<script type="text/javascript">
+	function submit_kyusyoku() {
+		document.getElementById("form1").action = "ListShow";
+		document.getElementById("form1").submit();
+	}
+	function submit_kyujinn() {
+		document.getElementById("form1").action = "ListShowSecond";
+		document.getElementById("form1").submit();
+	}
+	function submit_fee() {
+		document.getElementById("form1").action = "ListShowFee";
+		document.getElementById("form1").submit();
+	}
+</script>
 <body>
-<form>
-<p><input class="button" type="button" value="求職管理簿"></p>
-<p><input class="button" type="button" value="求人管理簿"></p>
-<p><input class="button" type="button" value="手数料管理簿"></p>
+<form name="form1" id="form1" method="post" action="">
+<p><input class="button" type="button" value="求職管理簿" onclick="submit_kyusyoku();"></p>
+<p><input class="button" type="button" value="求人管理簿" onclick="submit_kyujinn();"></p>
+<p><input class="button" type="button" value="手数料管理簿" onclick="submit_fee();"></p>
 </form>
 </body>
 </html>

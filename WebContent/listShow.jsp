@@ -36,6 +36,9 @@ function submit_listSecond_show(){
 }
 </script>
 <body bgcolor="gray">
+<input type="button" value="戻る">
+<input type="button" value="求人管理簿">
+<input type="button" value="手数料管理簿">
 <h2 align=center>求職管理簿</h2>
 <form id="form1" name="form1" method="post" action="">
 	<input type="hidden" id="mainId" name="mainId" >

@@ -11,8 +11,31 @@
 <title>求人管理簿詳細画面</title>
 </head>
 <script type="text/javascript">
+function check_all_element() {
+	//求人事業所 
+	if($("#forBusiness").val().trim() == ""){
+		return "求人事業所を入力してください！";
+	}
+	//所在地 
+	if($("#address").val().trim() == ""){
+		return "所在地を入力してください！";
+	}
+	//代表者氏名 
+	if($("#representative").val().trim() == ""){
+		return "代表者氏名を入力してください！";
+	}
+	//連絡担当者
+	if($("#charger").val().trim() == ""){
+		return "連絡担当者を入力してください！";
+	}
+}
 function submit_update() {
 	document.getElementById("form1").action = "ListSecondModify";
+	var errMsg = check_all_element();
+	if(errMsg != ""){
+		alert(errMsg);
+		return;
+	}
 	if (!confirm("更新してよろしいですか？")) {
 		return;
 	}
@@ -79,6 +102,7 @@ function delete_data006(){
 		<!-- pop windowのタイトル-->
 		<input type="hidden" id="popTitle" name="popTitle" value="">
 		<div align="center">
+		<input type="button" value="戻る">
 		<h2>求人管理簿</h2>
 		<p>求人事業所：<input type="text" name="forBusiness" value="${disp002Bean.wk005Bean.forBusiness}"></p>
 		<p>所在地：<input type="text" name="address" value="${disp002Bean.wk005Bean.address}"></p>
