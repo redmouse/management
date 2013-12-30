@@ -41,6 +41,15 @@ function submit_update() {
 	}
 	document.getElementById("form1").submit();
 }
+function submit_add() {
+	document.getElementById("form1").action = "ListSecondAdd";
+	var errMsg = check_all_element();
+	if(errMsg != ""){
+		alert(errMsg);
+		return;
+	}
+	document.getElementById("form1").submit();
+}
 function popup_window(thisTextArea) {
 	document.getElementById("fatherText").value = thisTextArea.value;
 	if(thisTextArea.name == "recruitmentFrom"){
@@ -91,7 +100,7 @@ function delete_data006(){
 }
 </script>
 <body bgcolor="gray">
-	<form name="form1" id="form1" method="post" action="ListSecondAdd">
+	<form name="form1" id="form1" method="post" action="">
 		<input type="hidden" id="tradeId" name="tradeId" value="${disp002Bean.wk005Bean.tradeId}"> 
 		<!-- こちらのcurrentMainIdInputは、pop window(mainId select)のため -->
 		<input type="hidden" id="currentMainIdInput" name="currentMainIdInput" value="">
@@ -104,11 +113,11 @@ function delete_data006(){
 		<div align="center">
 		<input type="button" value="戻る">
 		<h2>求人管理簿</h2>
-		<p>求人事業所：<input type="text" name="forBusiness" value="${disp002Bean.wk005Bean.forBusiness}"></p>
-		<p>所在地：<input type="text" name="address" value="${disp002Bean.wk005Bean.address}"></p>
-		<p>代表者氏名：<input type="text" name="representative" value="${disp002Bean.wk005Bean.representative}"></p>
-		<p>連絡担当者：<input type="text" name="charger" value="${disp002Bean.wk005Bean.charger}"></p>
-		<p>備考：<textarea name="remarks"><c:out value="${disp002Bean.wk005Bean.remarks}" /></textarea></p>
+		<p>求人事業所：<input type="text" id="forBusiness" name="forBusiness" value="${disp002Bean.wk005Bean.forBusiness}"></p>
+		<p>所在地：<input type="text" id="address" name="address" value="${disp002Bean.wk005Bean.address}"></p>
+		<p>代表者氏名：<input type="text" id="representative" name="representative" value="${disp002Bean.wk005Bean.representative}"></p>
+		<p>連絡担当者：<input type="text" id="charger" name="charger" value="${disp002Bean.wk005Bean.charger}"></p>
+		<p>備考：<textarea id="remarks" name="remarks"><c:out value="${disp002Bean.wk005Bean.remarks}" /></textarea></p>
 		</div>
 		<hr>
 	<table border="1">
@@ -172,7 +181,7 @@ function delete_data006(){
 					<input type="button" onclick="submit_update();" value="更新">
 				</c:when>
 				<c:otherwise>
-					<input type="submit" name="Submit" value="登録">
+					<input type="button" onclick="submit_add();" value="登録">
 				</c:otherwise>
 			</c:choose>
 		
