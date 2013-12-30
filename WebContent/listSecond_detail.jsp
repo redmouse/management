@@ -68,7 +68,7 @@ function popup_window(thisTextArea) {
 }
 function pop_multi_select(thisText) {
 	document.getElementById("currentMainIdInput").value = thisText.value;
-	var returnValue= window.showModalDialog("PopMainIdSelect",window,"dialogHeight=600px;dialogWidth=700px;dialogLeft=0px;dialogTop=0px;center=yes;resizable=no;status=no;scroll=yes;help=no;");
+	var returnValue= window.showModalDialog("PopMainIdSelect",window,"dialogHeight=450px;dialogWidth=700px;dialogLeft=0px;dialogTop=0px;center=yes;resizable=no;status=no;scroll=yes;help=no;");
 	if (returnValue != null )
    {
 		thisText.value = returnValue;
@@ -76,7 +76,7 @@ function pop_multi_select(thisText) {
 	return false;
 }
 function new_data006(){
-	var data=$('<table border="1"> <tr><td><input type="checkbox" name="del"></td><td><input type="text" name="receptionDay" value="${wk006Bean.receptionDay}"></td><td><input type="text" name="quantity" value="${wk006Bean.quantity}"></td><td><input type="text" name="occupation" value="${wk006Bean.occupation}"></td><td><input type="text" name="workLocation" value="${wk006Bean.workLocation}"></td><td><input type="text" name="period" value="${wk006Bean.period}"></td><td><input type="text" name="wage" value="${wk006Bean.wage}"></td><td><input type="text" name="conditions" value="${wk006Bean.conditions}"></td><td><input type="text" name="place" value="${wk006Bean.place}"></td><td><textarea name="recruitmentFrom" onclick="popup_window(this)"><c:out value="${wk006Bean.recruitmentFrom}"/></textarea></td><td><textarea name="recruitmentOwn" onclick="popup_window(this)"><c:out value="${wk006Bean.recruitmentOwn}" /></textarea></td><td><input type="text" name="secondMainId" onclick="pop_multi_select(this)" value="${wk006Bean.mainId}"></td></tr></table>');
+	var data=$('<table border="1"> <tr><td><input type="checkbox" name="del"></td><td><input type="text" name="receptionDay" value="${wk006Bean.receptionDay}"></td><td><input type="text" name="quantity" value="${wk006Bean.quantity}"></td><td><input type="text" name="occupation" value="${wk006Bean.occupation}"></td><td><input type="text" name="workLocation" value="${wk006Bean.workLocation}"></td><td><input type="text" name="period" value="${wk006Bean.period}"></td><td><input type="text" name="wage" value="${wk006Bean.wage}"></td><td><input type="text" name="conditions" value="${wk006Bean.conditions}"></td><td><input type="text" name="place" value="${wk006Bean.place}"></td><td><textarea name="recruitmentFrom" onclick="popup_window(this)"><c:out value="${wk006Bean.recruitmentFrom}"/></textarea></td><td><textarea name="recruitmentOwn" onclick="popup_window(this)"><c:out value="${wk006Bean.recruitmentOwn}" /></textarea></td><td><input type="text" name="secondMainId" onclick="pop_multi_select(this)" value="${wk006Bean.mainId}" readonly></td></tr></table>');
 		$('#data006PageAdd').before(data);
 }
 function delete_data006(){
@@ -149,7 +149,7 @@ function delete_data006(){
       					<td><input type="text" name="place" id="place" value=""></td>
       					<td><textarea name="recruitmentFrom" id="recruitmentFrom" onclick="popup_window(this)"><c:out value=""/></textarea></td>
       					<td><textarea name="recruitmentOwn" id="recruitmentOwn" onclick="popup_window(this)"><c:out value="" /></textarea></td>
-      					<td><input type="text" name="secondMainId" id="secondMainId" onclick="pop_multi_select(this)" value=""></td>
+      					<td><input type="text" name="secondMainId" id="secondMainId" onclick="pop_multi_select(this)" value="" readonly></td>
     				</tr>		
 				</c:when> 
 				<c:otherwise>
@@ -166,7 +166,7 @@ function delete_data006(){
       						<td><input type="text" name="place" id="place" value="${wk006Bean.place}"></td>
       						<td><textarea name="recruitmentFrom" id="recruitmentFrom" onclick="popup_window(this)"><c:out value="${wk006Bean.recruitmentFrom}"/></textarea></td>
       						<td><textarea name="recruitmentOwn" id="recruitmentOwn" onclick="popup_window(this)"><c:out value="${wk006Bean.recruitmentOwn}" /></textarea></td>
-      						<td><input type="text" name="secondMainId" id="secondMainId" onclick="pop_multi_select(this)" value="${wk006Bean.secondMainId}"></td>
+      						<td><input type="text" name="secondMainId" id="secondMainId" onclick="pop_multi_select(this)" value="${wk006Bean.secondMainId}" readonly></td>
       					</tr>
 					</c:forEach> 
 				</c:otherwise>
