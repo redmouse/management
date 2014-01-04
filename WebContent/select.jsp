@@ -30,11 +30,14 @@
 		document.getElementById("form1").submit();
 	}
 </script>
-<body>
+<body style="margin-top:50px">
 <form name="form1" id="form1" method="post" action="">
+<div align="center">
+<h1>人材管理簿</h1>
 <p><input class="button" type="button" value="求職管理簿" onclick="submit_kyusyoku();"></p>
 <p><input class="button" type="button" value="求人管理簿" onclick="submit_kyujinn();"></p>
 <p><input class="button" type="button" value="手数料管理簿" onclick="submit_fee();"></p>
+</div>
 </form>
 </body>
 </html>

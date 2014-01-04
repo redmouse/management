@@ -36,17 +36,17 @@ function update_ok(){
 	window.close();
 }
 
-// 多选框左右移动
+// 左右移动
 $(document).ready(function(){  
     $('#add').click(function(){  
-        var $options = $('#select1 option:selected');//获取当前选中的项  
-        var $remove = $options.remove();//删除下拉列表中选中的项  
-        $remove.appendTo('#select2');//追加给对方  
+        var $options = $('#select1 option:selected');//選んだ項目を取得
+        var $remove = $options.remove();//選んだ項目をリストから削除  
+        $remove.appendTo('#select2');//相手のリストに追加
     });  
       
     $('#remove').click(function(){  
         var $removeOptions = $('#select2 option:selected');  
-        $removeOptions.appendTo('#select1');//删除和追加可以用appendTo()直接完成  
+        $removeOptions.appendTo('#select1');//削除と追加appendTo()を使う
     });  
       
     $('#addAll').click(function(){  
@@ -59,9 +59,9 @@ $(document).ready(function(){
         $options.appendTo('#select1');  
     });  
       
-    //双击事件  
+    //ダブルクリック  
     $('#select1').dblclick(function(){  
-        var $options = $('option:selected', this);//注意此处“option”与“:”之间的空格，有空格是不可以的  
+        var $options = $('option:selected', this);//option:selectedの間に空いてはいけない 
         $options.appendTo('#select2');  
     });  
       
@@ -69,14 +69,14 @@ $(document).ready(function(){
         $('#select2 option:selected').appendTo('#select1');  
     });  
     
-    // 初始化：　取父页面的已有值，进行option的移动。
+    // 親ウィンドにあった値を取得、optionの移動を行う
     var k=window.dialogArguments;
     if(k!=null) { 
 	    // 親ウィンドウの値を取得
 	    var currentIds = k.document.getElementById("currentMainIdInput").value;
 	    $('#select1 option').each(function(){
             var value = $(this).val();
-            // 如果左边的mainId包含在父页面原有的mainId字符串中，则移到右边。
+            // 左のmainIdは親ウィンドのmainIdに含まれたら、右に移動する。
             if (currentIds.indexOf(value) >= 0) {
 	            $(this).appendTo('#select2');
             }

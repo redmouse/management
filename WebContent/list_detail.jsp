@@ -7,43 +7,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="css/list_detail.css">
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <title>求職管理簿詳細画面</title>
-<style>
-
-.star {
-	color:red;
-} 
-#enself {
-	overflow: hidden;
-}
-#english {
-	float:left;
-	width:200px;
-}
-#self {
-	float :left;
-	margin-left:50px;
- 	width:200px;
-/* #enter {
- 	float :right;
- 	margin-right:200px;
- 	width :200px;
-} */
-#infocontents {
-	overflow: hidden;
-}
-#info {
-	float:left;
-	width:300px;
-}
-#contents {
-	float :left;
-	margin-left:50px;
- 	width:200px;
-}
-
-</style>
 </head>
 <script type="text/javascript">
 function check_all_element() {

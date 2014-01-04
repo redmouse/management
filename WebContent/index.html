@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="css/index.css">
 <title>求職管理システム</title>
 </head>
 <script type="text/javascript">
@@ -15,14 +16,17 @@ function check_items(){
 	document.getElementById("form1").submit();
 }
 </script>
-<body bgcolor="gray" align="center">
-<h2>求職管理システム</h2>
+<body style="margin-top:150px;">
+<center>
+<h1>人材管理システム</h1>
 <form action="Login" id="form1" method="Post">
-ID:<input type="text" id="loginId" name="loginId" value="11">
-パスワード: <input type="password" id="loginPd" name="loginPd" value="11">
-
+<table>
+<tr><td style="text-align:right;">ID:</td><td><input type="text" id="loginId" name="loginId" value="11"></td></tr>
+<tr><td>パスワード:</td><td><input type="password" id="loginPd" name="loginPd" value="11"></td></tr>
+</table>
 <input type="button" onclick="check_items();" value="login">
 </form>
+</CENTER>
 
 
 </body>

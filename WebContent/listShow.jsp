@@ -8,6 +8,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>求職管理簿リスト一覧画面</title>
+<style>
+#menu {
+margin-left:45px;
+margin-bottom:20px;
+overflow:hidden;
+}
+ul>li{
+	float:left;
+}
+#kyujinn{
+padding-left:800px;
+}
+
+</style>
 </head>
 <script type="text/javascript">
 function submit_list_modify(mainId){
@@ -22,6 +36,10 @@ function submit_list_delete(){
 	}
 	document.getElementById("form1").submit();
 }
+function submit_list_back(){
+	document.getElementById("form1").action = "select.jsp";
+	document.getElementById("form1").submit();
+} 
 function submit_list_add(){
 	document.getElementById("form1").action = "ListPreAdd";
 	document.getElementById("form1").submit();
@@ -34,12 +52,23 @@ function submit_listSecond_show(){
 	document.getElementById("form1").action = "ListShowSecond";
 	document.getElementById("form1").submit();
 }
+function submit_kyujinn() {
+	document.getElementById("form1").action = "ListShowSecond";
+	document.getElementById("form1").submit();
+}
 </script>
-<body bgcolor="gray">
-<input type="button" value="戻る">
-<input type="button" value="求人管理簿">
-<input type="button" value="手数料管理簿">
+<body>
 <h2 align=center>求職管理簿</h2>
+<div id="menu">
+<ul style="list-style-type: none">
+<li><input type="button" onclick="submit_list_back()" value="戻る"></li>
+<li><input type="button" onclick="submit_list_add()" value="新規"></li>
+<li><input type="button" onclick="submit_search()" value="検索"></li>
+<li><input type="button" onclick="submit_list_delete()" value="削除"></li> 
+<li id="kyujinn"><input type="button" onclick="submit_kyujinn();" value="求人管理簿"></li>
+<li id="kee"><input type="button" value="手数料管理簿"></li>
+</ul>
+</div>
 <form id="form1" name="form1" method="post" action="">
 	<input type="hidden" id="mainId" name="mainId" >
   	<table border="1" align=center>
@@ -97,12 +126,11 @@ function submit_listSecond_show(){
     		</c:forEach>
     	</c:forEach>
 	</table><br />
-<div align=right >
-<a href="#" onclick="submit_list_add();return false;">新規</a>
+<!-- <a href="#" onclick="submit_list_add();return false;">新規</a>
 <a href="#" onclick="submit_search();return false;">検索</a>
 <a href="#" onclick="submit_listSecond_show();return false;">求人管理簿へ</a>
 <a href="#" onclick="submit_list_delete();return false;">削除</a>
-</div>
+ -->
 </form>
 
 </body>

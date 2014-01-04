@@ -1,0 +1,32 @@
+@CHARSET "UTF-8";
+.star {
+	color:red;
+} 
+#enself {
+	overflow: hidden;
+}
+#english {
+	float:left;
+	width:200px;
+}
+#self {
+	float :left;
+	margin-left:50px;
+ 	width:200px;
+/* #enter {
+ 	float :right;
+ 	margin-right:200px;
+ 	width :200px;
+} */
+#infocontents {
+	overflow: hidden;
+}
+#info {
+	float:left;
+	width:300px;
+}
+#contents {
+	float :left;
+	margin-left:50px;
+ 	width:200px;
+}
