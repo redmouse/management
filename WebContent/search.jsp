@@ -33,7 +33,7 @@ function level2_changed(){
 }
 </script>
 
-<body bgcolor="gray">
+<body>
 <form id="form1" name="form1" action="Search" method="post">
 	<input type="hidden" id="mainId" name="mainId" >
 	<input type="button" value="戻る" onclick="submit_list_show();">
@@ -63,7 +63,7 @@ function level2_changed(){
 			      </c:forEach>
 			</select><br>
 			<div id="level2Area">
-			<select id="level2Id" name="level2Id" onChange='level2_changed()'>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="level2Id" name="level2Id" onChange='level2_changed()' style="width:272px;">
 				<option value=0>選択</option>
 				  <c:forEach items="${searchBean.linkageBean.mst002List}" var="mst002Bean">
 			          <option value ="${mst002Bean.level2Id}" 
@@ -72,7 +72,7 @@ function level2_changed(){
 			      </c:forEach>
 			</select><br>
 			<div id="level3Area">
-			<select id="level3Id" name="level3Id">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="level3Id" name="level3Id" style="width:272px;display:none">
 				<option value=0>選択</option>
 				  <c:forEach items="${searchBean.linkageBean.mst003List}" var="mst003Bean">
 			          <option value ="${mst003Bean.level3Id}" 

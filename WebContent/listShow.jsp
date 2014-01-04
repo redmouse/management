@@ -58,7 +58,7 @@ function submit_kyujinn() {
 }
 </script>
 <body>
-<h2 align=center>求職管理簿</h2>
+<h1 align=center>求職管理簿</h1>
 <div id="menu">
 <ul style="list-style-type: none">
 <li><input type="button" onclick="submit_list_back()" value="戻る"></li>

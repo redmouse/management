@@ -9,6 +9,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <title>求人管理簿詳細画面</title>
+<style>
+#back {
+margin-left:-1000px;
+}
+#button{
+margin-left:1150px;
+}
+</style>
 </head>
 <script type="text/javascript">
 function check_all_element() {
@@ -28,6 +36,10 @@ function check_all_element() {
 	if($("#charger").val().trim() == ""){
 		return "連絡担当者を入力してください！";
 	}
+}
+function submit_kyujinn() {
+	document.getElementById("form1").action = "ListShowSecond";
+	document.getElementById("form1").submit();
 }
 function submit_update() {
 	document.getElementById("form1").action = "ListSecondModify";
@@ -99,7 +111,7 @@ function delete_data006(){
 	}
 }
 </script>
-<body bgcolor="gray">
+<body>
 	<form name="form1" id="form1" method="post" action="">
 		<input type="hidden" id="tradeId" name="tradeId" value="${disp002Bean.wk005Bean.tradeId}"> 
 		<!-- こちらのcurrentMainIdInputは、pop window(mainId select)のため -->
@@ -111,19 +123,20 @@ function delete_data006(){
 		<!-- pop windowのタイトル-->
 		<input type="hidden" id="popTitle" name="popTitle" value="">
 		<div align="center">
-		<input type="button" value="戻る">
-		<h2>求人管理簿</h2>
+		<h1>求人管理簿</h1>
+		<input id="back" type="button" onclick="submit_kyujinn();" value="戻る">
 		<p>求人事業所：<input type="text" id="forBusiness" name="forBusiness" value="${disp002Bean.wk005Bean.forBusiness}"></p>
-		<p>所在地：<input type="text" id="address" name="address" value="${disp002Bean.wk005Bean.address}"></p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;所在地：<input type="text" id="address" name="address" value="${disp002Bean.wk005Bean.address}"></p>
 		<p>代表者氏名：<input type="text" id="representative" name="representative" value="${disp002Bean.wk005Bean.representative}"></p>
 		<p>連絡担当者：<input type="text" id="charger" name="charger" value="${disp002Bean.wk005Bean.charger}"></p>
-		<p>備考：<textarea id="remarks" name="remarks"><c:out value="${disp002Bean.wk005Bean.remarks}" /></textarea></p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;備考：<textarea id="remarks" name="remarks"><c:out value="${disp002Bean.wk005Bean.remarks}" /></textarea></p>
 		</div>
 		<hr>
-	<table border="1">
+		
+	<table border="1" width="100%">
 		<tr>
-      		<th>選択</th>
-      		<th>受付年月日</th>
+      		<th width="50px">選択</th>
+      		<th width="50px">受付年月日</th>
       		<th>求人数</th>
       		<th>職種</th>
       		<th>就労場所</th>
@@ -172,7 +185,7 @@ function delete_data006(){
 				</c:otherwise>
 			</c:choose>
 	</table>
-	
+	<div id="button">
 	<input type="button" value="追加" id="data006PageAdd" onclick="new_data006();">
 	<input type="button" value="削除" id="data006PageDel" onclick="delete_data006();">
 		
@@ -184,7 +197,7 @@ function delete_data006(){
 					<input type="button" onclick="submit_add();" value="登録">
 				</c:otherwise>
 			</c:choose>
-		
+	</div>	 
 	</form>
 
 </body>

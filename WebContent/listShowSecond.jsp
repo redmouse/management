@@ -8,8 +8,26 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>求人管理簿リスト一覧画面</title>
+<style>
+#menu {
+margin-left:45px;
+margin-bottom:20px;
+overflow:hidden;
+}
+ul>li{
+	float:left;
+}
+#kyusyoku{
+padding-left:800px;
+}
+
+</style>
 </head>
 <script type="text/javascript">
+function submit_list_back(){
+	document.getElementById("form1").action = "select.jsp";
+	document.getElementById("form1").submit();
+} 
 function submit_for_work(mainId){
 	document.getElementById("mainId").value = mainId;
 	document.getElementById("form1").action = "ListPreModify";
@@ -29,6 +47,10 @@ function submit_listSecond_edit(){
 	document.getElementById("form1").action = "ListSecondPreModify";
 	document.getElementById("form1").submit();
 } 
+function submit_kyusyoku() {
+	document.getElementById("form1").action = "ListShow";
+	document.getElementById("form1").submit();
+}
 function check_radio_selected() {
 	var v = document.getElementsByName('radioForBusiness');
 	for ( var i = 0; i < v.length; i++) {
@@ -51,11 +73,18 @@ function popup_window(showText, titleFrom) {
 }
 
 </script>
-<body bgcolor="gray">
-<input type="button" value="戻る">
-<input type="button" value="求職管理簿">
-<input type="button" value="手数料管理簿">
-<h2 align="center">求人管理簿</h2>
+<body>
+<h1 align=center>求人管理簿</h1>
+<div id="menu">
+<ul style="list-style-type: none">
+<li><input type="button" onclick="submit_list_back()" value="戻る"></li>
+<li><input type="button" onclick="submit_listSecond_add()" value="新規"></li>
+<li><input type="button" onclick="submit_listSecond_edit()" value="編集"></li>
+<li id="kyusyoku"><input type="button" onclick="submit_kyusyoku();" value="求職管理簿"></li>
+<li><input type="button" onclick="" value="手数料管理簿"></li>
+</ul>
+</div>
+
 <form id="form1" name="form1" method="post" action="">
 	<!-- こちらのmaindIdは、求職管理簿へLinkのため -->
 	<input type="hidden" id="mainId" name="mainId" value="">
@@ -157,10 +186,10 @@ function popup_window(showText, titleFrom) {
     		</c:forEach>
     	</c:forEach>
 	</table><br />
-<div align="right">
+<!-- <div align="right">
 <a href="#" onclick="submit_listSecond_add();return false;">新規</a>
 <a href="#" onclick="submit_listSecond_edit();return false">編集</a>
-</div>
+</div> -->
 </form>
 
 

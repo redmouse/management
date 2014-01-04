@@ -1,4 +1,20 @@
 @CHARSET "UTF-8";
+body {
+	margin-left:300px;
+}
+#header{
+	overflow :hidden;
+	margin-left:-40px;
+}
+ul>li{
+	float:left;
+}
+#title {
+	font-size:24px;
+}
+#add {
+	padding-left:150px;
+}
 .star {
 	color:red;
 } 
@@ -23,7 +39,7 @@
 }
 #info {
 	float:left;
-	width:300px;
+	width:200px;
 }
 #contents {
 	float :left;

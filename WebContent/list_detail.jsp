@@ -224,21 +224,24 @@ function new_data(){
 	}   */
 </script>
 <body onload="setDetail();">
+  <div id="container">
 	<form name="form1" id="form1" method="post" action="">
 		<input type="hidden" id="mainId" name="mainId" value="${detailBean.wk001Bean.mainId}"> 
 		<input type="hidden" id="del" name="del" value="${detailBean.wk001Bean.mainId}"> 
 		<input type="hidden" id="linkageOpt" name="linkageOpt"> 
-		<!-- <input type="button" onclick="testdata();" value="testdata"> --> 
-	　　　 <input type="button" onclick="submit_list_show()" value="戻る"> 
-	　　　 <input type="button" onclick="submit_pre_add()" value="新規"> 
-	　　　 <input type="button" onclick="submit_search()" value="検索"> 
-	    <input type="submit" name="Submit" value="印刷">
-	    <input type="button" onclick="submit_list_delete()" value="削除"> 
-		<p align="left">
-			<strong>▽ 人材情報データベース</strong>
-		</p>
+		<!-- <input type="button" onclick="testdata();" value="testdata"> -->
+		<div id="header"> 
+	　　　 <ul style="list-style-type: none">
+	　　　<li><input type="button" onclick="submit_list_show()" value="戻る"></li>
+	　　　<li id="title">▽ 人材情報データベース </li>
+	　　　 <li id="add"><input type="button" onclick="submit_pre_add()" value="新規"></li> 
+	　　　 <li><input type="button" onclick="submit_search()" value="検索"></li> 
+	    <li><input type="submit" name="Submit" value="印刷"></li>
+	    <li><input type="button" onclick="submit_list_delete()" value="削除"></li>
+		</ul>
+		</div><!-- header -->
 		<p>
-			登録番号<input type="text" name="dispMainId" id="dispMainId" style="background-color:gray"
+			登録番号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="dispMainId" id="dispMainId" style="background-color:gray"
 				value="${detailBean.wk001Bean.dispMainId}" readOnly> ※自動生成 
 			受付日時<input type="text" name="receptionDay" id="receptionDay"
 				value='<fmt:formatDate value="${detailBean.wk001Bean.receptionDay}" pattern="yyyy/MM/dd" />'>
@@ -254,8 +257,8 @@ function new_data(){
 			        </option>
 			      </c:forEach>
 			</select><br>
-			<span id="level2Area">
-			<select id="level2Id" name="level2Id" onChange='level2_changed()'>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="level2Area">
+			<select id="level2Id" name="level2Id" onChange='level2_changed()' style="width:272px">
 				<option value=0>選択</option>
 				  <c:forEach items="${detailBean.linkageBean.mst002List}" var="mst002Bean">
 			          <option value ="${mst002Bean.level2Id}" 
@@ -263,8 +266,8 @@ function new_data(){
 			          ><c:out value="${mst002Bean.name}"/></option>
 			      </c:forEach>
 			</select><br>
-			<span id="level3Area">
-			<select id="level3Id" name="level3Id">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="level3Area">
+			<select id="level3Id" name="level3Id" style="width:272px;display:none">
 				<option value=0>選択</option>
 				  <c:forEach items="${detailBean.linkageBean.mst003List}" var="mst003Bean">
 			          <option value ="${mst003Bean.level3Id}" 
@@ -276,18 +279,16 @@ function new_data(){
 			</span>
 		</p>
 		<p>
-			国内/海外 
+			国内/海外&nbsp;&nbsp; 
 			<input type="radio" name="place" id="place" value="1">国内
 			<input type="radio" name="place" id="place" value="2">海外
 		</p>
 		<p>
-			<span class="star">☆</span>氏名 <input type="text" name="name" id="name" value="${detailBean.wk001Bean.name}">
+			<span class="star">☆</span>氏名&nbsp; <input type="text" name="name" id="name" value="${detailBean.wk001Bean.name}">
+			&nbsp;&nbsp;&nbsp;&nbsp;ふりがな<input type="text" name="hurigana" id="hurigana" value="${detailBean.wk001Bean.hurigana}">
 		</p>
 		<p>
-			ふりがな<input type="text" name="hurigana" id="hurigana" value="${detailBean.wk001Bean.hurigana}">
-		</p>
-		<p>
-			<span class="star">☆</span>年齢<input type="text" name="age" id="age" value='<c:if test="${detailBean.wk001Bean.age!=0}"><c:out value="${detailBean.wk001Bean.age}"/></c:if>'> 
+			<span class="star">☆</span>年齢&nbsp;&nbsp;<input type="text" name="age" id="age" value='<c:if test="${detailBean.wk001Bean.age!=0}"><c:out value="${detailBean.wk001Bean.age}"/></c:if>'> 
 			<span class="star">☆</span>生年月日<input type="text" name="birthDay" id="birthDay"
 				value='<fmt:formatDate value="${detailBean.wk001Bean.birthDay}" pattern="yyyy/MM/dd" />'>
 		</p>
@@ -302,26 +303,20 @@ function new_data(){
 		<p>
 			郵便番号
 			<input type="text" name="postcode" id="postcode" value="${detailBean.wk001Bean.postcode}">
-		</p>
-		<p>
 			<span class="star">☆</span>自宅住所
 			<textarea name="address" id="address">${detailBean.wk001Bean.address}</textarea>
 		</p>
 		<p>
 			家族
 			<textarea name="family" id="family">${detailBean.wk001Bean.family}</textarea>
-		</p>
-		<p>
 			<span class="star">☆</span>自宅電話
 			<input type="text" name="homePhone" id="homePhone" value="${detailBean.wk001Bean.homePhone}">
 			<!-- (例：***-****-****) -->
-		</p>
-		<p>
 			<span class="star">☆</span>携帯電話
 			<input type="text" name="mobilePhone" id="mobilePhone" value="${detailBean.wk001Bean.mobilePhone}">
 		</p>
 		<p>
-			連絡方法
+			連絡方法&nbsp;&nbsp;&nbsp;
 			 <input type="text" name="contactMethod" id="contactMethod" value="${detailBean.wk001Bean.contactMethod}"> 
 			 Ｅメール
 			 <input type="text" name="email" id="email" value="${detailBean.wk001Bean.email}">
@@ -331,7 +326,7 @@ function new_data(){
 			<input type="text" name="lastDegree" id="lastDegree" value="${detailBean.wk001Bean.lastDegree}">
 		</p>
 		<p>
-			<span class="star">☆</span>専攻
+			<span class="star">☆</span>専攻&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<input type="text" name="specialty" id="specialty" value="${detailBean.wk001Bean.specialty}"> 
 			<input type="radio" name="department" id="department" value="1">理系
 			<input type="radio" name="department" id="department" value="2">文系
@@ -358,12 +353,12 @@ function new_data(){
 			</div>
 		</div><!-- enself  -->
 			<p>
-				ＴＯＥＩＣ：<input type="text" name="toeic" id="toeic" value="${detailBean.wk001Bean.toeic}"><br>
-		       	ＴＯＥＦＬ：<input type="text" name="toefl" id="toefl" value="${detailBean.wk001Bean.toefl}"><br>
-		                   英検：<input type="text" name="etest" id="etest" value="${detailBean.wk001Bean.etest}"><br>
+				ＴＯＥＩＣ：<input type="text" name="toeic" id="toeic" value="${detailBean.wk001Bean.toeic}">
+		       	ＴＯＥＦＬ：<input type="text" name="toefl" id="toefl" value="${detailBean.wk001Bean.toefl}">
+		                   英検：<input type="text" name="etest" id="etest" value="${detailBean.wk001Bean.etest}">
 			</p>
 		
-			希望事項<br>
+			希望事項
 			<textarea name="requirements" id="requirements">${detailBean.wk001Bean.requirements}</textarea>
 		         年収「現状」
 		    <input type="text" name="annualIncomeNow" id="annualIncomeNow" value="${detailBean.wk001Bean.annualIncomeNow}">
@@ -386,14 +381,12 @@ function new_data(){
 			手数料（消費税込み）<input type="text" name="fee" id="fee" value="${detailBean.wk001Bean.fee}">
 		</p>
 		<div id="infocontents">
-			<div id="info">	
-				<br>会社情報<br>                                                                                             
+			<div id="info">	会社情報<br>                                                                                             
 				<textarea rows="8" cols="50" name="companyInfo" id="companyInfo"><c:out value="${detailBean.wk001Bean.companyInfo}" /></textarea>
-			</div>
-			<div id="contents">	
-				<br>業務内容<br>
+			 </div>
+			 <div id="contents">業務内容<br>
 				<textarea rows="8" cols="50" name="workContents" id="workContents"><c:out value="${detailBean.wk001Bean.workContents}" /></textarea>
-			</div>
+			 </div> 
 		</div><!-- infocontents -->
 		
 		<!-- 面談データ -->
@@ -506,6 +499,7 @@ function submit_file_delete(fileName){
 </p>
 
 <p>Human Dream</p>
+  </div><!-- container -->
 
 </body>
 </html>
