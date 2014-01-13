@@ -9,6 +9,31 @@ public class Wk004Bean {
 	private String forBusiness;
 	private Date introductionDay;
 	private Date interviewDay;
+	private Date inaugurationDay;
+	private Date turnoverDay;
+	private String fee;
+	
+	
+	
+	public Date getInaugurationDay() {
+		return inaugurationDay;
+	}
+	public void setInaugurationDay(Date inaugurationDay) {
+		this.inaugurationDay = inaugurationDay;
+	}
+	public Date getTurnoverDay() {
+		return turnoverDay;
+	}
+	public void setTurnoverDay(Date turnoverDay) {
+		this.turnoverDay = turnoverDay;
+	}
+
+	public String getFee() {
+		return fee;
+	}
+	public void setFee(String fee) {
+		this.fee = fee;
+	}
 	public int getMainId() {
 		return mainId;
 	}

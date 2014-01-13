@@ -72,6 +72,9 @@ public class ListAdd extends HttpServlet {
 			String[] forBusinessValues = request.getParameterValues("forBusiness");
 			String[] introductionDayValues = request.getParameterValues("introductionDay");
 			String[] interviewDayValues = request.getParameterValues("interviewDay");
+			String[] inaugurationDayValues = request.getParameterValues("inaugurationDay");
+			String[] turnoverDayValues = request.getParameterValues("turnoverDay");
+			String[] feeValues = request.getParameterValues("fee");
 			int sizeWk004 = hopePositionValues.length;
 			List<Wk004Bean> wk004List = new ArrayList<Wk004Bean>();
 			for (int i = 0; i < sizeWk004; i++) {
@@ -80,11 +83,18 @@ public class ListAdd extends HttpServlet {
 				String forBusiness = forBusinessValues[i];
 				String introductionDay = introductionDayValues[i];
 				String interviewDay = interviewDayValues[i];
+				String inaugurationDay = inaugurationDayValues[i];
+				String turnoverDay = turnoverDayValues[i];
+				String fee = feeValues[i];
 				//　面談データは空だったら、無効とみなして、wk004Beanを生成しない
 				if (hopePosition.trim().equals("")
 						&& forBusiness.trim().equals("")
 						&& introductionDay.trim().equals("")
-						&& interviewDay.trim().equals("")) {
+						&& interviewDay.trim().equals("")
+						&& inaugurationDay.trim().equals("")
+						&& turnoverDay.trim().equals("")
+						&& fee.trim().equals("")
+					) {
 					continue;
 				}
 				// 有效データ、生成Bean、Listに記入する
@@ -94,12 +104,15 @@ public class ListAdd extends HttpServlet {
 				wk004Bean.setForBusiness(forBusiness);
 				wk004Bean.setIntroductionDay(util.convertDate(introductionDay));
 				wk004Bean.setInterviewDay(util.convertDate(interviewDay));
+				wk004Bean.setInaugurationDay(util.convertDate(inaugurationDay));
+				wk004Bean.setTurnoverDay(util.convertDate(turnoverDay));
+				wk004Bean.setFee(fee);
 				wk004List.add(wk004Bean);
 			}
 			//wk004の中のmainIdの全部データ削除
 			wk004Dao.DeleteByMainId(mainId);
 			// 上に新たに生成した值全部insert、データベースに
-			for (Iterator iterator = wk004List.iterator(); iterator.hasNext();) {
+			for (Iterator<Wk004Bean> iterator = wk004List.iterator(); iterator.hasNext();) {
 				Wk004Bean wk004Bean = (Wk004Bean) iterator.next();
 				wk004Dao.Insert(wk004Bean);
 			}

@@ -91,7 +91,7 @@ function submit_fee() {
       		<th>面接日時</th>
       		<th>就職年月日</th>
       		<th>離職日</th>
-      		<th>手数料（消費税込み）</th>
+      		<th>手数料（税込み）</th>
       		<th>国内/海外</th>
       		<th>登録番号</th>
     	</tr>
@@ -115,9 +115,9 @@ function submit_fee() {
 			    <td><c:out value="${wk004List[0].forBusiness}" /></td>
 			    <td><fmt:formatDate value="${wk004List[0].introductionDay}" pattern="yyyy/MM/dd" /></td>
 			    <td><fmt:formatDate value="${wk004List[0].interviewDay}" pattern="yyyy/MM/dd" /></td>
-			    <td rowspan="${disp004Size}"><fmt:formatDate value="${wk001Bean.inaugurationDay}" pattern="yyyy/MM/dd" /></td>
-			    <td rowspan="${disp004Size}"><fmt:formatDate value="${wk001Bean.turnoverDay}" pattern="yyyy/MM/dd" /></td>
-			    <td rowspan="${disp004Size}"><c:out value="${wk001Bean.fee}" /></td>
+			    <td><fmt:formatDate value="${wk001Bean.inaugurationDay}" pattern="yyyy/MM/dd" /></td>
+			    <td><fmt:formatDate value="${wk001Bean.turnoverDay}" pattern="yyyy/MM/dd" /></td>
+			    <td><c:out value="${wk001Bean.fee}" /></td>
 			    <td rowspan="${disp004Size}"><c:out value="${wk001Bean.dispPlace}" /></td>
 			    <td rowspan="${disp004Size}"><a href="#" onclick="submit_list_modify(${wk001Bean.mainId});return false;">
 			    <c:out value="${wk001Bean.dispMainId}" /></a></td>
@@ -129,6 +129,9 @@ function submit_fee() {
 			    <td><c:out value="${wk004Bean.forBusiness}" /></td>
 			    <td><fmt:formatDate value="${wk004Bean.introductionDay}" pattern="yyyy/MM/dd" /></td>
 			    <td><fmt:formatDate value="${wk004Bean.interviewDay}" pattern="yyyy/MM/dd" /></td>
+			    <td><fmt:formatDate value="${wk004Bean.inaugurationDay}" pattern="yyyy/MM/dd" /></td>
+			    <td><fmt:formatDate value="${wk004Bean.turnoverDay}" pattern="yyyy/MM/dd" /></td>
+			    <td><c:out value="${wk004Bean.fee}" /></td>
 			  </tr>
     		</c:forEach>
     	</c:forEach>

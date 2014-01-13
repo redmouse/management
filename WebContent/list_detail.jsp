@@ -188,7 +188,15 @@ function level2_changed(){
 }
 
 function new_data(){
-	var data=$('<div style="border: 2px solid;width: 400px;">希望職種	<input type="text" name="hopePosition" id="hopePosition" value=""><br>求人事業者<input type="text" name="forBusiness" id="forBusiness" value=""><br>紹介年月日<input type="text" name="introductionDay" id="introductionDay" value=""><br>面接日時<input type="text" name="interviewDay" id="interviewDay" value=""><br></div>');
+	var data=$('<div style="border: 2px solid;width: 400px;">'
+	+ '希望職種:<input type="text" name="hopePosition" id="hopePosition" value=""><br>'
+	+ '求人事業者:<input type="text" name="forBusiness" id="forBusiness" value=""><br>'
+	+ '紹介年月日:<input type="text" name="introductionDay" id="introductionDay" value=""><br>'
+	+ '面接日時:<input type="text" name="interviewDay" id="interviewDay" value=""><br>'
+	+ '就職年月日:<input type="text" name="inaugurationDay" id="inaugurationDay" value=""><br>'
+	+ '離職日:<input type="text" name="turnoverDay" id="turnoverDay" value=""><br>'
+	+ '手数料（税込み）:<input type="text" name="fee" id="fee" value=""><br>'
+	+ '</div>');
 	$('#next').before(data);
 }
 
@@ -372,14 +380,6 @@ function new_data(){
 			<input type="radio" name="bachelor" id="bachelor" value="1">ＯＫ 
 			<input type="radio" name="bachelor" id="bachelor" value="2">ＮＯ
 		</p>
-		<p>
-			就職年月日
-			<input type="text" name="inaugurationDay" id="inaugurationDay"
-				value='<fmt:formatDate value="${detailBean.wk001Bean.inaugurationDay}" pattern="yyyy/MM/dd" />'>
-			離職日<input type="text" name="turnoverDay" id="turnoverDay"
-				value='<fmt:formatDate value="${detailBean.wk001Bean.turnoverDay}" pattern="yyyy/MM/dd" />'>
-			手数料（消費税込み）<input type="text" name="fee" id="fee" value="${detailBean.wk001Bean.fee}">
-		</p>
 		<div id="infocontents" style="overflow:hidden;">
 			<div id="info" style="width:373px;height=110px;float:left;">会社情報<br>                                                                                             
 				<textarea rows="8" cols="50" name="companyInfo" id="companyInfo"><c:out value="${detailBean.wk001Bean.companyInfo}" /></textarea>
@@ -399,14 +399,20 @@ function new_data(){
 		                   求人事業者:<input type="text" name="forBusiness" id="forBusiness" value=""><br>
 		    	紹介年月日:<input type="text" name="introductionDay" id="introductionDay" value=""><br>
 		                  面接日時:<input type="text" name="interviewDay" id="interviewDay" value=""><br>
+		                  就職年月日:<input type="text" name="inaugurationDay" id="inaugurationDay" value=""><br>
+		                 離職日:<input type="text" name="turnoverDay" id="turnoverDay" value=""><br>
+		                 手数料（税込み）:<input type="text" name="fee" id="fee" value=""><br>
 			</div>
 		</c:if>
 		<c:forEach items="${detailBean.wk004List}" var="wk004Bean">
 			<div id="data" style="border: 2px solid;width: 400px;">
 				希望職種:<input type="text" name="hopePosition" id="hopePosition" value="${wk004Bean.hopePosition}"><br>
 		                   求人事業者:<input type="text" name="forBusiness" id="forBusiness" value="${wk004Bean.forBusiness}"><br>
-		    	紹介年月日:<input type="text" name="introductionDay" id="introductionDay" value="${wk004Bean.introductionDay}"><br>
-		                  面接日時:<input type="text" name="interviewDay" id="interviewDay" value="${wk004Bean.interviewDay}"><br>
+		    	紹介年月日:<input type="text" name="introductionDay" id="introductionDay" value='<fmt:formatDate value="${wk004Bean.introductionDay}" pattern="yyyy/MM/dd" />'><br>
+		                  面接日時:<input type="text" name="interviewDay" id="interviewDay" value='<fmt:formatDate value="${wk004Bean.interviewDay}" pattern="yyyy/MM/dd" />'><br>
+		                  就職年月日:<input type="text" name="inaugurationDay" id="inaugurationDay" value='<fmt:formatDate value="${wk004Bean.inaugurationDay}" pattern="yyyy/MM/dd" />'><br>
+		                 離職日:<input type="text" name="turnoverDay" id="turnoverDay" value='<fmt:formatDate value="${wk004Bean.turnoverDay}" pattern="yyyy/MM/dd" />'><br>
+		                 手数料（税込み）:<input type="text" name="fee" id="fee" value="${wk004Bean.fee}"><br>
 		                <!-- <input type="text" name="fileid" id="uploadfileid" value="" style="display:none"><br> -->
 			</div>
 		</c:forEach> 
@@ -433,12 +439,11 @@ function new_data(){
 			</c:choose>
 		 --%>
 		<input type="button" value="次へ" id="next" onclick="new_data();">
-		</div>
+		</div><!-- dataall -->
 		
 
-	</form>
+	</form><!-- form1 -->
 
-<form id="form_file_list" action="" method="post">
 <script type="text/javascript">
 function submit_file_download(fileName){
 	document.getElementById("fileName").value = fileName;
@@ -455,6 +460,7 @@ function submit_file_delete(fileName){
 	document.getElementById("form_file_list").submit();
 }
 </script>
+<form id="form_file_list" action="" method="post">
 	<input type="hidden" id="mainId" name="mainId" value="${detailBean.wk001Bean.mainId}">
 	<input type="hidden" id="fileName" name="fileName">
 		<div id="file_list_html">
@@ -474,9 +480,7 @@ function submit_file_delete(fileName){
 		</table>
 		</div>
 	<br />
-	</div><!-- datafile -->
 </form>
-	
 <script type="text/javascript">
    function recreateFileList(file_list_html){
 	   document.getElementById('file_list_html').innerHTML= file_list_html;
@@ -488,8 +492,9 @@ function submit_file_delete(fileName){
   　　 <input type="hidden" id="mainId" name="mainId" value="${detailBean.wk001Bean.mainId}">   
     <input type="file" name="file" value=""/><br >
 </form>
-<!-- button -->
-	<input type="button" onclick="submit_upload();" value="upload" />
+<input type="button" onclick="submit_upload();" value="upload" />
+</div><!-- datafile -->
+	
 <p>
 	<c:choose>
 		<c:when test="${detailBean.optType == 'modify'}">

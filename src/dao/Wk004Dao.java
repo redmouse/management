@@ -9,7 +9,7 @@ import beans.Wk004Bean;
 
 public class Wk004Dao extends MysqlDao {
 	
-	String wk004Colums = " dataId,mainId,hopePosition,forBusiness,introductionDay,interviewDay ";
+	String wk004Colums = " dataId,mainId,hopePosition,forBusiness,introductionDay,interviewDay,inaugurationDay,turnoverDay,fee ";
 	
 	private void setBean(Wk004Bean item, ResultSet rs) throws Exception{
 		item.setDataId(rs.getInt("dataId"));
@@ -18,6 +18,9 @@ public class Wk004Dao extends MysqlDao {
 		item.setForBusiness(rs.getString("forBusiness"));
 		item.setIntroductionDay(rs.getDate("introductionDay"));
 		item.setInterviewDay(rs.getDate("interviewDay"));
+		item.setInaugurationDay(rs.getDate("inaugurationDay"));
+		item.setTurnoverDay(rs.getDate("turnoverDay"));
+		item.setFee(rs.getString("fee"));
 	}
 	
 	
@@ -48,7 +51,11 @@ public class Wk004Dao extends MysqlDao {
 				+ " hopePosition = ?, "
 				+ " forBusiness = ?, "
 				+ " introductionDay = ?, "
-				+ " interviewDay = ? ";
+				+ " interviewDay = ?, "
+				+ " inaugurationDay = ?, "
+				+ " turnoverDay = ?, "
+				+ " fee = ? "
+				;
 		PreparedStatement statement = getConnection().prepareStatement(sql);
 		int pos = 1;
 		statement.setInt(pos++, item.getMainId());
@@ -56,6 +63,9 @@ public class Wk004Dao extends MysqlDao {
 		statement.setString(pos++, item.getForBusiness());
 		statement.setDate(pos++, item.getIntroductionDay());
 		statement.setDate(pos++, item.getInterviewDay());
+		statement.setDate(pos++, item.getInaugurationDay());
+		statement.setDate(pos++, item.getTurnoverDay());
+		statement.setString(pos++, item.getFee());
 		statement.executeUpdate();
 	}
 
