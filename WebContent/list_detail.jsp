@@ -412,7 +412,7 @@ function new_data(){
 		                  面接日時:<input type="text" name="interviewDay" id="interviewDay" value='<fmt:formatDate value="${wk004Bean.interviewDay}" pattern="yyyy/MM/dd" />'><br>
 		                  就職年月日:<input type="text" name="inaugurationDay" id="inaugurationDay" value='<fmt:formatDate value="${wk004Bean.inaugurationDay}" pattern="yyyy/MM/dd" />'><br>
 		                 離職日:<input type="text" name="turnoverDay" id="turnoverDay" value='<fmt:formatDate value="${wk004Bean.turnoverDay}" pattern="yyyy/MM/dd" />'><br>
-		                 手数料（税込み）:<input type="text" name="fee" id="fee" value="${wk004Bean.fee}"><br>
+		                 手数料（税込み）:<input type="text" name="fee" id="fee" value="${wk004Bean.dispFee}"><br>
 		                <!-- <input type="text" name="fileid" id="uploadfileid" value="" style="display:none"><br> -->
 			</div>
 		</c:forEach> 

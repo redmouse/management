@@ -110,7 +110,7 @@ public class ListModify extends HttpServlet {
 				wk004Bean.setInterviewDay(util.convertDate(interviewDay));
 				wk004Bean.setInaugurationDay(util.convertDate(inaugurationDay));
 				wk004Bean.setTurnoverDay(util.convertDate(turnoverDay));
-				wk004Bean.setFee(fee);
+				wk004Bean.setFee(util.convertNullInt(fee));
 				wk004List.add(wk004Bean);
 			}
 			// wk004の中のmainIdの全部データ削除

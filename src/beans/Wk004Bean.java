@@ -11,10 +11,28 @@ public class Wk004Bean {
 	private Date interviewDay;
 	private Date inaugurationDay;
 	private Date turnoverDay;
-	private String fee;
+	private int fee;
 	
+	// テーブル以外の項目
+	// 手数料画面のため、氏名をこのＢｅａｎに格納する。
+	// 本来、Disp003Beanのように、Wk004Bean.* + Wk001Bean.nameにする。
+	private String name;
 	
+	// 画面表示用
+	private String dispFee;
 	
+	public String getDispFee() {
+		return dispFee;
+	}
+	public void setDispFee(String dispFee) {
+		this.dispFee = dispFee;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public Date getInaugurationDay() {
 		return inaugurationDay;
 	}
@@ -28,10 +46,11 @@ public class Wk004Bean {
 		this.turnoverDay = turnoverDay;
 	}
 
-	public String getFee() {
+
+	public int getFee() {
 		return fee;
 	}
-	public void setFee(String fee) {
+	public void setFee(int fee) {
 		this.fee = fee;
 	}
 	public int getMainId() {

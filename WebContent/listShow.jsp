@@ -115,9 +115,9 @@ function submit_fee() {
 			    <td><c:out value="${wk004List[0].forBusiness}" /></td>
 			    <td><fmt:formatDate value="${wk004List[0].introductionDay}" pattern="yyyy/MM/dd" /></td>
 			    <td><fmt:formatDate value="${wk004List[0].interviewDay}" pattern="yyyy/MM/dd" /></td>
-			    <td><fmt:formatDate value="${wk001Bean.inaugurationDay}" pattern="yyyy/MM/dd" /></td>
-			    <td><fmt:formatDate value="${wk001Bean.turnoverDay}" pattern="yyyy/MM/dd" /></td>
-			    <td><c:out value="${wk001Bean.fee}" /></td>
+			    <td><fmt:formatDate value="${wk004List[0].inaugurationDay}" pattern="yyyy/MM/dd" /></td>
+			    <td><fmt:formatDate value="${wk004List[0].turnoverDay}" pattern="yyyy/MM/dd" /></td>
+			    <td><c:out value="${wk004List[0].dispFee}" /></td>
 			    <td rowspan="${disp004Size}"><c:out value="${wk001Bean.dispPlace}" /></td>
 			    <td rowspan="${disp004Size}"><a href="#" onclick="submit_list_modify(${wk001Bean.mainId});return false;">
 			    <c:out value="${wk001Bean.dispMainId}" /></a></td>
@@ -131,7 +131,7 @@ function submit_fee() {
 			    <td><fmt:formatDate value="${wk004Bean.interviewDay}" pattern="yyyy/MM/dd" /></td>
 			    <td><fmt:formatDate value="${wk004Bean.inaugurationDay}" pattern="yyyy/MM/dd" /></td>
 			    <td><fmt:formatDate value="${wk004Bean.turnoverDay}" pattern="yyyy/MM/dd" /></td>
-			    <td><c:out value="${wk004Bean.fee}" /></td>
+			    <td><c:out value="${wk004Bean.dispFee}" /></td>
 			  </tr>
     		</c:forEach>
     	</c:forEach>

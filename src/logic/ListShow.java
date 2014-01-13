@@ -67,7 +67,14 @@ public class ListShow extends HttpServlet {
 				wk001Bean.setDispPlace(util.convertDispPlace(wk001Bean.getPlace()));
 				
 				List<Wk004Bean> wk004List = wk004Dao.SelectByMainId(wk001Bean.getMainId());
-				
+				// 画面手数料表示用、0の場合は、空で表示しません。
+	    		for (Iterator<Wk004Bean> iterator = wk004List.iterator(); iterator.hasNext();) {
+					Wk004Bean wk004Bean = (Wk004Bean) iterator.next();
+					int fee = wk004Bean.getFee();
+					if(fee>0){
+						wk004Bean.setDispFee(String.valueOf(fee));
+					}
+				}
 				Disp001Bean disp001Bean = new Disp001Bean();
 				disp001Bean.setWk001Bean(wk001Bean);
 				disp001Bean.setWk004List(wk004List);

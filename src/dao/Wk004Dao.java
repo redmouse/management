@@ -20,7 +20,7 @@ public class Wk004Dao extends MysqlDao {
 		item.setInterviewDay(rs.getDate("interviewDay"));
 		item.setInaugurationDay(rs.getDate("inaugurationDay"));
 		item.setTurnoverDay(rs.getDate("turnoverDay"));
-		item.setFee(rs.getString("fee"));
+		item.setFee(rs.getInt("fee"));
 	}
 	
 	
@@ -65,7 +65,7 @@ public class Wk004Dao extends MysqlDao {
 		statement.setDate(pos++, item.getInterviewDay());
 		statement.setDate(pos++, item.getInaugurationDay());
 		statement.setDate(pos++, item.getTurnoverDay());
-		statement.setString(pos++, item.getFee());
+		statement.setInt(pos++, item.getFee());
 		statement.executeUpdate();
 	}
 
@@ -75,5 +75,20 @@ public class Wk004Dao extends MysqlDao {
 		PreparedStatement statement = getConnection().prepareStatement(sql);
 		statement.setInt(1, mainId);
 		statement.executeUpdate();
+	}
+	
+	// 手数料画面、Wk001と連携し、氏名を取得
+	public List<Wk004Bean> SelectAllWithFee() throws Exception {
+		List<Wk004Bean> returnList = new ArrayList<Wk004Bean>();
+		String sql = " SELECT " + wk004Colums + " FROM wk004 where fee>0 ";
+		PreparedStatement statement = getConnection().prepareStatement(sql);
+		ResultSet rs = statement.executeQuery();
+		
+		while (rs.next()) {
+			Wk004Bean item = new Wk004Bean();
+			setBean(item, rs);
+			returnList.add(item);
+		}
+		return returnList;
 	}
 }

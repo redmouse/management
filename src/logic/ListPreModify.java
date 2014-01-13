@@ -1,6 +1,7 @@
 package logic;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -104,6 +105,14 @@ public class ListPreModify extends HttpServlet {
     		
     		// -------- wk004 ---------
     		List<Wk004Bean> wk004List = wk004Dao.SelectByMainId(mainId);
+    		// 画面手数料表示用、0の場合は、空で表示しません。
+    		for (Iterator iterator = wk004List.iterator(); iterator.hasNext();) {
+				Wk004Bean wk004Bean = (Wk004Bean) iterator.next();
+				int fee = wk004Bean.getFee();
+				if(fee>0){
+					wk004Bean.setDispFee(String.valueOf(fee));
+				}
+			}
     		detailBean.setWk004List(wk004List);
     		
     		// --------- file list------------ 
