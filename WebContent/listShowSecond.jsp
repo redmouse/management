@@ -51,6 +51,10 @@ function submit_kyusyoku() {
 	document.getElementById("form1").action = "ListShow";
 	document.getElementById("form1").submit();
 }
+function submit_fee() {
+	document.getElementById("form1").action = "ListShowFee";
+	document.getElementById("form1").submit();
+}
 function check_radio_selected() {
 	var v = document.getElementsByName('radioForBusiness');
 	for ( var i = 0; i < v.length; i++) {
@@ -81,7 +85,7 @@ function popup_window(showText, titleFrom) {
 <li><input type="button" onclick="submit_listSecond_add()" value="新規"></li>
 <li><input type="button" onclick="submit_listSecond_edit()" value="編集"></li>
 <li id="kyusyoku"><input type="button" onclick="submit_kyusyoku();" value="求職管理簿"></li>
-<li><input type="button" onclick="" value="手数料管理簿"></li>
+<li><input type="button" onclick="submit_fee();" value="手数料管理簿"></li>
 </ul>
 </div>
 

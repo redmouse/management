@@ -10,15 +10,18 @@
 <title>求職管理簿リスト一覧画面</title>
 <style>
 #menu {
-margin-left:45px;
+margin-left:70px;
 margin-bottom:20px;
 overflow:hidden;
 }
 ul>li{
 	float:left;
 }
+li{
+margin-right:2px;
+}
 #kyujinn{
-padding-left:800px;
+padding-left:737px;
 }
 
 </style>
@@ -56,6 +59,10 @@ function submit_kyujinn() {
 	document.getElementById("form1").action = "ListShowSecond";
 	document.getElementById("form1").submit();
 }
+function submit_fee() {
+	document.getElementById("form1").action = "ListShowFee";
+	document.getElementById("form1").submit();
+}
 </script>
 <body>
 <h1 align=center>求職管理簿</h1>
@@ -66,7 +73,7 @@ function submit_kyujinn() {
 <li><input type="button" onclick="submit_search()" value="検索"></li>
 <li><input type="button" onclick="submit_list_delete()" value="削除"></li> 
 <li id="kyujinn"><input type="button" onclick="submit_kyujinn();" value="求人管理簿"></li>
-<li id="kee"><input type="button" value="手数料管理簿"></li>
+<li id="kee"><input type="button" onclick="submit_fee();" value="手数料管理簿"></li>
 </ul>
 </div>
 <form id="form1" name="form1" method="post" action="">

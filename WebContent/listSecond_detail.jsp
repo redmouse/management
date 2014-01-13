@@ -11,11 +11,12 @@
 <title>求人管理簿詳細画面</title>
 <style>
 #back {
-margin-left:-1000px;
+margin-left:-1200px;
 }
-#button{
+#data006PageDel {
 margin-left:1150px;
 }
+
 </style>
 </head>
 <script type="text/javascript">
@@ -133,20 +134,20 @@ function delete_data006(){
 		</div>
 		<hr>
 		
-	<table border="1" width="100%">
+	<table border="1" width="800">
 		<tr>
-      		<th width="50px">選択</th>
-      		<th width="50px">受付年月日</th>
-      		<th>求人数</th>
-      		<th>職種</th>
-      		<th>就労場所</th>
-      		<th>雇用期間</th>
-      		<th>賃金</th>
-      		<th>処理状況</th>
-      		<th>国内/海外</th>
-      		<th>求人事業者からの求人票</th>
-      		<th>自社の求人票</th>
-      		<th>登録番号</th>
+      		<th width="50" height="36">選択</th>
+      		<th width="80" height="36">受付年月日</th>
+      		<th width="80">求人数</th>
+      		<th width="50">職種</th>
+      		<th width="50">就労場所</th>
+      		<th width="50">雇用期間</th>
+      		<th width="50">賃金</th>
+      		<th width="50">処理状況</th>
+      		<th width="50">国内/海外</th>
+      		<th width="100">求人事業者からの求人票</th>
+      		<th width="100">自社の求人票</th>
+      		<th width="150">登録番号</th>
     	</tr>
     	<c:choose>
 				<c:when test="${fn:length(disp002Bean.wk006List)==0}">
@@ -189,14 +190,14 @@ function delete_data006(){
 	<input type="button" value="追加" id="data006PageAdd" onclick="new_data006();">
 	<input type="button" value="削除" id="data006PageDel" onclick="delete_data006();">
 		
-			<c:choose>
-				<c:when test="${disp002Bean.wk005Bean.tradeId> 0}">
-					<input type="button" onclick="submit_update();" value="更新">
-				</c:when>
-				<c:otherwise>
-					<input type="button" onclick="submit_add();" value="登録">
-				</c:otherwise>
-			</c:choose>
+	<c:choose>
+		<c:when test="${disp002Bean.wk005Bean.tradeId> 0}">
+			<input type="button" onclick="submit_update();" value="更新">
+		</c:when>
+		<c:otherwise>
+			<input type="button" onclick="submit_add();" value="登録">
+		</c:otherwise>
+	</c:choose>
 	</div>	 
 	</form>
 
