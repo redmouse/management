@@ -11,11 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.Disp001Bean;
-import beans.Wk001Bean;
+import beans.Disp003Bean;
 import beans.Wk004Bean;
-import dao.Wk001Dao;
-import dao.Wk004Dao;
+import dao.JoinDao;
 
 /**
  * Servlet implementation class List
@@ -45,28 +43,36 @@ public class ListShowFee extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		List<Disp001Bean> disp001List = new ArrayList<Disp001Bean>();
-		Wk001Dao wk001Dao=new Wk001Dao();
+		
+		List<Disp003Bean> disp003List = new ArrayList<Disp003Bean>();
+		JoinDao joinDao=new JoinDao();
 		
 		Util util = new Util();
 		try{
-			List<Wk001Bean> wk001List = wk001Dao.SelectAll();
-			Iterator itr = wk001List.iterator();
-			while (itr.hasNext()) {
-				Wk001Bean wk001Bean = (Wk001Bean)itr.next();
-				wk001Bean.setDispMainId(util.convertDispId(wk001Bean.getMainId()));
-				
-				
-				Disp001Bean disp001Bean = new Disp001Bean();
-				disp001Bean.setWk001Bean(wk001Bean);
-				disp001List.add(disp001Bean);
+			// 手数料明細
+			disp003List = joinDao.SelectFeeList();
+			for (Iterator<Disp003Bean> iterator = disp003List.iterator(); iterator.hasNext();) {
+				Disp003Bean disp003Bean = (Disp003Bean) iterator.next();
+				// set display main id
+				disp003Bean.getWk001Bean().setDispMainId(util.convertDispId(disp003Bean.getWk001Bean().getMainId()));
+				// set display fee
+				disp003Bean.getWk004Bean().setDispFee(String.valueOf(disp003Bean.getWk004Bean().getFee()));
 			}
-	
-    		request.setAttribute("disp001List", disp001List);
+			// 合計
+			int total = joinDao.SelectFeeTotal();
+			// 会計年度表示
+			String startDay = util.getYearBegin().toString();
+			String endDay = util.getYearEnd().toString();
+			// 画面へ出力
+    		request.setAttribute("disp003List", disp003List);
+    		request.setAttribute("total", total);
+    		request.setAttribute("startDay", startDay);
+    		request.setAttribute("endDay", endDay);
+    		
     	}catch(Exception e){
     		throw new ServletException(e);
     	}finally{
-    		wk001Dao.closeConnection();
+    		joinDao.closeConnection();
     	}
     	request.getRequestDispatcher("/listShowFee.jsp").forward(request,response);
 	}

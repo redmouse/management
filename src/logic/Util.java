@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -104,7 +105,35 @@ public class Util {
 			return "";
 		}
 	}
-
+	
+	// =================================
+	// 年度会計日計算
+	// =================================
+	// 会計年度開始日
+	public Date getYearBegin() {
+		Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        //去年
+        if(month<=2){ // 3月以前 
+        	year--;
+        }
+        cal.set(year, 3, 1, 0, 0, 0);
+        
+		return new Date(cal.getTime().getTime());
+	}
+	public Date getYearEnd() {
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		int month = cal.get(Calendar.MONTH);
+		//今年
+		if(month>=3){ // 4月以降 
+			year++;
+		}
+		cal.set(year, 2, 31, 23, 59, 59);
+		return new Date(cal.getTime().getTime());
+	}
+	
 	public String validDetail(HttpServletRequest request){
 		Util util= new Util();
 		

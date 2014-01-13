@@ -76,19 +76,5 @@ public class Wk004Dao extends MysqlDao {
 		statement.setInt(1, mainId);
 		statement.executeUpdate();
 	}
-	
-	// 手数料画面、Wk001と連携し、氏名を取得
-	public List<Wk004Bean> SelectAllWithFee() throws Exception {
-		List<Wk004Bean> returnList = new ArrayList<Wk004Bean>();
-		String sql = " SELECT " + wk004Colums + " FROM wk004 where fee>0 ";
-		PreparedStatement statement = getConnection().prepareStatement(sql);
-		ResultSet rs = statement.executeQuery();
-		
-		while (rs.next()) {
-			Wk004Bean item = new Wk004Bean();
-			setBean(item, rs);
-			returnList.add(item);
-		}
-		return returnList;
-	}
+
 }
