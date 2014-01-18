@@ -13,6 +13,11 @@
 </head>
 <script type="text/javascript">
 function check_all_element() {
+	//受付日時
+	reg=/^(\d{4}\/([1-9]|\d{2})\/([1-9]|\d{2}))|(\d{4}-([1-9]|\d{2})-([1-9]|\d{2}))$/;
+	if(!reg.test($("#receptionDay").val().trim())){
+		return "受付日時[yyyy/mm/dd]を正しく入力してください！";
+	}
 	//氏名 
 	if($("#name").val().trim() == ""){
 		return "氏名を入力してください！";
@@ -188,14 +193,14 @@ function level2_changed(){
 }
 
 function new_data(){
-	var data=$('<div style="border: 2px solid;width: 400px;">'
-	+ '希望職種:<input type="text" name="hopePosition" id="hopePosition" value=""><br>'
-	+ '求人事業者:<input type="text" name="forBusiness" id="forBusiness" value=""><br>'
-	+ '紹介年月日:<input type="text" name="introductionDay" id="introductionDay" value=""><br>'
-	+ '面接日時:<input type="text" name="interviewDay" id="interviewDay" value=""><br>'
-	+ '就職年月日:<input type="text" name="inaugurationDay" id="inaugurationDay" value=""><br>'
-	+ '離職日:<input type="text" name="turnoverDay" id="turnoverDay" value=""><br>'
-	+ '手数料（税込み）:<input type="text" name="fee" id="fee" value=""><br>'
+	var data=$('<div style="border: 1px solid;width: 350px;">'
+	+ '<table><tr><td>希望職種:</td><td><input type="text" name="hopePosition" id="hopePosition" value=""></td></tr>'
+	+ '<tr><td>求人事業者:</td><td><input type="text" name="forBusiness" id="forBusiness" value=""></td></tr>'
+	+ '<tr><td>紹介年月日:</td><td><input type="text" name="introductionDay" id="introductionDay" value=""></td></tr>'
+	+ '<tr><td>面接日時:</td><td><input type="text" name="interviewDay" id="interviewDay" value=""></td></tr>'
+	+ '<tr><td>就職年月日:</td><td><input type="text" name="inaugurationDay" id="inaugurationDay" value=""></td></tr>'
+	+ '<tr><td>離職日:</td><td><input type="text" name="turnoverDay" id="turnoverDay" value=""></td></tr>'
+	+ '<tr><td>手数料（税込み）:</td><td><input type="text" name="fee" id="fee" value=""></td></tr><table>'
 	+ '</div>');
 	$('#next').before(data);
 }
@@ -250,12 +255,12 @@ function new_data(){
 		</div><!-- header -->
 		<p>
 			登録番号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="dispMainId" id="dispMainId" style="background-color:gray"
-				value="${detailBean.wk001Bean.dispMainId}" readOnly> ※自動生成 
+				value="${detailBean.wk001Bean.dispMainId}" readOnly> 
 			受付日時<input type="text" name="receptionDay" id="receptionDay"
 				value='<fmt:formatDate value="${detailBean.wk001Bean.receptionDay}" pattern="yyyy/MM/dd" />'>
 		</p>
 		<p>
-			業務分類 <br> ※3項目選択
+			業務分類 <br> ※2項目選択
 		    <select id="level1Id" name="level1Id">
 				<option value=0>選択</option>
 				  <c:forEach items="${detailBean.linkageBean.mst001List}" var="mst001Bean">
@@ -381,40 +386,85 @@ function new_data(){
 			<input type="radio" name="bachelor" id="bachelor" value="1">ＯＫ 
 			<input type="radio" name="bachelor" id="bachelor" value="2">ＮＯ
 		</p>
-		<div id="infocontents" style="overflow:hidden;">
-			<div id="info" style="width:373px;height=110px;float:left;">会社情報<br>                                                                                             
-				<textarea rows="8" cols="50" name="companyInfo" id="companyInfo"><c:out value="${detailBean.wk001Bean.companyInfo}" /></textarea>
+		<div id="infocontents"><!--  style="overflow:hidden;"> -->
+			<div id="info"><!--  style="width:373px;height=110px;float:left;"> -->会社情報<br>                                                                                             
+				<textarea rows="8" cols="40" name="companyInfo" id="companyInfo"><c:out value="${detailBean.wk001Bean.companyInfo}" /></textarea>
 			</div>
-			<div id="contents" style="width:373px;height=110px;float:left;margin-left:20px;">業務内容<br>
-				<textarea rows="8" cols="50" name="workContents" id="workContents"><c:out value="${detailBean.wk001Bean.workContents}" /></textarea>
+			<div id="contents"><!--  style="width:373px;height:110px;float:left;padding-left:20px;" -->業務内容<br>
+				<textarea rows="8" cols="40" name="workContents" id="workContents"><c:out value="${detailBean.wk001Bean.workContents}" /></textarea>
 			</div	> 
 		</div><!-- infocontents -->
 		
 		<!-- 面談データ -->
 		<div id="datafile" style="overflow:hidden;">
-		  <div id="dataall" style="width:404px;height=108px;float:left;">
+		  <div id="dataall" style="width:403px;height=108px;float:left;">
 			面談データ<br>
 		 <c:if test="${fn:length(detailBean.wk004List)==0}">
-			<div id="data" style="border: 2px solid;width: 400px;">
-				希望職種:<input type="text" name="hopePosition" id="hopePosition" value=""><br>
-		                   求人事業者:<input type="text" name="forBusiness" id="forBusiness" value=""><br>
-		    	紹介年月日:<input type="text" name="introductionDay" id="introductionDay" value=""><br>
-		                  面接日時:<input type="text" name="interviewDay" id="interviewDay" value=""><br>
-		                  就職年月日:<input type="text" name="inaugurationDay" id="inaugurationDay" value=""><br>
-		                 離職日:<input type="text" name="turnoverDay" id="turnoverDay" value=""><br>
-		                 手数料（税込み）:<input type="text" name="fee" id="fee" value=""><br>
+			<div id="data" style="border: 1px solid;width: 350px;">
+			<table>
+			<tr>
+			<td>希望職種:</td>
+			<td><input type="text" name="hopePosition" id="hopePosition" value=""></td>
+			</tr>
+			<tr>
+			<td>求人事業者:</td>
+			<td><input type="text" name="forBusiness" id="forBusiness" value=""></td>
+			</tr>
+			<tr>
+			<td>紹介年月日:</td>
+			<td><input type="text" name="introductionDay" id="introductionDay" value=""></td>
+			</tr>
+			<tr>
+			<td>面接日時:</td>
+			<td><input type="text" name="interviewDay" id="interviewDay" value=""></td>
+			</tr>
+			<tr>
+			<td>就職年月日:</td>
+			<td><input type="text" name="inaugurationDay" id="inaugurationDay" value=""></td>
+			</tr>
+			<tr>
+			<td>離職日:</td>
+			<td><input type="text" name="turnoverDay" id="turnoverDay" value=""></td>
+			</tr>
+			<tr>
+			<td>手数料（税込み）:</td>
+			<td><input type="text" name="fee" id="fee" value=""></td>
+			</tr>
+			</table>
 			</div>
 		</c:if>
 		<c:forEach items="${detailBean.wk004List}" var="wk004Bean">
-			<div id="data" style="border: 2px solid;width: 400px;">
-				希望職種:<input type="text" name="hopePosition" id="hopePosition" value="${wk004Bean.hopePosition}"><br>
-		                   求人事業者:<input type="text" name="forBusiness" id="forBusiness" value="${wk004Bean.forBusiness}"><br>
-		    	紹介年月日:<input type="text" name="introductionDay" id="introductionDay" value='<fmt:formatDate value="${wk004Bean.introductionDay}" pattern="yyyy/MM/dd" />'><br>
-		                  面接日時:<input type="text" name="interviewDay" id="interviewDay" value='<fmt:formatDate value="${wk004Bean.interviewDay}" pattern="yyyy/MM/dd" />'><br>
-		                  就職年月日:<input type="text" name="inaugurationDay" id="inaugurationDay" value='<fmt:formatDate value="${wk004Bean.inaugurationDay}" pattern="yyyy/MM/dd" />'><br>
-		                 離職日:<input type="text" name="turnoverDay" id="turnoverDay" value='<fmt:formatDate value="${wk004Bean.turnoverDay}" pattern="yyyy/MM/dd" />'><br>
-		                 手数料（税込み）:<input type="text" name="fee" id="fee" value="${wk004Bean.dispFee}"><br>
-		                <!-- <input type="text" name="fileid" id="uploadfileid" value="" style="display:none"><br> -->
+			<div id="data" style="border: 1px solid;width: 350px;">
+			<table>
+			<tr>
+			<td>希望職種:</td>
+			<td><input type="text" name="hopePosition" id="hopePosition" value="${wk004Bean.hopePosition}"></td>
+			</tr>
+			<tr>
+			<td>求人事業者:</td>
+			<td><input type="text" name="forBusiness" id="forBusiness" value="${wk004Bean.forBusiness}"></td>
+			</tr>
+			<tr>
+			<td>紹介年月日:</td>
+			<td><input type="text" name="introductionDay" id="introductionDay" value='<fmt:formatDate value="${wk004Bean.introductionDay}" pattern="yyyy/MM/dd" />'></td>
+			</tr>
+			<tr>
+			<td>面接日時:</td>
+			<td><input type="text" name="interviewDay" id="interviewDay" value='<fmt:formatDate value="${wk004Bean.interviewDay}" pattern="yyyy/MM/dd" />'></td>
+			</tr>
+			<tr>
+			<td>就職年月日:</td>
+			<td><input type="text" name="inaugurationDay" id="inaugurationDay" value='<fmt:formatDate value="${wk004Bean.inaugurationDay}" pattern="yyyy/MM/dd" />'></td>
+			</tr>
+			<tr>
+			<td>離職日:</td>
+			<td><input type="text" name="turnoverDay" id="turnoverDay" value='<fmt:formatDate value="${wk004Bean.turnoverDay}" pattern="yyyy/MM/dd" />'></td>
+			</tr>
+			<tr>
+			<td>手数料（税込み）:</td>
+			<td><input type="text" name="fee" id="fee" value="${wk004Bean.dispFee}"></td>
+			</tr>
+			</table>
 			</div>
 		</c:forEach> 
 		<%--  <c:choose>
@@ -493,7 +543,7 @@ function submit_file_delete(fileName){
   　　 <input type="hidden" id="mainId" name="mainId" value="${detailBean.wk001Bean.mainId}">   
     <input type="file" name="file" value=""/><br >
 </form>
-<input type="button" onclick="submit_upload();" value="upload" />
+<input type="button" onclick="submit_upload();" value="アップロード" />
 </div><!-- datafile -->
 	
 <p>

@@ -9,6 +9,9 @@ body {
 ul>li{
 	float:left;
 }
+li {
+	padding-right:2px;
+}
 #title {
 	font-size:24px;
 }
@@ -29,20 +32,41 @@ ul>li{
 	float :left;
 	margin-left:50px;
  	width:200px;
+}
 #level2Id {
 	margin-top :2px;
 }
-/* #infocontents {
+#infocontents {
 	overflow: hidden;
-} 
+}
 #info {
-	width:373px;
-	height=110px;
 	float:left;
+	width:150px;
 }
 #contents {
-	width:373px;
-	height=110px;
 	float:left;
-	margin-left:10px;
-}  */
+	margin-left:250px;
+	width:150px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

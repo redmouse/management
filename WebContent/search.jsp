@@ -52,7 +52,7 @@ function level2_changed(){
 			<input type="radio" name="englishLevel" id="englishLevel" value="3"
 			 <c:if test="${searchBean.wk001Bean.englishLevel == 3}"> checked </c:if>
 			> Ｃ：挨拶程度or自信なし </p>
-	<div>業務分類：
+	<p>業務分類：
 		<select id="level1Id" name="level1Id">
 				<option value=0>選択</option>
 				  <c:forEach items="${searchBean.linkageBean.mst001List}" var="mst001Bean">
@@ -62,8 +62,9 @@ function level2_changed(){
 			        </option>
 			      </c:forEach>
 			</select><br>
-			<div id="level2Area">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="level2Id" name="level2Id" onChange='level2_changed()' style="width:272px;">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<span id="level2Area">
+			<select id="level2Id" name="level2Id" onChange='level2_changed()' style="width:276px;margin-top:3px;">
 				<option value=0>選択</option>
 				  <c:forEach items="${searchBean.linkageBean.mst002List}" var="mst002Bean">
 			          <option value ="${mst002Bean.level2Id}" 
@@ -71,8 +72,9 @@ function level2_changed(){
 			          ><c:out value="${mst002Bean.name}"/></option>
 			      </c:forEach>
 			</select><br>
-			<div id="level3Area">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="level3Id" name="level3Id" style="width:272px;display:none">
+			<span id="level3Area">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<select id="level3Id" name="level3Id" style="width:272px;display:none">
 				<option value=0>選択</option>
 				  <c:forEach items="${searchBean.linkageBean.mst003List}" var="mst003Bean">
 			          <option value ="${mst003Bean.level3Id}" 
@@ -80,9 +82,9 @@ function level2_changed(){
 			        ><c:out value="${mst003Bean.name}"/></option>
 			      </c:forEach>
 			</select>
-			</div>
-			</div>
-    </div>
+			</span>
+			</span>
+    </p>
 	<p>氏名：<input type="text" name="name" value="${searchBean.wk001Bean.name}"></p>
 	<input type="submit" name="Submit" value="検索">
 </form>

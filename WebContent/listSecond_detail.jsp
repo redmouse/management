@@ -14,7 +14,7 @@
 margin-left:-1200px;
 }
 #data006PageDel {
-margin-left:1150px;
+margin-left:1120px;
 }
 
 </style>
@@ -153,11 +153,28 @@ function delete_data006(){
 		<div align="center">
 		<h1>求人管理簿</h1>
 		<input id="back" type="button" onclick="submit_kyujinn();" value="戻る">
-		<p>求人事業所：<input type="text" id="forBusiness" name="forBusiness" value="${disp002Bean.wk005Bean.forBusiness}"></p>
-		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;所在地：<input type="text" id="address" name="address" value="${disp002Bean.wk005Bean.address}"></p>
-		<p>代表者氏名：<input type="text" id="representative" name="representative" value="${disp002Bean.wk005Bean.representative}"></p>
-		<p>連絡担当者：<input type="text" id="charger" name="charger" value="${disp002Bean.wk005Bean.charger}"></p>
-		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;備考：<textarea id="remarks" name="remarks"><c:out value="${disp002Bean.wk005Bean.remarks}" /></textarea></p>
+		<table>
+		<tr>
+		<td>求人事業所：</td>
+		<td><input type="text" id="forBusiness" name="forBusiness" value="${disp002Bean.wk005Bean.forBusiness}"></td>
+		</tr>
+		<tr>
+		<td align="right">所在地：</td>
+		<td><input type="text" id="address" name="address" value="${disp002Bean.wk005Bean.address}"></td>
+		</tr>
+		<tr>
+		<td>代表者氏名：</td>
+		<td><input type="text" id="representative" name="representative" value="${disp002Bean.wk005Bean.representative}"></td>
+		</tr>
+		<tr>
+		<td>連絡担当者：</td>
+		<td><input type="text" id="charger" name="charger" value="${disp002Bean.wk005Bean.charger}"></td>
+		</tr>
+		<tr>
+		<td align="right">備考：</td>
+		<td><textarea id="remarks" name="remarks"><c:out value="${disp002Bean.wk005Bean.remarks}" /></textarea></td>
+		</tr>
+		</table>
 		</div>
 		<hr>
 		

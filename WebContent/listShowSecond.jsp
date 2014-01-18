@@ -10,7 +10,7 @@
 <title>求人管理簿リスト一覧画面</title>
 <style>
 #menu {
-margin-left:-25px;
+margin-left:120px;
 margin-bottom:20px;
 overflow:hidden;
 }
@@ -21,7 +21,7 @@ li{
 	margin-right:2px;
 }
 #kyusyoku{
-	padding-left:975px;
+	padding-left:690px;
 }
 
 
@@ -42,7 +42,7 @@ function submit_listSecond_add(){
 	document.getElementById("form1").submit();
 } 
 function submit_listSecond_edit(){
-	// check: at least one radio button must be selected
+	// check:少なくとも1のラジオボタンを選択する必要があります
 	if(!check_radio_selected()){
 		alert('求人事業所を選択してください！');
 		return;

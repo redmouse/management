@@ -97,10 +97,10 @@ function submit_year_change(){
 			  </tr>
     	</c:forEach>
 	</table><br />
-	<table border="0" align="center">
+	<table border="1" align="center">
     	<tr>
       		<th>合計金額：　</th>
-      		<td><c:out value="${total}" /> 円</td>
+      		<td border="1"><c:out value="${total}" /> 円</td>
     	</tr>
 	</table><br />
  	　
