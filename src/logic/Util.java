@@ -22,6 +22,7 @@ import beans.Mst002Bean;
 import beans.Mst003Bean;
 import beans.Wk001Bean;
 import beans.Wk005Bean;
+import dao.Wk001Dao;
 
 public class Util {
 	
@@ -56,7 +57,7 @@ public class Util {
 		}
 		return new Integer(intStr).intValue();
 	}
-	public List<IdPairBean> convertUserInputMainId(String userInput){
+	public List<IdPairBean> convertUserInputMainId(String userInput) throws Exception{
 		//半角カンマ以外の符号を削除。例えば：スペース，全角スペース，全角カンマ等。
 		userInput = userInput.replace(" ", "");	// 削除半角スペース
 		userInput = userInput.replace("　", "");	// 削除全角スペース
@@ -64,12 +65,14 @@ public class Util {
 		// 分割
 		String[] inputMainIdList = userInput.split(",");
 		List<IdPairBean> dispMainIdList = new ArrayList<IdPairBean>();
+		Wk001Dao wk001Dao=new Wk001Dao();
 		for (int i = 0; i < inputMainIdList.length; i++) {
 			String strUserInputMainId = inputMainIdList[i].trim(); // 入力した一つのmainId
 			IdPairBean idPairBean = new IdPairBean();
 			int mainId = convertNullInt(strUserInputMainId);
 			idPairBean.setMainId(mainId);
 			idPairBean.setDispMainId(convertDispId(mainId));
+			idPairBean.setName(wk001Dao.GetUserNameById(mainId));
 			dispMainIdList.add(idPairBean);
 		}
 		return dispMainIdList;

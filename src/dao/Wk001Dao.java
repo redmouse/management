@@ -85,6 +85,16 @@ public class Wk001Dao extends MysqlDao {
 		}
 		return item;
 	}
+	public String GetUserNameById(int mainId) throws Exception {
+		String sql = " SELECT name FROM wk001 where mainId=? ";
+		PreparedStatement statement = getConnection().prepareStatement(sql);
+		statement.setInt(1, mainId);
+		ResultSet rs = statement.executeQuery();
+		if (rs.next()) {
+			return rs.getString("name");
+		}
+		return "";
+	}
 	public int SelectMaxMainId() throws Exception {
 		String sql = " SELECT max(mainId) maxMainId FROM wk001";
 		PreparedStatement statement = getConnection().prepareStatement(sql);

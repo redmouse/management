@@ -116,7 +116,7 @@ function popup_window(showText, titleFrom) {
       		<th>国内/海外</th>
       		<th>求人事業者からの求人票</th>
       		<th>自社の求人票</th>
-      		<th>登録番号</th>
+      		<th>名前</th>
     	</tr>
     	<c:forEach items="${disp002List}" var="disp002Bean">
     		<c:set var="wk005Bean" value="${disp002Bean.wk005Bean}" />
@@ -156,7 +156,7 @@ function popup_window(showText, titleFrom) {
 			        <%-- mainIdのリンク処理 --%>
 			    	<c:forEach items="${wk006Bean.dispMainIdList}" var="idPairBean">
 			    	    <a href="#" style="text-decoration:none" onclick="submit_for_work('${idPairBean.mainId}');return false;">
-			    			<c:out value="${idPairBean.dispMainId}" />
+			    			<c:out value="${idPairBean.name}" />
 			    	    </a>
 			    	</c:forEach>
                 </td>
@@ -186,7 +186,7 @@ function popup_window(showText, titleFrom) {
 			        <%-- mainIdのリンク処理 --%>
 			    	<c:forEach items="${wk006Bean.dispMainIdList}" var="idPairBean">
 			    	    <a href="#" style="text-decoration:none" onclick="submit_for_work('${idPairBean.mainId}');return false;">
-			    			<c:out value="${idPairBean.dispMainId}" />
+			    			<c:out value="${idPairBean.name}" />
 			    	    </a>
 			    	</c:forEach>
                 </td>
