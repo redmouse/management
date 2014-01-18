@@ -15,7 +15,7 @@ import beans.Wk004Bean;
 public class JoinDao extends MysqlDao {
 	
 	// 手数料画面、Wk004(行情報)とWk001(氏名、表示用mainId)連携
-	public List<Disp003Bean> SelectFeeList() throws Exception {
+	public List<Disp003Bean> SelectFeeList(Calendar cal) throws Exception {
 		Util util = new Util();
 		
 		List<Disp003Bean> returnList = new ArrayList<Disp003Bean>();
@@ -25,8 +25,8 @@ public class JoinDao extends MysqlDao {
 				+ " where wk004.fee>0 and wk004.inaugurationDay between ? and ?";
 		PreparedStatement statement = getConnection().prepareStatement(sql);
 		int pos = 1;
-		statement.setDate(pos++, util.getYearBegin());
-		statement.setDate(pos++, util.getYearEnd());
+		statement.setDate(pos++, util.getYearBegin(cal));
+		statement.setDate(pos++, util.getYearEnd(cal));
 		ResultSet rs = statement.executeQuery();
 		
 		while (rs.next()) {
@@ -49,7 +49,7 @@ public class JoinDao extends MysqlDao {
 	}
 	
 	// 手数料画面、合計情報
-	public int SelectFeeTotal() throws Exception {
+	public int SelectFeeTotal(Calendar cal) throws Exception {
 		Util util = new Util();
 		
 		String sql = 
@@ -58,8 +58,8 @@ public class JoinDao extends MysqlDao {
 						+ " where wk004.fee>0 and wk004.inaugurationDay between ? and ?";
 		PreparedStatement statement = getConnection().prepareStatement(sql);
 		int pos = 1;
-		statement.setDate(pos++, util.getYearBegin());
-		statement.setDate(pos++, util.getYearEnd());
+		statement.setDate(pos++, util.getYearBegin(cal));
+		statement.setDate(pos++, util.getYearEnd(cal));
 		ResultSet rs = statement.executeQuery();
 		int total = 0;
 		if(rs.next()){

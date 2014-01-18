@@ -113,8 +113,8 @@ public class Util {
 	// 年度会計日計算
 	// =================================
 	// 会計年度開始日
-	public Date getYearBegin() {
-		Calendar cal = Calendar.getInstance();
+	public Date getYearBegin(Calendar cal) {
+//		Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);
         //去年
@@ -125,8 +125,8 @@ public class Util {
         
 		return new Date(cal.getTime().getTime());
 	}
-	public Date getYearEnd() {
-		Calendar cal = Calendar.getInstance();
+	public Date getYearEnd(Calendar cal) {
+//		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		int month = cal.get(Calendar.MONTH);
 		//今年

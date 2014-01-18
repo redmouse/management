@@ -44,6 +44,10 @@ function submit_list_modify(mainId){
 	document.getElementById("form1").action = "ListPreModify";
 	document.getElementById("form1").submit();
 }
+function submit_year_change(){
+	document.getElementById("form1").action = "ListShowFee";
+	document.getElementById("form1").submit();
+}
 </script>
 <body>
 <h1 align=center>手数料管理簿</h1>
@@ -58,6 +62,17 @@ function submit_list_modify(mainId){
 	<input type="hidden" id="mainId" name="mainId" >
 	<table border="0" align="center">
     	<tr>
+      		<td>
+				<select id="yearBackCount" name="yearBackCount" onChange="submit_year_change();">
+					<option value="0" <c:if test="${yearBackCount == 0 }"> selected </c:if>>当年度</option>
+					<option value="1" <c:if test="${yearBackCount == 1 }"> selected </c:if>>1年前</option>
+					<option value="2" <c:if test="${yearBackCount == 2 }"> selected </c:if>>2年前</option>
+					<option value="3" <c:if test="${yearBackCount == 3 }"> selected </c:if>>3年前</option>
+					<option value="4" <c:if test="${yearBackCount == 4 }"> selected </c:if>>4年前</option>
+					<option value="5" <c:if test="${yearBackCount == 5 }"> selected </c:if>>5年前</option>
+				</select>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</td>
       		<th>会計年度：　</th>
       		<td><c:out value="${startDay}" /> ～ <c:out value="${endDay}" /><br/></td>
     	</tr>

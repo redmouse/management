@@ -1,7 +1,10 @@
 package logic;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -12,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.Disp003Bean;
-import beans.Wk004Bean;
 import dao.JoinDao;
 
 /**
@@ -49,8 +51,20 @@ public class ListShowFee extends HttpServlet {
 		
 		Util util = new Util();
 		try{
+			
+			String yearBackCount = request.getParameter("yearBackCount");
+			if(yearBackCount==null){
+				yearBackCount = "0";
+			}
+			int yearBack = new Integer(yearBackCount).intValue();
+			 Date date = new Date();
+			 Calendar cal = Calendar.getInstance();
+			 cal.setTime(date);
+			 cal.set(Calendar.YEAR, cal.get(Calendar.YEAR) - yearBack);
+			 cal.set(Calendar.DAY_OF_MONTH, 1);
+			
 			// 手数料明細
-			disp003List = joinDao.SelectFeeList();
+			disp003List = joinDao.SelectFeeList(cal);
 			for (Iterator<Disp003Bean> iterator = disp003List.iterator(); iterator.hasNext();) {
 				Disp003Bean disp003Bean = (Disp003Bean) iterator.next();
 				// set display main id
@@ -59,15 +73,16 @@ public class ListShowFee extends HttpServlet {
 				disp003Bean.getWk004Bean().setDispFee(String.valueOf(disp003Bean.getWk004Bean().getFee()));
 			}
 			// 合計
-			int total = joinDao.SelectFeeTotal();
+			int total = joinDao.SelectFeeTotal(cal);
 			// 会計年度表示
-			String startDay = util.getYearBegin().toString();
-			String endDay = util.getYearEnd().toString();
+			String startDay = util.getYearBegin(cal).toString();
+			String endDay = util.getYearEnd(cal).toString();
 			// 画面へ出力
     		request.setAttribute("disp003List", disp003List);
     		request.setAttribute("total", total);
     		request.setAttribute("startDay", startDay);
     		request.setAttribute("endDay", endDay);
+    		request.setAttribute("yearBackCount", yearBackCount);
     		
     	}catch(Exception e){
     		throw new ServletException(e);
