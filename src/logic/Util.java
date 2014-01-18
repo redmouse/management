@@ -297,7 +297,7 @@ public class Util {
 	public StringBuffer rebuiledLevel2Area(List<Mst002Bean> mst002List) {
 		// replace level2Area
 		StringBuffer sb = new StringBuffer();
-		sb.append("<select id='level2Id' name='level2Id' onChange='level2_changed()'>");
+		sb.append("<select id='level2Id' name='level2Id' onChange='level2_changed()' style='width:276px;margin-top:3px'>");
 		sb.append("<option value ='0'>選択</option>");
 		Iterator it = mst002List.iterator();
 		while (it.hasNext()) {
@@ -306,15 +306,15 @@ public class Util {
 						+ mst002Bean.getName() + "</option>");
 		}
 		sb.append("</select><br>");
-		sb.append("<div id='level3Area'>");
+		sb.append("<span id='level3Area'>");
 		sb.append(rebuiledLevel3Area(new ArrayList<Mst003Bean>()));
-		sb.append("</div>");
+		sb.append("</span>");
 		return sb;
 	}
 	public StringBuffer rebuiledLevel3Area(List<Mst003Bean> mst003List) {
 		// replace level2Area
 		StringBuffer sb = new StringBuffer();
-		sb.append("<select id='level3Id' name='level3Id'>");
+		sb.append("<select id='level3Id' name='level3Id' style='width:272px;display:none'>");
 		sb.append("<option value ='0'>選択</option>");
 		Iterator it = mst003List.iterator();
 		while (it.hasNext()) {

@@ -265,8 +265,9 @@ function new_data(){
 			        </option>
 			      </c:forEach>
 			</select><br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="level2Area">
-			<select id="level2Id" name="level2Id" onChange='level2_changed()' style="width:278px">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<span id="level2Area">
+			<select id="level2Id" name="level2Id" onChange='level2_changed()' style="width:276px;margin-top:3px">
 				<option value=0>選択</option>
 				  <c:forEach items="${detailBean.linkageBean.mst002List}" var="mst002Bean">
 			          <option value ="${mst002Bean.level2Id}" 
@@ -274,7 +275,7 @@ function new_data(){
 			          ><c:out value="${mst002Bean.name}"/></option>
 			      </c:forEach>
 			</select><br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="level3Area">
+			<span id="level3Area">
 			<select id="level3Id" name="level3Id" style="width:272px;display:none">
 				<option value=0>選択</option>
 				  <c:forEach items="${detailBean.linkageBean.mst003List}" var="mst003Bean">

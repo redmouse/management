@@ -104,14 +104,14 @@ function pop_multi_select(objThisName) {
 function new_data006(){
 	var data=$('<table border="1"><tr>'
 			+'<td><input type="checkbox" name="del"></td>'
-			+'<td><input type="text" name="receptionDay"></td>'
-			+'<td><input type="text" name="quantity"></td>'
-			+'<td><input type="text" name="occupation"></td>'
-			+'<td><input type="text" name="workLocation"></td>'
-			+'<td><input type="text" name="period"></td>'
-			+'<td><input type="text" name="wage"></td>'
-			+'<td><input type="text" name="conditions"></td>'
-			+'<td><input type="text" name="place"></td>'
+			+'<td><input type="text" size="8" name="receptionDay"></td>'
+			+'<td><input type="text" size="8" name="quantity"></td>'
+			+'<td><input type="text" size="8" name="occupation"></td>'
+			+'<td><input type="text" size="8" name="workLocation"></td>'
+			+'<td><input type="text" size="8" name="period"></td>'
+			+'<td><input type="text" size="8" name="wage"></td>'
+			+'<td><input type="text" size="8" name="conditions"></td>'
+			+'<td><input type="text" size="8" name="place"></td>'
 			+'<td><textarea name="recruitmentFrom" onclick="popup_window(this)"></textarea></td>'
 			+'<td><textarea name="recruitmentOwn" onclick="popup_window(this)"></textarea></td>'
 			+'<td><input type="text" name="secondName" id="secondName" onclick="pop_multi_select(this)" readonly>'
@@ -180,14 +180,14 @@ function delete_data006(){
 				<c:when test="${fn:length(disp002Bean.wk006List)==0}">
 					<tr>
       					<td><input type="checkbox" name="del" id="del"></td>
-      					<td><input type="text" name="receptionDay" id="receptionDay" value=""></td>
-      					<td><input type="text" name="quantity" id="quantity" value=""></td>
-      					<td><input type="text" name="occupation" id="occupation" value=""></td>
-      					<td><input type="text" name="workLocation" id="workLocation" value=""></td>
-      					<td><input type="text" name="period" id="period" value=""></td>
-      					<td><input type="text" name="wage" id="wage" value=""></td>
-      					<td><input type="text" name="conditions" id="conditions" value=""></td>
-      					<td><input type="text" name="place" id="place" value=""></td>
+      					<td><input type="text" size="8" name="receptionDay" id="receptionDay" value=""></td>
+      					<td><input type="text" size="8" name="quantity" id="quantity" value=""></td>
+      					<td><input type="text" size="8" name="occupation" id="occupation" value=""></td>
+      					<td><input type="text" size="8" name="workLocation" id="workLocation" value=""></td>
+      					<td><input type="text" size="8" name="period" id="period" value=""></td>
+      					<td><input type="text" size="8" name="wage" id="wage" value=""></td>
+      					<td><input type="text" size="8" name="conditions" id="conditions" value=""></td>
+      					<td><input type="text" size="8" name="place" id="place" value=""></td>
       					<td><textarea name="recruitmentFrom" id="recruitmentFrom" onclick="popup_window(this)"><c:out value=""/></textarea></td>
       					<td><textarea name="recruitmentOwn" id="recruitmentOwn" onclick="popup_window(this)"><c:out value="" /></textarea></td>
       					<td><input type="text" name="secondName" id="secondName" onclick="pop_multi_select(this)" value="" readonly>
@@ -198,14 +198,14 @@ function delete_data006(){
 					<c:forEach items="${disp002Bean.wk006List}" var="wk006Bean">
 						<tr>
       						<td><input type="checkbox" name="del"></td>
-      						<td><input type="text" name="receptionDay" id="receptionDay" value="${wk006Bean.receptionDay}"></td>
-      						<td><input type="text" name="quantity" id="quantity" value="${wk006Bean.quantity}"></td>
-      						<td><input type="text" name="occupation" id="occupation" value="${wk006Bean.occupation}"></td>
-      						<td><input type="text" name="workLocation" id="workLocation" value="${wk006Bean.workLocation}"></td>
-      						<td><input type="text" name="period" id="period" value="${wk006Bean.period}"></td>
-      						<td><input type="text" name="wage" id="wage" value="${wk006Bean.wage}"></td>
-      						<td><input type="text" name="conditions" id="conditions" value="${wk006Bean.conditions}"></td>
-      						<td><input type="text" name="place" id="place" value="${wk006Bean.place}"></td>
+      						<td><input type="text" size="8" name="receptionDay" id="receptionDay" value="${wk006Bean.receptionDay}"></td>
+      						<td><input type="text" size="8" name="quantity" id="quantity" value="${wk006Bean.quantity}"></td>
+      						<td><input type="text" size="8" name="occupation" id="occupation" value="${wk006Bean.occupation}"></td>
+      						<td><input type="text" size="8" name="workLocation" id="workLocation" value="${wk006Bean.workLocation}"></td>
+      						<td><input type="text" size="8" name="period" id="period" value="${wk006Bean.period}"></td>
+      						<td><input type="text" size="8" name="wage" id="wage" value="${wk006Bean.wage}"></td>
+      						<td><input type="text" size="8" name="conditions" id="conditions" value="${wk006Bean.conditions}"></td>
+      						<td><input type="text" size="8" name="place" id="place" value="${wk006Bean.place}"></td>
       						<td><textarea name="recruitmentFrom" id="recruitmentFrom" onclick="popup_window(this)"><c:out value="${wk006Bean.recruitmentFrom}"/></textarea></td>
       						<td><textarea name="recruitmentOwn" id="recruitmentOwn" onclick="popup_window(this)"><c:out value="${wk006Bean.recruitmentOwn}" /></textarea></td>
       						<td><input type="text" name="secondName" id="secondName" onclick="pop_multi_select(this)" value="${wk006Bean.dispSecondName}" readonly>
