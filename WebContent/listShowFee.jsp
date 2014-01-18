@@ -62,6 +62,7 @@ function submit_year_change(){
 	<input type="hidden" id="mainId" name="mainId" >
 	<table border="0" align="center">
     	<tr>
+      		<th>会計年度：　</th>
       		<td>
 				<select id="yearBackCount" name="yearBackCount" onChange="submit_year_change();">
 					<option value="0" <c:if test="${yearBackCount == 0 }"> selected </c:if>>当年度</option>
@@ -71,9 +72,7 @@ function submit_year_change(){
 					<option value="4" <c:if test="${yearBackCount == 4 }"> selected </c:if>>4年前</option>
 					<option value="5" <c:if test="${yearBackCount == 5 }"> selected </c:if>>5年前</option>
 				</select>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			</td>
-      		<th>会計年度：　</th>
       		<td><c:out value="${startDay}" /> ～ <c:out value="${endDay}" /><br/></td>
     	</tr>
 	</table><br />

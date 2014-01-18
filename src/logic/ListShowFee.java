@@ -61,7 +61,7 @@ public class ListShowFee extends HttpServlet {
 			 Calendar cal = Calendar.getInstance();
 			 cal.setTime(date);
 			 cal.set(Calendar.YEAR, cal.get(Calendar.YEAR) - yearBack);
-			 cal.set(Calendar.DAY_OF_MONTH, 1);
+			 cal.set(Calendar.DAY_OF_MONTH, 1);  // 1日
 			
 			// 手数料明細
 			disp003List = joinDao.SelectFeeList(cal);
