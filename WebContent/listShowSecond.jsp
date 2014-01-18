@@ -10,16 +10,20 @@
 <title>求人管理簿リスト一覧画面</title>
 <style>
 #menu {
-margin-left:45px;
+margin-left:-25px;
 margin-bottom:20px;
 overflow:hidden;
 }
 ul>li{
 	float:left;
 }
-#kyusyoku{
-padding-left:800px;
+li{
+	margin-right:2px;
 }
+#kyusyoku{
+	padding-left:975px;
+}
+
 
 </style>
 </head>

@@ -14,6 +14,7 @@ import beans.Disp001Bean;
 import beans.Wk001Bean;
 import beans.Wk004Bean;
 import dao.Wk001Dao;
+import dao.Wk004Dao;
 
 /**
  * Servlet implementation class PopMainIdSelect
@@ -45,6 +46,7 @@ public class PopMainIdSelect extends HttpServlet {
 		// TODO Auto-generated method stub
 		Util util = new Util();
 		Wk001Dao wk001Dao = new Wk001Dao();
+		Wk004Dao wk004Dao = new Wk004Dao();
 		try{
 			List<Wk001Bean> wk001List = wk001Dao.SelectAll();
 			Iterator itr = wk001List.iterator();

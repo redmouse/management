@@ -92,11 +92,14 @@ $(document).ready(function(){
 	 <tr>
 	 	<td>
 	 	求人選択一覧<br/>
-		 <select id="select1" multiple="multiple" size="20" style="width:200px">
+		 <select id="select1" multiple="multiple" size="20" style="width:300px">
 		 	<c:forEach items="${wk001List}" var="wk001Bean">
 				<option value ="${wk001Bean.dispMainId}">
-				  <c:out value="${wk001Bean.dispMainId}" />
+				 <%--  <c:out value="${wk001Bean.dispMainId}" /> --%>
 				  <c:out value="${wk001Bean.name}" />
+				  <fmt:formatDate value="${wk001Bean.birthDay}" pattern="yyyy/MM/dd" />
+				 <c:out value="${wk004Bean.hopePosition}" />
+				 <c:out value="${wk004Bean.forBusiness}" />
 				  <fmt:formatDate value="${wk001Bean.receptionDay}" pattern="yyyy/MM/dd" />
 				</option>
 			</c:forEach>
@@ -112,7 +115,7 @@ $(document).ready(function(){
 	 	</td>
 	 	<td>
 	 	選択済み一覧<br/>
-		 <select id="select2" multiple="multiple" size="20" style="width:200px"></select>
+		 <select id="select2" multiple="multiple" size="20" style="width:300px"></select>
 		</td>
 	 </tr>
  </table>

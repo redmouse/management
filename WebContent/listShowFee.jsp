@@ -10,15 +10,18 @@
 <title>手数料管理簿</title>
 <style>
 #menu {
-margin-left:45px;
-margin-bottom:20px;
-overflow:hidden;
+	margin-left:390px;
+	margin-bottom:20px;
+	overflow:hidden;
 }
 ul>li{
 	float:left;
 }
-#kyujinn{
-padding-left:800px;
+li{
+	margin-right:2px;
+}
+#kyusyoku{
+	padding-left:260px;
 }
 
 </style>

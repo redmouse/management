@@ -127,27 +127,27 @@ function delete_data006(){
 		<h1>求人管理簿</h1>
 		<input id="back" type="button" onclick="submit_kyujinn();" value="戻る">
 		<p>求人事業所：<input type="text" id="forBusiness" name="forBusiness" value="${disp002Bean.wk005Bean.forBusiness}"></p>
-		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;所在地：<input type="text" id="address" name="address" value="${disp002Bean.wk005Bean.address}"></p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;所在地：<input type="text" id="address" name="address" value="${disp002Bean.wk005Bean.address}"></p>
 		<p>代表者氏名：<input type="text" id="representative" name="representative" value="${disp002Bean.wk005Bean.representative}"></p>
 		<p>連絡担当者：<input type="text" id="charger" name="charger" value="${disp002Bean.wk005Bean.charger}"></p>
-		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;備考：<textarea id="remarks" name="remarks"><c:out value="${disp002Bean.wk005Bean.remarks}" /></textarea></p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;備考：<textarea id="remarks" name="remarks"><c:out value="${disp002Bean.wk005Bean.remarks}" /></textarea></p>
 		</div>
 		<hr>
 		
 	<table border="1" width="800">
 		<tr>
-      		<th width="50" height="36">選択</th>
-      		<th width="80" height="36">受付年月日</th>
-      		<th width="80">求人数</th>
-      		<th width="50">職種</th>
-      		<th width="50">就労場所</th>
-      		<th width="50">雇用期間</th>
-      		<th width="50">賃金</th>
-      		<th width="50">処理状況</th>
-      		<th width="50">国内/海外</th>
-      		<th width="100">求人事業者からの求人票</th>
-      		<th width="100">自社の求人票</th>
-      		<th width="150">登録番号</th>
+      		<th>選択</th>
+      		<th>受付年月日</th>
+      		<th>求人数</th>
+      		<th>職種</th>
+      		<th>就労場所</th>
+      		<th>雇用期間</th>
+      		<th>賃金</th>
+      		<th>処理状況</th>
+      		<th>国内/海外</th>
+      		<th>求人事業者からの求人票</th>
+      		<th>自社の求人票</th>
+      		<th>登録番号</th>
     	</tr>
     	<c:choose>
 				<c:when test="${fn:length(disp002Bean.wk006List)==0}">

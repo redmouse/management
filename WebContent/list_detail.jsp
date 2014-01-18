@@ -384,7 +384,7 @@ function new_data(){
 			<div id="info" style="width:373px;height=110px;float:left;">会社情報<br>                                                                                             
 				<textarea rows="8" cols="50" name="companyInfo" id="companyInfo"><c:out value="${detailBean.wk001Bean.companyInfo}" /></textarea>
 			</div>
-			<div id="contents" style="width:373px;height=110px;float:left;margin-left:10px;">業務内容<br>
+			<div id="contents" style="width:373px;height=110px;float:left;margin-left:20px;">業務内容<br>
 				<textarea rows="8" cols="50" name="workContents" id="workContents"><c:out value="${detailBean.wk001Bean.workContents}" /></textarea>
 			</div	> 
 		</div><!-- infocontents -->

@@ -10,7 +10,7 @@
 <title>求職管理簿リスト一覧画面</title>
 <style>
 #menu {
-margin-left:70px;
+margin-left:90px;
 margin-bottom:20px;
 overflow:hidden;
 }
@@ -21,7 +21,7 @@ li{
 margin-right:2px;
 }
 #kyujinn{
-padding-left:737px;
+padding-left:700px;
 }
 
 </style>

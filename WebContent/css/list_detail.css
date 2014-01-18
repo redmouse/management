@@ -29,6 +29,9 @@ ul>li{
 	float :left;
 	margin-left:50px;
  	width:200px;
+#level2Id {
+	margin-top :2px;
+}
 /* #infocontents {
 	overflow: hidden;
 } 
