@@ -23,7 +23,7 @@ function check_all_element() {
 		return "年齢を正しく入力してください！";
 	}
 	//生年月日 
-	reg=/^\d{4}\/\d{2}\/\d{2}$/;
+	reg=/^(\d{4}\/([1-9]|\d{2})\/([1-9]|\d{2}))|(\d{4}-([1-9]|\d{2})-([1-9]|\d{2}))$/;
 	if(!reg.test($("#birthDay").val().trim())){
 		return "生年月日[yyyy/mm/dd]を正しく入力してください！";
 	}
@@ -65,7 +65,7 @@ function check_all_element() {
 		return "専攻を入力してください！";
 	}
 	//卒業年月日 
-	reg=/^\d{4}\/\d{2}\/\d{2}$/;
+	reg=/^(\d{4}\/([1-9]|\d{2})\/([1-9]|\d{2}))|(\d{4}-([1-9]|\d{2})-([1-9]|\d{2}))$/;
 	if(!reg.test($("#graduationDay").val().trim())){
 		return "卒業年月日[yyyy/mm/dd]を正しく入力してください！";
 	}

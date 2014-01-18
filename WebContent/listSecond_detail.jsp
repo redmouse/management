@@ -37,6 +37,7 @@ function check_all_element() {
 	if($("#charger").val().trim() == ""){
 		return "連絡担当者を入力してください！";
 	}
+	return "";
 }
 function submit_kyujinn() {
 	document.getElementById("form1").action = "ListShowSecond";

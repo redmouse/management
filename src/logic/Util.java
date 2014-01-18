@@ -39,7 +39,7 @@ public class Util {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		
 		//  yyyy-MM-ddだったら、yyyy-MM-ddに変える
-		Pattern p=Pattern.compile("[0-9]{4}-[0-9]{2}-[0-9]{2}");
+		Pattern p=Pattern.compile("[0-9]{4}-([1-9]|[0-9]{2})-([1-9]|[0-9]{2})");
 		Matcher m=p.matcher(dateString); 
 		if(m.find()){
 			sdf = new SimpleDateFormat("yyyy-MM-dd");
