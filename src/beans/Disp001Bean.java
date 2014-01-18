@@ -3,6 +3,8 @@ package beans;
 import java.util.ArrayList;
 import java.util.List;
 
+// 求職管理簿一覧
+// mainIdのpopup画面
 public class Disp001Bean {
 	Wk001Bean wk001Bean;
 	List<Wk004Bean> wk004List;

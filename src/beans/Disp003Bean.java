@@ -1,6 +1,6 @@
 package beans;
 
-
+// 手数料管理簿　００４メイン
 public class Disp003Bean {
 	private Wk004Bean wk004Bean;
 	private Wk001Bean wk001Bean;

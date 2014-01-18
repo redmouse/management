@@ -22,6 +22,7 @@ public class Wk006Bean {
 	
 	public String dispRecruitmentFrom;
 	public String dispRecruitmentOwn;
+	public String dispSecondName;
 	
 	public List<IdPairBean> dispMainIdList;
 	
@@ -29,6 +30,23 @@ public class Wk006Bean {
 		dispMainIdList = new ArrayList<IdPairBean>();
 	}
 	
+	
+	
+	
+	public String getDispSecondName() {
+		return dispSecondName;
+	}
+
+
+
+
+	public void setDispSecondName(String dispSecondName) {
+		this.dispSecondName = dispSecondName;
+	}
+
+
+
+
 	public int getInfoId() {
 		return infoId;
 	}

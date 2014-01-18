@@ -64,13 +64,18 @@ public class ListSecondPreModify extends HttpServlet {
 				Wk006Bean wk006Bean = (Wk006Bean) iterator.next();
 				List<IdPairBean> idPairList = util.convertUserInputMainId(wk006Bean.getSecondMainId());
 				StringBuffer sb = new StringBuffer();
+				StringBuffer sbName = new StringBuffer();
 				for (Iterator iterator2 = idPairList.iterator(); iterator2.hasNext();) {
 					IdPairBean idPairBean = (IdPairBean) iterator2.next();
 					sb.append(idPairBean.getDispMainId());
 					sb.append(",");
+					sbName.append(idPairBean.getName());
+					sbName.append(",");
 				}
 				sb.deleteCharAt(sb.length() - 1);	// 最後の,を削除
+				sbName.deleteCharAt(sbName.length() - 1);	// 最後の,を削除
 				wk006Bean.setSecondMainId(sb.toString());
+				wk006Bean.setDispSecondName(sbName.toString());
 			}
     		disp002Bean.setWk006List(wk006List);
     		

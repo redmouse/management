@@ -64,15 +64,23 @@ public class ListShowSecond extends HttpServlet {
 			Iterator itr = wk005List.iterator();
 			while (itr.hasNext()) {
 				Wk005Bean wk005Bean = (Wk005Bean)itr.next();
-				
+				System.out.println(wk005Bean.getTradeId());
+				if(wk005Bean.getTradeId() == 20){
+					System.out.println(wk005Bean.getTradeId());
+				}
 				List<Wk006Bean> wk006List = wk006Dao.SelectByTradeId(wk005Bean.getTradeId());
 				for (Wk006Bean wk006Bean : wk006List) {
 					// creat dispMainId list
 					wk006Bean.setDispMainIdList(util.convertUserInputMainId(wk006Bean.getSecondMainId()));
 					
+					//　求人票のディフォルト値
+					wk006Bean.setDispRecruitmentFrom(wk006Bean.getRecruitmentFrom());
+					wk006Bean.setDispRecruitmentOwn(wk006Bean.getRecruitmentOwn());
 					// 求人票...
 					if(wk006Bean.getRecruitmentFrom().length()>5){
 						wk006Bean.setDispRecruitmentFrom(util.convertDispShortCut(wk006Bean.getRecruitmentFrom()));
+					}
+					if(wk006Bean.getRecruitmentOwn().length()>5){
 						wk006Bean.setDispRecruitmentOwn(util.convertDispShortCut(wk006Bean.getRecruitmentOwn()));
 					}
 				}

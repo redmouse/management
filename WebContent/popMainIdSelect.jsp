@@ -24,18 +24,35 @@ function load_func(){
 	
 	return;
 }
+// '00012,00014,00016-田中,黒田,山口'の形で戻す
 function update_ok(){
-	var returnStr = '';
+	var mainIdStr = '';
+	var nameStr = '';
 	$('#select2 option').each(function(i) {
-		if(returnStr!=''){
-			returnStr += ",";
+		// option.value = '00012-田中'の形
+		var value = $(this).val();
+        var mainId = getMainId(value);
+        var name = getName(value);
+		if(mainIdStr!=''){
+			mainIdStr += ",";
 		}
-		returnStr += $(this).val();
+		if(nameStr!=''){
+			nameStr += ",";
+		}
+        mainIdStr += mainId;
+        nameStr += name;
       }); 
-	window.returnValue = returnStr;
+	window.returnValue = mainIdStr + '-' + nameStr;
 	window.close();
 }
-
+function getMainId(optValue){
+	var pos = optValue.indexOf("-");
+	return optValue.substr(0,pos);
+}
+function getName(optValue){
+	var pos = optValue.indexOf("-");
+	return optValue.substr(pos+1);
+}
 // 左右移动
 $(document).ready(function(){  
     $('#add').click(function(){  
@@ -76,14 +93,17 @@ $(document).ready(function(){
 	    var currentIds = k.document.getElementById("currentMainIdInput").value;
 	    $('#select1 option').each(function(){
             var value = $(this).val();
+         	// option.value = '00012-田中'の形
+            var mainId = getMainId(value);
             // 左のmainIdは親ウィンドのmainIdに含まれたら、右に移動する。
-            if (currentIds.indexOf(value) >= 0) {
+            if (currentIds.indexOf(mainId) >= 0) {
 	            $(this).appendTo('#select2');
             }
         });
     } 
    	
 });  
+
 </script>
 <body onload="load_func()">
 <form>
@@ -92,30 +112,39 @@ $(document).ready(function(){
 	 <tr>
 	 	<td>
 	 	求人選択一覧<br/>
-		 <select id="select1" multiple="multiple" size="20" style="width:300px">
-		 	<c:forEach items="${wk001List}" var="wk001Bean">
-				<option value ="${wk001Bean.dispMainId}">
+	 	名前 | 生年月日 | 受付年月日 | 希望職種 | 求人事業者<br/>
+		 <select id="select1" multiple="multiple" size="10" style="width:600px">
+		 	<c:forEach items="${disp001List}" var="disp001Bean">
+		 	    <c:set var="wk001Bean" value="${disp001Bean.wk001Bean}" />
+    		    <c:set var="wk004List" value="${disp001Bean.wk004List}" />
+				<option value ="${wk001Bean.dispMainId}-${wk001Bean.name}">
 				 <%--  <c:out value="${wk001Bean.dispMainId}" /> --%>
-				  <c:out value="${wk001Bean.name}" />
-				  <fmt:formatDate value="${wk001Bean.birthDay}" pattern="yyyy/MM/dd" />
-				 <c:out value="${wk004Bean.hopePosition}" />
-				 <c:out value="${wk004Bean.forBusiness}" />
-				  <fmt:formatDate value="${wk001Bean.receptionDay}" pattern="yyyy/MM/dd" />
+				    <c:out value="${wk001Bean.name}" />
+				  | <fmt:formatDate value="${wk001Bean.birthDay}" pattern="yyyy/MM/dd" />
+				  | <fmt:formatDate value="${wk001Bean.receptionDay}" pattern="yyyy/MM/dd" />
+				  | 
+				  <c:forEach items="${wk004List}" var="wk004Bean">
+				  	  <c:out value="${wk004Bean.hopePosition}" /> 
+				  </c:forEach>
+				  | 
+				  <c:forEach items="${wk004List}" var="wk004Bean">
+					  <c:out value="${wk004Bean.forBusiness}" />
+				  </c:forEach>
 				</option>
 			</c:forEach>
 		</select>
 		</td>
-	 	<td>
-	 		<input id="add" type="button" value=">>">
-	 		<br/>
-	 		<br/>
-	 		<br/>
-	 		<br/>
-	 		<input id="remove" type="button" value="<<">
+	 </tr>
+	 <tr>
+	 	<td align="center">
+	 		<input id="add" type="button" value="▼">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	 		<input id="remove" type="button" value="▲">
 	 	</td>
+	 </tr>
+	 <tr>
 	 	<td>
 	 	選択済み一覧<br/>
-		 <select id="select2" multiple="multiple" size="20" style="width:300px"></select>
+		 <select id="select2" multiple="multiple" size="10" style="width:600px"></select>
 		</td>
 	 </tr>
  </table>
