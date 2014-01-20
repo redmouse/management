@@ -254,7 +254,7 @@ function new_data(){
 		</ul>
 		</div><!-- header -->
 		<p>
-			登録番号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="dispMainId" id="dispMainId" style="background-color:gray"
+			<span class="star">☆</span>登録番号&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="dispMainId" id="dispMainId" style="background-color:gray"
 				value="${detailBean.wk001Bean.dispMainId}" readOnly> 
 			受付日時<input type="text" name="receptionDay" id="receptionDay"
 				value='<fmt:formatDate value="${detailBean.wk001Bean.receptionDay}" pattern="yyyy/MM/dd" />'>
