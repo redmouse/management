@@ -318,7 +318,7 @@ function new_data(){
 			郵便番号
 			<input type="text" name="postcode" id="postcode" value="${detailBean.wk001Bean.postcode}">
 			<span class="star">☆</span>自宅住所
-			<textarea name="address" id="address">${detailBean.wk001Bean.address}</textarea>
+			<textarea name="address" id="address" cols="46">${detailBean.wk001Bean.address}</textarea>
 		</p>
 		<p>
 			家族

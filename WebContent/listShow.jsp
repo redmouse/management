@@ -81,6 +81,7 @@ function submit_fee() {
   	<table border="1" align=center>
     	<tr>
       		<th>選択</th>
+      		<th>NO.</th>
       		<th>受付年月日</th>
       		<th>氏名</th>
       		<th>生年月日</th>
@@ -95,6 +96,7 @@ function submit_fee() {
       		<th>国内/海外</th>
       		<th>登録番号</th>
     	</tr>
+    	<% int x=0; %>
     	<c:forEach items="${disp001List}" var="disp001Bean">
     		<c:set var="wk001Bean" value="${disp001Bean.wk001Bean}" />
     		<c:set var="wk004List" value="${disp001Bean.wk004List}" />
@@ -107,6 +109,7 @@ function submit_fee() {
     		<%-- 最初のレコードは、すべて<TR>を表示する。（wk001Bean和wk004List最初のレコード。） --%>
     		  <tr>
 			    <td rowspan="${disp004Size}"><input type="checkbox" id="del" name="del" value="${wk001Bean.mainId}"></td>
+			    <td rowspan="${disp004Size}"><% x++; out.print(x); %></td>
 			    <td rowspan="${disp004Size}"><fmt:formatDate value="${wk001Bean.receptionDay}" pattern="yyyy/MM/dd" /></td>
 			    <td rowspan="${disp004Size}"><c:out value="${wk001Bean.name}" /></td>
 			    <td rowspan="${disp004Size}"><fmt:formatDate value="${wk001Bean.birthDay}" pattern="yyyy/MM/dd" /></td>
