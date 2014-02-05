@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8" 
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -96,7 +96,15 @@ function submit_fee() {
       		<th>国内/海外</th>
       		<th>登録番号</th>
     	</tr>
-    	<% int x=0; %>
+    	<%-- <%! int convertNullInt(String intStr){
+    		if(intStr==null || intStr.equals("")){ 
+    			return 0;
+    		}
+    		return new Integer(intStr).intValue();
+    	} 
+    	%>
+    	<% int length=${"disp001List.size()"}; %> --%>
+    	<c:set var="length" value="${fn:length(disp001List)}" /> 
     	<c:forEach items="${disp001List}" var="disp001Bean">
     		<c:set var="wk001Bean" value="${disp001Bean.wk001Bean}" />
     		<c:set var="wk004List" value="${disp001Bean.wk004List}" />
@@ -104,12 +112,16 @@ function submit_fee() {
     		<c:set var="disp004Size" value="${fn:length(wk004List)}" />
     		<%-- disp004Sizeの長さ最低値は1。wk004Listの長さは0の場合、１に設定する --%>
     		<c:if test="${wk004List== null || fn:length(wk004List) == 0}">
-    			<c:set var="disp004Size" value="1" />
+    			<c:set var="disp004Size" value="1" />O
     		</c:if>
     		<%-- 最初のレコードは、すべて<TR>を表示する。（wk001Bean和wk004List最初のレコード。） --%>
     		  <tr>
 			    <td rowspan="${disp004Size}"><input type="checkbox" id="del" name="del" value="${wk001Bean.mainId}"></td>
-			    <td rowspan="${disp004Size}"><% x++; out.print(x); %></td>
+			   <%--  <td rowspan="${disp004Size}">${"disp001List.size()"}</td>  --%>
+<%-- 			    <td rowspan="${disp004Size}"><% x++; out.print(x); %></td> 
+ --%> 			  <%--  <td rowspan="${disp004Size}">${fn:length(disp001List)} </td> --%>
+			   <%--  <td rowspan="${disp004Size}"><c:out value="${length}" /></td> --%>
+			    <td rowspan="${disp004Size}"><c:out value="${length}" /></td>
 			    <td rowspan="${disp004Size}"><fmt:formatDate value="${wk001Bean.receptionDay}" pattern="yyyy/MM/dd" /></td>
 			    <td rowspan="${disp004Size}"><c:out value="${wk001Bean.name}" /></td>
 			    <td rowspan="${disp004Size}"><fmt:formatDate value="${wk001Bean.birthDay}" pattern="yyyy/MM/dd" /></td>
@@ -120,7 +132,8 @@ function submit_fee() {
 			    <td><fmt:formatDate value="${wk004List[0].interviewDay}" pattern="yyyy/MM/dd" /></td>
 			    <td><fmt:formatDate value="${wk004List[0].inaugurationDay}" pattern="yyyy/MM/dd" /></td>
 			    <td><fmt:formatDate value="${wk004List[0].turnoverDay}" pattern="yyyy/MM/dd" /></td>
-			    <td><c:out value="${wk004List[0].dispFee}" /></td>
+			    <td><fmt:formatNumber value="${wk004List[0].dispFee}" type="CURRENCY" groupingUsed="true" /></td>
+<%-- 			    <td><c:out value="${wk004List[0].dispFee}" /></td> --%>
 			    <td rowspan="${disp004Size}"><c:out value="${wk001Bean.dispPlace}" /></td>
 			    <td rowspan="${disp004Size}"><a href="#" onclick="submit_list_modify(${wk001Bean.mainId});return false;">
 			    <c:out value="${wk001Bean.dispMainId}" /></a></td>
@@ -134,7 +147,7 @@ function submit_fee() {
 			    <td><fmt:formatDate value="${wk004Bean.interviewDay}" pattern="yyyy/MM/dd" /></td>
 			    <td><fmt:formatDate value="${wk004Bean.inaugurationDay}" pattern="yyyy/MM/dd" /></td>
 			    <td><fmt:formatDate value="${wk004Bean.turnoverDay}" pattern="yyyy/MM/dd" /></td>
-			    <td><c:out value="${wk004Bean.dispFee}" /></td>
+			    <td><fmt:formatNumber value="${wk004Bean.dispFee}" type="CURRENCY" groupingUsed="true" /></td>
 			  </tr>
     		</c:forEach>
     	</c:forEach>

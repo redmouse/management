@@ -91,7 +91,7 @@ function submit_year_change(){
 			    <td><c:out value="${disp003Bean.wk004Bean.forBusiness}" /></td>
 			    <td><fmt:formatDate value="${disp003Bean.wk004Bean.inaugurationDay}" pattern="yyyy/MM/dd" /></td>
 			    <td><fmt:formatDate value="${disp003Bean.wk004Bean.turnoverDay}" pattern="yyyy/MM/dd" /></td>
-			    <td><c:out value="${disp003Bean.wk004Bean.dispFee}" /></td>
+			    <td><fmt:formatNumber value="${disp003Bean.wk004Bean.dispFee}" type="CURRENCY" groupingUsed="true" /></td>
 			    <td><a href="#" onclick="submit_list_modify(${disp003Bean.wk001Bean.mainId});return false;">
 			    <c:out value="${disp003Bean.wk001Bean.dispMainId}" /></a></td>
 			  </tr>
@@ -100,7 +100,7 @@ function submit_year_change(){
 	<table border="1" align="center">
     	<tr>
       		<th>合計金額：　</th>
-      		<td border="1"><c:out value="${total}" /> 円</td>
+      		<td border="1"><fmt:formatNumber value="${total}" type="CURRENCY" groupingUsed="true" /> 円</td>
     	</tr>
 	</table><br />
  	　
