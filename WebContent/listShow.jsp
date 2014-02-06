@@ -96,15 +96,7 @@ function submit_fee() {
       		<th>国内/海外</th>
       		<th>登録番号</th>
     	</tr>
-    	<%-- <%! int convertNullInt(String intStr){
-    		if(intStr==null || intStr.equals("")){ 
-    			return 0;
-    		}
-    		return new Integer(intStr).intValue();
-    	} 
-    	%>
-    	<% int length=${"disp001List.size()"}; %> --%>
-    	<c:set var="length" value="${fn:length(disp001List)}" /> 
+    	<c:set var="descNo" value="${fn:length(disp001List)}" /> 
     	<c:forEach items="${disp001List}" var="disp001Bean">
     		<c:set var="wk001Bean" value="${disp001Bean.wk001Bean}" />
     		<c:set var="wk004List" value="${disp001Bean.wk004List}" />
@@ -117,11 +109,8 @@ function submit_fee() {
     		<%-- 最初のレコードは、すべて<TR>を表示する。（wk001Bean和wk004List最初のレコード。） --%>
     		  <tr>
 			    <td rowspan="${disp004Size}"><input type="checkbox" id="del" name="del" value="${wk001Bean.mainId}"></td>
-			   <%--  <td rowspan="${disp004Size}">${"disp001List.size()"}</td>  --%>
-<%-- 			    <td rowspan="${disp004Size}"><% x++; out.print(x); %></td> 
- --%> 			  <%--  <td rowspan="${disp004Size}">${fn:length(disp001List)} </td> --%>
-			   <%--  <td rowspan="${disp004Size}"><c:out value="${length}" /></td> --%>
-			    <td rowspan="${disp004Size}"><c:out value="${length}" /></td>
+			    <td rowspan="${disp004Size}"><c:out value="${descNo}" /></td>
+			    <c:set var="descNo" value="${descNo-1}" />
 			    <td rowspan="${disp004Size}"><fmt:formatDate value="${wk001Bean.receptionDay}" pattern="yyyy/MM/dd" /></td>
 			    <td rowspan="${disp004Size}"><c:out value="${wk001Bean.name}" /></td>
 			    <td rowspan="${disp004Size}"><fmt:formatDate value="${wk001Bean.birthDay}" pattern="yyyy/MM/dd" /></td>
