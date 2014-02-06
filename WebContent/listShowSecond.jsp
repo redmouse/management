@@ -119,7 +119,7 @@ function popup_window(showText, titleFrom) {
       		<th>自社の求人票</th>
       		<th>名前</th>
     	</tr>
-    	<% int x=0; %>
+    	<c:set var="descNo" value="${fn:length(disp002List)}" />
     	<c:forEach items="${disp002List}" var="disp002Bean">
     		<c:set var="wk005Bean" value="${disp002Bean.wk005Bean}" />
     		<c:set var="wk006List" value="${disp002Bean.wk006List}" />
@@ -134,7 +134,8 @@ function popup_window(showText, titleFrom) {
     		  <tr>
 			    <td rowspan="${disp006Size}"><input type="radio" id="radioForBusiness" name="radioForBusiness" value="${wk005Bean.tradeId}"></td>
 			   <%--  <td rowspan="${disp006Size}"><c:out value="${wk005Bean.tradeId}" /></td> --%>
-			    <td rowspan="${disp006Size}"><% x++; out.print(x); %></td>
+			    <td rowspan="${disp006Size}"><c:out value="${descNo}" /></td>
+			    <c:set var="descNo" value="${descNo-1}" />
 			    <td rowspan="${disp006Size}"><c:out value="${wk005Bean.forBusiness}" /></td>
 			    <c:set var="wk006Bean" value="${wk006List[0]}" />
 			    <td><fmt:formatDate value="${wk006Bean.receptionDay}" pattern="yyyy/MM/dd" /></td>
