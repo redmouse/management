@@ -104,7 +104,7 @@ function submit_fee() {
     		<c:set var="disp004Size" value="${fn:length(wk004List)}" />
     		<%-- disp004Sizeの長さ最低値は1。wk004Listの長さは0の場合、１に設定する --%>
     		<c:if test="${wk004List== null || fn:length(wk004List) == 0}">
-    			<c:set var="disp004Size" value="1" />O
+    			<c:set var="disp004Size" value="1" />
     		</c:if>
     		<%-- 最初のレコードは、すべて<TR>を表示する。（wk001Bean和wk004List最初のレコード。） --%>
     		  <tr>
@@ -121,7 +121,7 @@ function submit_fee() {
 			    <td><fmt:formatDate value="${wk004List[0].interviewDay}" pattern="yyyy/MM/dd" /></td>
 			    <td><fmt:formatDate value="${wk004List[0].inaugurationDay}" pattern="yyyy/MM/dd" /></td>
 			    <td><fmt:formatDate value="${wk004List[0].turnoverDay}" pattern="yyyy/MM/dd" /></td>
-			    <td><fmt:formatNumber value="${wk004List[0].dispFee}" type="CURRENCY" groupingUsed="true" /></td>
+			    <td><fmt:setLocale value="ja_JP" /><fmt:formatNumber value="${wk004List[0].dispFee}" type="CURRENCY" groupingUsed="true" /></td>
 <%-- 			    <td><c:out value="${wk004List[0].dispFee}" /></td> --%>
 			    <td rowspan="${disp004Size}"><c:out value="${wk001Bean.dispPlace}" /></td>
 			    <td rowspan="${disp004Size}"><a href="#" onclick="submit_list_modify(${wk001Bean.mainId});return false;">
@@ -136,7 +136,7 @@ function submit_fee() {
 			    <td><fmt:formatDate value="${wk004Bean.interviewDay}" pattern="yyyy/MM/dd" /></td>
 			    <td><fmt:formatDate value="${wk004Bean.inaugurationDay}" pattern="yyyy/MM/dd" /></td>
 			    <td><fmt:formatDate value="${wk004Bean.turnoverDay}" pattern="yyyy/MM/dd" /></td>
-			    <td><fmt:formatNumber value="${wk004Bean.dispFee}" type="CURRENCY" groupingUsed="true" /></td>
+			    <td><fmt:setLocale value="ja_JP" /><fmt:formatNumber value="${wk004Bean.dispFee}" type="CURRENCY" groupingUsed="true" /></td>
 			  </tr>
     		</c:forEach>
     	</c:forEach>
