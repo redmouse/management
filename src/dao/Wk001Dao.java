@@ -4,19 +4,21 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
+import logic.Util;
 import beans.Wk001Bean;
 
 public class Wk001Dao extends MysqlDao {
-	
+
 	String wk001Colums = " mainId,receptionDay,level1Id,level2Id,level3Id,place,name,hurigana,"
 			+ " age,birthDay,sex,marriage,foreigner,postcode,address,family,homePhone,"
 			+ " mobilePhone,contactMethod,email,lastDegree,specialty,department,graduationDay,"
 			+ " schoolOther,englishLevel,selfAssessment,toeic,toefl,etest,requirements,"
 			+ " annualIncomeNow,annualIncomeHope,workLocation,bachelor,inaugurationDay,"
 			+ " turnoverDay,fee,companyInfo,workContents";
-	
+
 	private void setBean(Wk001Bean item, ResultSet rs) throws Exception{
 		item.setMainId(rs.getInt("mainId"));
 		item.setReceptionDay(rs.getDate("receptionDay"));
@@ -59,12 +61,30 @@ public class Wk001Dao extends MysqlDao {
 		item.setCompanyInfo(rs.getString("companyInfo"));
 		item.setWorkContents(rs.getString("workContents"));
 	}
-	
-	
+
+
 	public List<Wk001Bean> SelectAll() throws Exception {
 		List<Wk001Bean> returnList = new ArrayList<Wk001Bean>();
 		String sql = " SELECT " + wk001Colums + " FROM wk001 ORDER BY receptionDay desc,mainId desc";
 		PreparedStatement statement = getConnection().prepareStatement(sql);
+		ResultSet rs = statement.executeQuery();
+
+		while (rs.next()) {
+			Wk001Bean item = new Wk001Bean();
+			setBean(item, rs);
+			returnList.add(item);
+		}
+		return returnList;
+	}
+
+	public List<Wk001Bean> SelectByReceptionDay(Calendar cal) throws Exception {
+		Util util = new Util();
+		List<Wk001Bean> returnList = new ArrayList<Wk001Bean>();
+		String sql = " SELECT " + wk001Colums + " FROM wk001 where ReceptionDay between ? and ? ORDER BY receptionDay desc,mainId desc";
+		PreparedStatement statement = getConnection().prepareStatement(sql);
+		int pos = 1;
+		statement.setDate(pos++, util.getYearBegin(cal));
+		statement.setDate(pos++, util.getYearEnd(cal));
 		ResultSet rs = statement.executeQuery();
 
 		while (rs.next()) {
@@ -110,7 +130,7 @@ public class Wk001Dao extends MysqlDao {
 		statement.setInt(1, mainId);
 		statement.executeUpdate();
 	}
-	
+
 	public void DeleteByIds(String ids) throws Exception {
 		String sql = " DELETE FROM wk001 where mainId in (?) ";
 		PreparedStatement statement = getConnection().prepareStatement(sql);
@@ -288,12 +308,12 @@ public class Wk001Dao extends MysqlDao {
 		statement.setString(pos++, item.getWorkContents());
 		statement.executeUpdate();
 	}
-	
+
 	// 検索画面に使う
 	public List<Wk001Bean> SelectByCondition(Wk001Bean wk001Bean) throws Exception {
 		List<Wk001Bean> returnList = new ArrayList<Wk001Bean>();
 		String sql = " SELECT " + wk001Colums + " FROM wk001 WHERE 1=1 ";
-		
+
 		// 英語レベル
 		if(wk001Bean.getEnglishLevel()>0){
 			sql += " AND englishLevel = " + wk001Bean.getEnglishLevel();
@@ -312,7 +332,7 @@ public class Wk001Dao extends MysqlDao {
 		if(wk001Bean.getName()!=null && !wk001Bean.getName().equals("")){
 			sql += " AND name like '%" + wk001Bean.getName() + "%' ";
 		}
-		
+
 		sql += " ORDER BY mainId desc";
 		PreparedStatement statement = getConnection().prepareStatement(sql);
 		ResultSet rs = statement.executeQuery();

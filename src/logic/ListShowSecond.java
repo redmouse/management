@@ -2,6 +2,8 @@ package logic;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -24,7 +26,7 @@ import dao.Wk006Dao;
 @WebServlet("/ListShowSecond")
 public class ListShowSecond extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -47,7 +49,7 @@ public class ListShowSecond extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		/**
-		 * List<Disp002Bean> disp002List 
+		 * List<Disp002Bean> disp002List
 		 * 	  Disp002Bean
 		 * 		wk005Bean
 		 * 		List<Wk006Bean>
@@ -56,23 +58,46 @@ public class ListShowSecond extends HttpServlet {
 		List<Disp002Bean> disp002List = new ArrayList<Disp002Bean>();
 		Wk005Dao wk005Dao=new Wk005Dao();
 		Wk006Dao wk006Dao=new Wk006Dao();
-		
+
 		Util util = new Util();
 		try{
-			// wk005の全部データを取得し、データごとのmainIdによって，wk006Listを取得する
-			List<Wk005Bean> wk005List = wk005Dao.SelectAll();
-			Iterator itr = wk005List.iterator();
-			while (itr.hasNext()) {
-				Wk005Bean wk005Bean = (Wk005Bean)itr.next();
-				System.out.println(wk005Bean.getTradeId());
-				if(wk005Bean.getTradeId() == 20){
-					System.out.println(wk005Bean.getTradeId());
-				}
-				List<Wk006Bean> wk006List = wk006Dao.SelectByTradeId(wk005Bean.getTradeId());
+			// ----- 会計年度表示 ------
+			String yearBackCount = request.getParameter("yearBackCount");
+			if(yearBackCount==null){
+				yearBackCount = "0";
+			}
+			int yearBack = new Integer(yearBackCount).intValue();
+			 Date date = new Date();
+			 Calendar cal = Calendar.getInstance();
+			 cal.setTime(date);
+			 cal.set(Calendar.YEAR, cal.get(Calendar.YEAR) - yearBack);
+			 cal.set(Calendar.DAY_OF_MONTH, 1);  // 1日
+
+			String startDay = util.getYearBegin(cal).toString();
+			String endDay = util.getYearEnd(cal).toString();
+			request.setAttribute("startDay", startDay);
+    		request.setAttribute("endDay", endDay);
+    		request.setAttribute("yearBackCount", yearBackCount);
+			// ----- ---------- ------
+
+    		// wk006の受付年月日より、当会計年度に、求人データがある事業所(wk006.tradeId)を取得。
+    		List<Integer> tradeList = wk006Dao.SelectByReceptionDay(cal);
+
+    		// 表示対象の事業所ごとにwk005とwk006のデータを合弁する。
+    		Iterator itr = tradeList.iterator();
+    		List<Wk005Bean> wk005List = new ArrayList<Wk005Bean>();
+    		while (itr.hasNext()) {
+    			int tradeId = (Integer)itr.next();
+    			// wk005データ取得
+    			Wk005Bean wk005Bean = wk005Dao.Select(tradeId);
+    			wk005List.add(wk005Bean);
+
+    			// wk006データ取得
+				List<Wk006Bean> wk006List = wk006Dao.SelectByTradeIdAndDeceptionDay(tradeId,cal);
 				for (Wk006Bean wk006Bean : wk006List) {
 					// creat dispMainId list
 					wk006Bean.setDispMainIdList(util.convertUserInputMainId(wk006Bean.getSecondMainId()));
-					
+
 					//　求人票のディフォルト値
 					wk006Bean.setDispRecruitmentFrom(wk006Bean.getRecruitmentFrom());
 					wk006Bean.setDispRecruitmentOwn(wk006Bean.getRecruitmentOwn());
@@ -84,13 +109,13 @@ public class ListShowSecond extends HttpServlet {
 						wk006Bean.setDispRecruitmentOwn(util.convertDispShortCut(wk006Bean.getRecruitmentOwn()));
 					}
 				}
-				
+
 				Disp002Bean disp002Bean = new Disp002Bean();
 				disp002Bean.setWk005Bean(wk005Bean);
 				disp002Bean.setWk006List(wk006List);
 				disp002List.add(disp002Bean);
 			}
-	
+
     		request.setAttribute("disp002List", disp002List);
     	}catch(Exception e){
     		throw new ServletException(e);
@@ -100,5 +125,5 @@ public class ListShowSecond extends HttpServlet {
     	}
     	request.getRequestDispatcher("/listShowSecond.jsp").forward(request,response);
 	}
-	
+
 }

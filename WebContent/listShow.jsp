@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" 
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -42,15 +42,15 @@ function submit_list_delete(){
 function submit_list_back(){
 	document.getElementById("form1").action = "select.jsp";
 	document.getElementById("form1").submit();
-} 
+}
 function submit_list_add(){
 	document.getElementById("form1").action = "ListPreAdd";
 	document.getElementById("form1").submit();
-} 
+}
 function submit_search(){
 	document.getElementById("form1").action = "SearchPre";
 	document.getElementById("form1").submit();
-} 
+}
 function submit_listSecond_show(){
 	document.getElementById("form1").action = "ListShowSecond";
 	document.getElementById("form1").submit();
@@ -63,6 +63,10 @@ function submit_fee() {
 	document.getElementById("form1").action = "ListShowFee";
 	document.getElementById("form1").submit();
 }
+function submit_year_change(){
+	document.getElementById("form1").action = "ListShow";
+	document.getElementById("form1").submit();
+}
 </script>
 <body>
 <h1 align=center>求職管理簿</h1>
@@ -71,13 +75,29 @@ function submit_fee() {
 <li><input type="button" onclick="submit_list_back()" value="戻る"></li>
 <li><input type="button" onclick="submit_list_add()" value="新規"></li>
 <li><input type="button" onclick="submit_search()" value="検索"></li>
-<li><input type="button" onclick="submit_list_delete()" value="削除"></li> 
+<li><input type="button" onclick="submit_list_delete()" value="削除"></li>
 <li id="kyujinn"><input type="button" onclick="submit_kyujinn();" value="求人管理簿"></li>
 <li id="kee"><input type="button" onclick="submit_fee();" value="手数料管理簿"></li>
 </ul>
 </div>
 <form id="form1" name="form1" method="post" action="">
 	<input type="hidden" id="mainId" name="mainId" >
+	<table border="0" align="center">
+    	<tr>
+      		<th>会計年度：　</th>
+      		<td>
+				<select id="yearBackCount" name="yearBackCount" onChange="submit_year_change();">
+					<option value="0" <c:if test="${yearBackCount == 0 }"> selected </c:if>>当年度</option>
+					<option value="1" <c:if test="${yearBackCount == 1 }"> selected </c:if>>1年前</option>
+					<option value="2" <c:if test="${yearBackCount == 2 }"> selected </c:if>>2年前</option>
+					<option value="3" <c:if test="${yearBackCount == 3 }"> selected </c:if>>3年前</option>
+					<option value="4" <c:if test="${yearBackCount == 4 }"> selected </c:if>>4年前</option>
+					<option value="5" <c:if test="${yearBackCount == 5 }"> selected </c:if>>5年前</option>
+				</select>
+			</td>
+      		<td><c:out value="${startDay}" /> ～ <c:out value="${endDay}" /><br/></td>
+    	</tr>
+	</table><br />
   	<table border="1" align=center>
     	<tr>
       		<th>選択</th>
@@ -96,7 +116,7 @@ function submit_fee() {
       		<th>国内/海外</th>
       		<th>登録番号</th>
     	</tr>
-    	<c:set var="descNo" value="${fn:length(disp001List)}" /> 
+    	<c:set var="descNo" value="${fn:length(disp001List)}" />
     	<c:forEach items="${disp001List}" var="disp001Bean">
     		<c:set var="wk001Bean" value="${disp001Bean.wk001Bean}" />
     		<c:set var="wk004List" value="${disp001Bean.wk004List}" />
@@ -150,5 +170,4 @@ function submit_fee() {
 
 </body>
 </html>
-    
- 
+
