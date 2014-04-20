@@ -47,7 +47,6 @@ public class Pop extends HttpServlet {
 		// TODO Auto-generated method stub
 		Wk006Dao wk006Dao=new Wk006Dao();
     	try{
-    		// 求人詳細画面からの値
     		int infoId = new Integer(request.getParameter("popInfoId")).intValue();
     		String columnName = request.getParameter("popColumn");
     		Wk006Bean wk006Bean = wk006Dao.Select(infoId);
