@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import logic.Util;
+import beans.Wk004Bean;
 import beans.Wk006Bean;
 
 public class Wk006Dao extends MysqlDao {
@@ -124,5 +125,16 @@ public class Wk006Dao extends MysqlDao {
 		PreparedStatement statement = getConnection().prepareStatement(sql);
 		statement.setInt(1, tradeId);
 		statement.executeUpdate();
+	}
+	public Wk006Bean Select(int infoId) throws Exception {
+		String sql = " SELECT " + wk006Colums + " FROM Wk006 where infoId=? ";
+		PreparedStatement statement = getConnection().prepareStatement(sql);
+		statement.setInt(1, infoId);
+		ResultSet rs = statement.executeQuery();
+		Wk006Bean item = new Wk006Bean();
+		if (rs.next()) {
+			setBean(item, rs);
+		}
+		return item;
 	}
 }

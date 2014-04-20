@@ -20,16 +20,19 @@ margin-left:1120px;
 </style>
 </head>
 <script type="text/javascript">
+String.prototype.trim = function () {
+	return this.replace(/^\s\s*/, '').replace(/\s\s*$/, '' );
+}
 function check_all_element() {
-	//求人事業所 
+	//求人事業所
 	if($("#forBusiness").val().trim() == ""){
 		return "求人事業所を入力してください！";
 	}
-	//所在地 
+	//所在地
 	if($("#address").val().trim() == ""){
 		return "所在地を入力してください！";
 	}
-	//代表者氏名 
+	//代表者氏名
 	if($("#representative").val().trim() == ""){
 		return "代表者氏名を入力してください！";
 	}
@@ -72,7 +75,7 @@ function popup_window(thisTextArea) {
 	else if(thisTextArea.name == "recruitmentOwn"){
 		document.getElementById("popTitle").value = "自社の求人票";
 	}
-	
+
 	var returnValue= window.showModalDialog("pop.jsp",window,"dialogHeight=600px;dialogWidth=700px;dialogLeft=0px;dialogTop=0px;center=yes;resizable=no;status=no;scroll=yes;help=no;");
 	if (returnValue != null )
    {
@@ -89,7 +92,7 @@ function pop_multi_select(objThisName) {
 	}
 	var ids=document.getElementsByName("secondMainId");
 	var objThisId = ids[i];
-	
+
 	document.getElementById("currentMainIdInput").value = ids[i].value;
 	var returnValue= window.showModalDialog("PopMainIdSelect",window,"dialogHeight=500px;dialogWidth=700px;dialogLeft=0px;dialogTop=0px;center=yes;resizable=no;status=no;scroll=yes;help=no;");
 	if (returnValue != null )
@@ -141,7 +144,7 @@ function delete_data006(){
 </script>
 <body>
 	<form name="form1" id="form1" method="post" action="">
-		<input type="hidden" id="tradeId" name="tradeId" value="${disp002Bean.wk005Bean.tradeId}"> 
+		<input type="hidden" id="tradeId" name="tradeId" value="${disp002Bean.wk005Bean.tradeId}">
 		<!-- こちらのcurrentMainIdInputは、pop window(mainId select)のため -->
 		<input type="hidden" id="currentMainIdInput" name="currentMainIdInput" value="">
 		<!-- こちらのshowTextは、pop windowのため -->
@@ -177,7 +180,7 @@ function delete_data006(){
 		</table>
 		</div>
 		<hr>
-		
+
 	<table border="1" width="800">
 		<tr>
       		<th>選択</th>
@@ -191,7 +194,7 @@ function delete_data006(){
       		<th>国内/海外</th>
       		<th>求人事業者からの求人票</th>
       		<th>自社の求人票</th>
-      		<th>名前</th>
+      		<th>応募者名</th>
     	</tr>
     	<c:choose>
 				<c:when test="${fn:length(disp002Bean.wk006List)==0}">
@@ -209,8 +212,8 @@ function delete_data006(){
       					<td><textarea name="recruitmentOwn" id="recruitmentOwn" onclick="popup_window(this)"><c:out value="" /></textarea></td>
       					<td><input type="text" name="secondName" id="secondName" onclick="pop_multi_select(this)" value="" readonly>
       					    <input type="text" name="secondMainId" id="secondMainId" style="display:none;"></td>
-    				</tr>		
-				</c:when> 
+    				</tr>
+				</c:when>
 				<c:otherwise>
 					<c:forEach items="${disp002Bean.wk006List}" var="wk006Bean">
 						<tr>
@@ -228,14 +231,14 @@ function delete_data006(){
       						<td><input type="text" name="secondName" id="secondName" onclick="pop_multi_select(this)" value="${wk006Bean.dispSecondName}" readonly>
       						    <input type="text" name="secondMainId" id="secondMainId" value="${wk006Bean.secondMainId}" style="display:none;"></td>
       					</tr>
-					</c:forEach> 
+					</c:forEach>
 				</c:otherwise>
 			</c:choose>
 	</table>
 	<div id="button">
 	<input type="button" value="追加" id="data006PageAdd" onclick="new_data006();">
 	<input type="button" value="削除" id="data006PageDel" onclick="delete_data006();">
-		
+
 	<c:choose>
 		<c:when test="${disp002Bean.wk005Bean.tradeId> 0}">
 			<input type="button" onclick="submit_update();" value="更新">
@@ -244,7 +247,7 @@ function delete_data006(){
 			<input type="button" onclick="submit_add();" value="登録">
 		</c:otherwise>
 	</c:choose>
-	</div>	 
+	</div>
 	</form>
 
 </body>
